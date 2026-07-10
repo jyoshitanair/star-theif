@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+scripts/secrets.gd
+scripts/secrets.gd.uid

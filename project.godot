@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Manager="*uid://b82mpuv1h8nut"
+Network="*uid://0drssbpbekf4"
+Secrets="*uid://dgkfbgk36la67"
 
 [display]
 
