@@ -1,3 +1,35 @@
 [gd_scene format=3 uid="uid://iedml5p5d1i"]
 
-[node name="Fight" type="Node2D" unique_id=1185309514]
+[ext_resource type="PackedScene" uid="uid://5ylr2mwi4mbt" path="res://scenes/card.tscn" id="1_537il"]
+[ext_resource type="Script" uid="uid://f5s7jq1wrknt" path="res://scripts/fightbar.gd" id="1_htrw1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqrfi"]
+bg_color = Color(0.60784316, 0.5882353, 0.64705884, 0.75686276)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[node name="bar" type="Node2D" unique_id=1185309514]
+script = ExtResource("1_htrw1")
+
+[node name="Panel" type="Panel" parent="." unique_id=1969611259]
+offset_top = 434.0
+offset_right = 1149.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
+
+[node name="Card" parent="." unique_id=1194118314 instance=ExtResource("1_537il")]
+position = Vector2(123, 774)
+
+[node name="Card2" parent="." unique_id=1797223111 instance=ExtResource("1_537il")]
+position = Vector2(346, 772)
+
+[node name="Card3" parent="." unique_id=1169197280 instance=ExtResource("1_537il")]
+position = Vector2(571, 771)
+
+[node name="Card4" parent="." unique_id=1048180784 instance=ExtResource("1_537il")]
+position = Vector2(797.99994, 769)
+
+[node name="Card5" parent="." unique_id=1396641506 instance=ExtResource("1_537il")]
+position = Vector2(1029.0001, 764)

@@ -3,21 +3,64 @@
 [ext_resource type="Script" uid="uid://w4s7l5hjoccx" path="res://scripts/card.gd" id="1_d81rb"]
 [ext_resource type="Texture2D" uid="uid://bdp5yi60dfikk" path="res://icon.svg" id="2_6u4wf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqrfi"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rid7q"]
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pom5n"]
+bg_color = Color(0.74760276, 0.48319757, 0.8037548, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6u4wf"]
+bg_color = Color(0.17254902, 0.17254902, 0.17254902, 0.6392157)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cqrfi"]
+size = Vector2(229, 339)
+
 [node name="Card" type="Node2D" unique_id=1194118314]
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_d81rb")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=302872406]
-offset_left = -107.0
-offset_top = -158.0
-offset_right = 108.0
-offset_bottom = 169.0
-color = Color(0.83690053, 0.60892755, 0.5516435, 1)
+[node name="Panel" type="Panel" parent="." unique_id=880550975]
+visible = false
+offset_left = -128.0
+offset_top = -181.0
+offset_right = 129.0
+offset_bottom = 189.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=1087533600]
-offset_left = -94.0
-offset_top = -143.0
-offset_right = 90.0
-offset_bottom = 155.0
+[node name="ColorRect" type="Panel" parent="." unique_id=1666977774]
+offset_left = -113.0
+offset_top = -162.0
+offset_right = 111.0
+offset_bottom = 173.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_rid7q")
+
+[node name="ColorRect2" type="Panel" parent="." unique_id=1342244455]
+offset_left = -101.0
+offset_top = -149.0
+offset_right = 98.0
+offset_bottom = 160.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_pom5n")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=348951911]
 position = Vector2(-1, -60)
@@ -28,5 +71,24 @@ offset_left = -64.0
 offset_top = 9.0
 offset_right = 74.0
 offset_bottom = 148.0
+mouse_filter = 1
 theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
-text = "meow"
+text = "meow "
+autowrap_mode = 3
+
+[node name="Panel2" type="Panel" parent="." unique_id=1220221136]
+offset_left = -113.0
+offset_top = -162.0
+offset_right = 111.0
+offset_bottom = 173.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_6u4wf")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2104464704]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=550360223]
+position = Vector2(-1.5, 5.5)
+shape = SubResource("RectangleShape2D_cqrfi")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
