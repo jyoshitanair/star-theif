@@ -4,7 +4,7 @@ var peer: WebRTCMultiplayerPeer = WebRTCMultiplayerPeer.new()
 var client: WebSocketPeer = WebSocketPeer.new()
 
 # Paste your actual Render WSS URL here!
-const SIGNAL_URL = "wss://star-theif.onrender.com:443" 
+const SIGNAL_URL = "wss://star-theif.onrender.com" 
 
 var current_room_id: String = ""
 
@@ -16,7 +16,14 @@ func connect_to_match(room_name: String) -> void:
 	current_room_id = room_name
 	print("Connecting to room: ", current_room_id)
 	
-	var tls = TLSOptions.client_unsafe() # Forces Godot to skip strict verification
+	# Manually specify headers so Render's cloud proxy passes the connection through
+	var headers = PackedStringArray([
+		"Host: star-theif.onrender.com",
+		"Origin: https://star-theif.onrender.com"
+	])
+	client.handshake_headers = headers
+	
+	var tls = TLSOptions.client_unsafe() 
 	var err = client.connect_to_url(SIGNAL_URL, tls)
 	if err != OK:
 		print("Failed to start connecting: ", err)
