@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bkdgwpiv7ijcb"]
+
+[node name="Multiplayertest" type="Node2D" unique_id=861008214]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=141914120]
+_spawnable_scenes = PackedStringArray("uid://iedml5p5d1i")
+spawn_path = NodePath("../player spawn")
+
+[node name="player spawn" type="Node2D" parent="." unique_id=53855626]
+position = Vector2(139, 451)

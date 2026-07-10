@@ -1,5 +1,5 @@
 extends Node2D
-
+@onready var text_edit: TextEdit = $TextEdit
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,11 +11,8 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_button_3_pressed() -> void:
-	##invite
-	get_tree().change_scene_to_file("res://scenes/invite.tscn")
-
-
 func _on_button_pressed() -> void:
-	##join
-	get_tree().change_scene_to_file("res://scenes/join.tscn")
+	var text = text_edit.text.strip_edges()
+	if text == "":
+		return
+	Network.connect_to_match(text)

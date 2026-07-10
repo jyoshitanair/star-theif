@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://ci02y0duadi57"]
 
+[ext_resource type="Script" uid="uid://rotynsvdnwny" path="res://scripts/join.gd" id="1_h8iy3"]
+
 [node name="Join" type="Node2D" unique_id=152130232]
+script = ExtResource("1_h8iy3")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=476045440]
 offset_left = -36.0
@@ -8,3 +11,18 @@ offset_top = -32.0
 offset_right = 1172.0
 offset_bottom = 682.0
 color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+
+[node name="TextEdit" type="TextEdit" parent="." unique_id=1612736675]
+offset_left = 251.0
+offset_top = 205.0
+offset_right = 864.0
+offset_bottom = 476.0
+
+[node name="Button" type="Button" parent="." unique_id=914862789]
+offset_left = 146.0
+offset_top = 53.0
+offset_right = 372.0
+offset_bottom = 206.0
+text = "join"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

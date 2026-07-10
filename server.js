@@ -1,7 +1,15 @@
+const http = require('http');
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: process.env.PORT || 9080 });
 
-const lobbies = new Map(); // room_id -> Set of clients
+// Create a standard HTTP server so Render's proxy can handle the TLS handshake cleanly
+const server = http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Signaling server is running');
+});
+
+const wss = new WebSocket.Server({ server });
+
+const lobbies = new Map();
 
 wss.on('connection', (ws) => {
     let currentRoom = null;
@@ -10,25 +18,20 @@ wss.on('connection', (ws) => {
     ws.on('message', (message) => {
         const msgStr = message.toString();
         
-        // Protocol: Join Room (J:room_name)
         if (msgStr.startsWith('J:')) {
             currentRoom = msgStr.substring(2);
             if (!lobbies.has(currentRoom)) lobbies.set(currentRoom, new Set());
             
-            // Tell the client their assigned Peer ID
             ws.send(`I:${peerId}`);
             
-            // Notify existing peers about this new connection
             lobbies.get(currentRoom).forEach(client => {
                 if (client !== ws) {
-                    client.send(`Log: Peer ${peerId} joined`);
-                    ws.send(`P:${client.peerId}`); // Handshake discovery
+                    ws.send(`P:${client.peerId}`);
                 }
             });
             ws.peerId = peerId;
             lobbies.get(currentRoom).add(ws);
         } 
-        // Forwarding signaling data packets (O:, A:, C:)
         else if (currentRoom && lobbies.has(currentRoom)) {
             lobbies.get(currentRoom).forEach(client => {
                 if (client !== ws) client.send(msgStr);
@@ -38,9 +41,17 @@ wss.on('connection', (ws) => {
 
     ws.on('close', () => {
         if (currentRoom && lobbies.has(currentRoom)) {
+            lobbies.get(currentRoom).forEach(client => {
+                if (client !== ws) client.send(`D:${ws.peerId}`);
+            });
             lobbies.get(currentRoom).delete(ws);
             if (lobbies.get(currentRoom).size === 0) lobbies.delete(currentRoom);
         }
     });
 });
-console.log(`Signaling server running on port ${process.env.PORT || 9080}`);
+
+// Bind to the port Render gives us
+const PORT = process.env.PORT || 9080;
+server.listen(PORT, () => {
+    console.log(`Signaling server listening on port ${PORT}`);
+});
