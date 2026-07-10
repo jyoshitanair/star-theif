@@ -1,3 +1,31 @@
 [gd_scene format=3 uid="uid://dnimysf3ss5o6"]
 
+[ext_resource type="Script" uid="uid://1bqvstp7imlq" path="res://scripts/multiplayer.gd" id="1_b0l6s"]
+
 [node name="Multiplayer" type="Node2D" unique_id=863226930]
+script = ExtResource("1_b0l6s")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1100080448]
+offset_left = -36.0
+offset_top = -32.0
+offset_right = 1172.0
+offset_bottom = 682.0
+color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+
+[node name="Button3" type="Button" parent="." unique_id=589646938]
+offset_left = 106.0
+offset_top = 389.0
+offset_right = 298.0
+offset_bottom = 583.0
+text = "new room"
+
+[node name="Button" type="Button" parent="." unique_id=1318884176]
+offset_left = 280.0
+offset_top = 96.0
+offset_right = 709.0
+offset_bottom = 305.0
+text = "join room
+"
+
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

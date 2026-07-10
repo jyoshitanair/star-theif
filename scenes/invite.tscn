@@ -1,3 +1,20 @@
 [gd_scene format=3 uid="uid://s43sg8tmqx6j"]
 
+[ext_resource type="Script" uid="uid://dx1ubb3sfudwn" path="res://scripts/invite.gd" id="1_i2ja4"]
+
 [node name="Invite" type="Node2D" unique_id=504020460]
+script = ExtResource("1_i2ja4")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=68351217]
+offset_left = -36.0
+offset_top = -32.0
+offset_right = 1172.0
+offset_bottom = 682.0
+color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+
+[node name="Label" type="Label" parent="." unique_id=650738817]
+offset_left = 188.0
+offset_top = 105.0
+offset_right = 856.0
+offset_bottom = 414.0
+text = "meow"

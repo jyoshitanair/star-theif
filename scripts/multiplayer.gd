@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 
 func _on_button_3_pressed() -> void:
 	##invite
-	get_tree().change_scene_to_file("")
+	get_tree().change_scene_to_file("res://scenes/invite.tscn")
 
 
 func _on_button_pressed() -> void:

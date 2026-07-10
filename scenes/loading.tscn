@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://xhx4p6kd57tw"]
 
 [ext_resource type="Script" uid="uid://dqh52prjnn4sc" path="res://scripts/play-button.gd" id="1_ir5ef"]
-[ext_resource type="PackedScene" uid="uid://iedml5p5d1i" path="res://scenes/fight.tscn" id="2_yc7uc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqrfi"]
 
@@ -15,20 +14,13 @@ offset_bottom = 682.0
 color = Color(0.14911404, 0.14911404, 0.14911404, 1)
 
 [node name="Button" type="Button" parent="." unique_id=1843265971]
-offset_left = 369.0
-offset_top = 431.0
-offset_right = 797.0
-offset_bottom = 500.0
+offset_left = 363.0
+offset_top = 320.0
+offset_right = 791.0
+offset_bottom = 389.0
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cqrfi")
 text = "play!"
 script = ExtResource("1_ir5ef")
 
-[node name="bar" parent="." unique_id=1185309514 instance=ExtResource("2_yc7uc")]
-
-[node name="Card" parent="bar" index="1" unique_id=1194118314]
-color = Color(0.8120746, 0.63707155, 0.41229284, 1)
-
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
-
-[editable path="bar"]
