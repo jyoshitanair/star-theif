@@ -2,15 +2,26 @@ extends Node2D
 @export var color:Color = Color("#95abdc")
 @export var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
 @export var texture: Texture2D = preload("res://icon.svg")
-@onready var color_rect: Panel = $ColorRect
-@onready var color_rect_2: Panel = $ColorRect2
-@onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var label: Label = $Label
-@onready var panel: Panel = $Panel
-@onready var panel_2: Panel = $Panel2
+@export var move_clicked:String = "speed"
+@onready var panel: Panel = $visual/Panel
+@onready var color_rect: Panel = $visual/ColorRect
+@onready var color_rect_2: Panel = $visual/ColorRect2
+@onready var sprite_2d: Sprite2D = $visual/Sprite2D
+@onready var label: Label = $visual/Label
+@onready var panel_2: Panel = $visual/Panel2
+@onready var visual: Node2D = $visual
+
 var current = false
+var old_current = false
+var up
+var down
+var bar
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	bar = get_parent()
+	up = Vector2(0, - 50)
+	down =Vector2.ZERO
 	sprite_2d.texture = texture
 	label.text = text
 	##
@@ -27,15 +38,28 @@ func _ready() -> void:
 	color_rect_2.add_theme_stylebox_override("panel", style3)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if current:
-		panel.show()
-		panel_2.hide()
-	else:
-		panel_2.show()
-		panel.hide()
-	print(current)
+	if Manager.clicked_before:
+		return
+	if bar.done && ! Manager.clicked_before:
+		if current:
+			panel.show()
+			panel_2.hide()
+			if Input.is_action_just_pressed("clicked"):
+				Manager.move_clicked = move_clicked
+				current = false
+				Manager.clicked_before = true
+				print("me0w")
+				return
+		else:
+			panel_2.show()
+			panel.hide()
+		if current != old_current:
+			visual.position = down if !current else  up
+			old_current = current  
 
 func _on_area_2d_mouse_entered() -> void:
-	current = true
+	if ! Manager.clicked_before:
+		current = true
 func _on_area_2d_mouse_exited() -> void:
-	current = false
+	if ! Manager.clicked_before:
+		current = false

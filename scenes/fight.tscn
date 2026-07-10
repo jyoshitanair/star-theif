@@ -21,6 +21,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 
 [node name="Card" parent="." unique_id=1194118314 instance=ExtResource("1_537il")]
 position = Vector2(123, 774)
+move_clicked = "meow"
 
 [node name="Card2" parent="." unique_id=1797223111 instance=ExtResource("1_537il")]
 position = Vector2(346, 772)
