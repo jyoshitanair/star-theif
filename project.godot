@@ -23,6 +23,7 @@ Secrets="*uid://dgkfbgk36la67"
 
 [display]
 
+window/size/always_on_top=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

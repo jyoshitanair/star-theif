@@ -13,9 +13,11 @@ func _process(delta: float) -> void:
 
 func _on_button_3_pressed() -> void:
 	##invite
+	Network.become_host()
 	get_tree().change_scene_to_file("res://scenes/invite.tscn")
 
 
 func _on_button_pressed() -> void:
 	##join
+	Network.join_as_p2()
 	get_tree().change_scene_to_file("res://scenes/join.tscn")
