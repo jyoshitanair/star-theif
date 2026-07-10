@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://5ylr2mwi4mbt"]
+
+[ext_resource type="Script" uid="uid://w4s7l5hjoccx" path="res://scripts/card.gd" id="1_d81rb"]
+[ext_resource type="Texture2D" uid="uid://bdp5yi60dfikk" path="res://icon.svg" id="2_6u4wf"]
+
+[node name="Card" type="Node2D" unique_id=1194118314]
+script = ExtResource("1_d81rb")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=302872406]
+offset_left = -107.0
+offset_top = -158.0
+offset_right = 108.0
+offset_bottom = 169.0
+color = Color(0.83690053, 0.60892755, 0.5516435, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1087533600]
+offset_left = -94.0
+offset_top = -143.0
+offset_right = 90.0
+offset_bottom = 155.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=348951911]
+position = Vector2(-1, -60)
+texture = ExtResource("2_6u4wf")
+
+[node name="Label" type="Label" parent="." unique_id=1384585475]
+offset_left = -64.0
+offset_top = 9.0
+offset_right = 74.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
+text = "meow"

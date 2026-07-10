@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://xhx4p6kd57tw"]
+
+[ext_resource type="Script" uid="uid://dqh52prjnn4sc" path="res://scripts/play-button.gd" id="1_ir5ef"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqrfi"]
+
+[node name="Loading" type="Node2D" unique_id=660497390]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1662624341]
+offset_left = -36.0
+offset_top = -32.0
+offset_right = 1172.0
+offset_bottom = 682.0
+color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+
+[node name="Button" type="Button" parent="." unique_id=1843265971]
+offset_left = 369.0
+offset_top = 431.0
+offset_right = 797.0
+offset_bottom = 500.0
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cqrfi")
+text = "play!"
+script = ExtResource("1_ir5ef")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
