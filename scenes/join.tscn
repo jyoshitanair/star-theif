@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://rotynsvdnwny" path="res://scripts/join.gd" id="1_h8iy3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhi6x"]
+bg_color = Color(0.86407053, 0.3225645, 0.6213896, 1)
+
 [node name="Join" type="Node2D" unique_id=152130232]
 script = ExtResource("1_h8iy3")
 
@@ -23,6 +26,7 @@ offset_left = 146.0
 offset_top = 53.0
 offset_right = 372.0
 offset_bottom = 206.0
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nhi6x")
 text = "join"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
