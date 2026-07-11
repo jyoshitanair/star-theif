@@ -14,25 +14,34 @@ const lobbies = new Map();
 wss.on('connection', (ws) => {
     let currentRoom = null;
     let peerId = Math.floor(Math.random() * 2147483647);
+    ws.peerId = peerId; // Save it to the socket right away
+
+    // CRITICAL FIX: Send the ID immediately on connection! 
+    // This tells Godot who it is so it can start setting up the mesh.
+    ws.send(`I:${peerId}`);
+    console.log(`[SERVER] User connected. Assigned Peer ID: ${peerId}`);
 
     ws.on('message', (message) => {
         const msgStr = message.toString();
+        console.log(`[SERVER] Received message: ${msgStr}`);
         
         if (msgStr.startsWith('J:')) {
             currentRoom = msgStr.substring(2);
             if (!lobbies.has(currentRoom)) lobbies.set(currentRoom, new Set());
             
-            ws.send(`I:${peerId}`);
+            console.log(`[SERVER] Peer ${peerId} is joining room: ${currentRoom}`);
             
+            // Tell this new user about all the existing peers already in the room
             lobbies.get(currentRoom).forEach(client => {
                 if (client !== ws) {
                     ws.send(`P:${client.peerId}`);
                 }
             });
-            ws.peerId = peerId;
+            
             lobbies.get(currentRoom).add(ws);
         } 
         else if (currentRoom && lobbies.has(currentRoom)) {
+            // Forward signaling packets (offers, answers, ice candidates) to everyone else in the room
             lobbies.get(currentRoom).forEach(client => {
                 if (client !== ws) client.send(msgStr);
             });
@@ -40,6 +49,7 @@ wss.on('connection', (ws) => {
     });
 
     ws.on('close', () => {
+        console.log(`[SERVER] Peer ${peerId} disconnected.`);
         if (currentRoom && lobbies.has(currentRoom)) {
             lobbies.get(currentRoom).forEach(client => {
                 if (client !== ws) client.send(`D:${ws.peerId}`);
