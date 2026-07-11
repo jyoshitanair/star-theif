@@ -12,12 +12,7 @@ offset_right = 1172.0
 offset_bottom = 682.0
 color = Color(0.14911404, 0.14911404, 0.14911404, 1)
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=141914120]
-_spawnable_scenes = PackedStringArray("uid://iedml5p5d1i")
-spawn_path = NodePath("../player spawn")
-
 [node name="player spawn" type="Node2D" parent="." unique_id=53855626]
-position = Vector2(139, 451)
 
 [node name="Label" type="Label" parent="." unique_id=314425771]
 offset_left = 361.0
@@ -26,3 +21,10 @@ offset_right = 928.0
 offset_bottom = 338.0
 text = "u failed
 "
+
+[node name="Label2" type="Label" parent="." unique_id=360477598]
+offset_left = 358.0
+offset_top = 284.0
+offset_right = 752.0
+offset_bottom = 402.0
+text = "wwww"

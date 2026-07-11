@@ -83,6 +83,7 @@ func _print_state_name(state_id: int) -> void:
 		3: print("[STATE CHANGE] STATE_CLOSED (3) - Socket is dead or was rejected.")
 
 func _handle_signaling(msg: String) -> void:
+	
 	if msg.begins_with("I:"): 
 		var my_id = msg.get_slice(":", 1).to_int()
 		print("[SIGNAL] Identity received. Assigned ID: ", my_id)
@@ -91,12 +92,20 @@ func _handle_signaling(msg: String) -> void:
 		client.send_text("J:" + current_room_id)
 		
 		print("[SIGNAL] Creating WebRTC Mesh...")
-		peer.create_mesh(my_id)
+		
+		# FIX: Godot 4 expects an array of TransferMode integers here.
+		# 2 = TRANSFER_MODE_RELIABLE
+		# 0 = TRANSFER_MODE_UNRELIABLE
+		peer.create_mesh(my_id, [2, 0])
+		
 		multiplayer.multiplayer_peer = peer
 		
-		multiplayer.peer_connected.connect(_player_joined)
-		multiplayer.peer_disconnected.connect(_player_left)
-
+		if not multiplayer.peer_connected.is_connected(_player_joined):
+			multiplayer.peer_connected.connect(_player_joined)
+			
+		if not multiplayer.peer_disconnected.is_connected(_player_left):
+			multiplayer.peer_disconnected.connect(_player_left)
+		
 	elif msg.begins_with("JOINED:"):
 		print("[NETWORK] Server approved room entry! Redirecting to gameplay scene...")
 		get_tree().change_scene_to_file("res://scenes/multiplayertest.tscn")
@@ -109,62 +118,81 @@ func _handle_signaling(msg: String) -> void:
 		multiplayer.multiplayer_peer = null
 		is_connecting = false
 		get_tree().change_scene_to_file("res://scenes/loading.tscn")
-		
-	elif msg.begins_with("P:"):
-		var peer_id = msg.get_slice(":", 1).to_int()
-		print("[SIGNAL] New peer discovered in room! Registering ID: ", peer_id)
-		
-		var connection = WebRTCPeerConnection.new()
-		connection.session_description_created.connect(_on_session_description_created.bind(peer_id))
-		connection.ice_candidate_created.connect(_on_ice_candidate_created.bind(peer_id))
-		
-		peer.add_peer(connection, peer_id)
-		connection.create_offer()
-
 	elif msg.begins_with("D:"):
 		var peer_id = msg.get_slice(":", 1).to_int()
 		print("[SIGNAL] Peer disconnected from signaler: ", peer_id)
 		if peer.has_peer(peer_id):
 			peer.remove_peer(peer_id)
+	elif msg.begins_with("P:"):
+		var peer_id = msg.get_slice(":", 1).to_int()
+		print("[SIGNAL] New peer discovered in room! Registering ID: ", peer_id)
+		
+		# FIX: Use the specific extension variant that Web/HTML5 exports require
+		var rtc_peer
+		if OS.has_feature("web"):
+			rtc_peer = ClassDB.instantiate("WebRTCPeerConnectionExtension")
+		else:
+			rtc_peer = WebRTCPeerConnection.new()
+		
+		peer.add_peer(rtc_peer, peer_id) 
+		
+		var connection = peer.get_peer(peer_id)["connection"]
+		connection.session_description_created.connect(_on_session_description_created.bind(peer_id))
+		connection.ice_candidate_created.connect(_on_ice_candidate_created.bind(peer_id))
+		
+		connection.create_offer()
+
+	# Inside your _handle_signaling() 'else' block:
 	else:
 		var json = JSON.new()
 		if json.parse(msg) == OK:
 			var data = json.get_data()
-			var target_peer_id = data.get("peer_id", 0)
 			
-			if not peer.has_peer(target_peer_id):
-				var connection = WebRTCPeerConnection.new()
-				connection.session_description_created.connect(_on_session_description_created.bind(target_peer_id))
-				connection.ice_candidate_created.connect(_on_ice_candidate_created.bind(target_peer_id))
-				peer.add_peer(connection, target_peer_id)
+			# CRITICAL: This is the sender's network ID!
+			var sender_id = data.get("peer_id", 0) 
+			
+			if sender_id == 0: return # Safety check
+			
+			# If we don't track this sender yet, add them to our mesh
+			if not peer.has_peer(sender_id):
+				var rtc_peer = WebRTCPeerConnection.new()
+				peer.add_peer(rtc_peer, sender_id)
 				
-			var connection = peer.get_peer(target_peer_id)["connection"]
+				var connection = peer.get_peer(sender_id)["connection"]
+				connection.session_description_created.connect(_on_session_description_created.bind(sender_id))
+				connection.ice_candidate_created.connect(_on_ice_candidate_created.bind(sender_id))
+			
+			var connection = peer.get_peer(sender_id)["connection"]
+			
 			if data.type == "candidate":
 				connection.add_ice_candidate(data.media, data.index, data.name)
 			else:
+				# This handles "offer" from P1 -> P2, AND "answer" from P2 -> P1!
 				connection.set_remote_description(data.type, data.sdp)
-
 func _on_session_description_created(type: String, sdp: String, peer_id: int) -> void:
-	var data = {
-		"type": type,
-		"sdp": sdp,
-		"peer_id": peer_id
-	}
-	client.send_text(JSON.stringify(data))
-	
-	var peer_dict = peer.get_peer(peer_id)
-	var connection = peer_dict["connection"]
+	var connection = peer.get_peer(peer_id)["connection"]
 	connection.set_local_description(type, sdp)
+	
+	# Create a payload to send over your WebSocket/Render signaling server
+	var payload = {
+		"peer_id": multiplayer.get_unique_id(), # MY ID, so they know who sent it
+		"type": type,
+		"sdp": sdp
+	}
+	
+	# Send it to the server targeted at the other peer
+	# Make sure your signaling server wraps this and sends it directly to peer_id!
+	client.send_text(JSON.stringify(payload))
 
 func _on_ice_candidate_created(media: String, index: int, name: String, peer_id: int) -> void:
-	var data = {
+	var payload = {
+		"peer_id": multiplayer.get_unique_id(),
 		"type": "candidate",
 		"media": media,
 		"index": index,
-		"name": name,
-		"peer_id": peer_id
+		"name": name
 	}
-	client.send_text(JSON.stringify(data))
+	client.send_text(JSON.stringify(payload))
 
 func _player_joined(id: int) -> void:
 	print("[MULTIPLAYER] Remote peer successfully linked into mesh! Peer ID: ", id)
