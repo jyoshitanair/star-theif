@@ -3,6 +3,8 @@ extends Node2D
 @export var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
 @export var texture: Texture2D = preload("res://icon.svg")
 @export var move_clicked:String = "speed"
+
+
 @onready var panel: Panel = $visual/Panel
 @onready var color_rect: Panel = $visual/ColorRect
 @onready var color_rect_2: Panel = $visual/ColorRect2
@@ -10,15 +12,20 @@ extends Node2D
 @onready var label: Label = $visual/Label
 @onready var panel_2: Panel = $visual/Panel2
 @onready var visual: Node2D = $visual
-
+#7 norms,  2 special!
+var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
 var current = false
 var old_current = false
 var up
 var down
 var bar
-
+var cardType = ["1","res://icon.svg"]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	randomize()
+	cardType = arraytocard[randi_range(0,8)]
+	text = cardType[0]
+	texture = load(cardType[1])
 	bar = get_parent()
 	up = Vector2(0, - 50)
 	down =Vector2.ZERO
@@ -63,3 +70,6 @@ func _on_area_2d_mouse_entered() -> void:
 func _on_area_2d_mouse_exited() -> void:
 	if ! Manager.clicked_before:
 		current = false
+func change_text(new_txt) -> void: 
+	text = new_txt
+	label.text = text

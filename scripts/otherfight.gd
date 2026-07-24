@@ -1,5 +1,4 @@
 extends Node2D
-var p1orp2 = 1
 var done = false
 var card = preload("res://scenes/card.tscn")
 var first1 = true
@@ -19,22 +18,21 @@ var loaded_card1
 var loaded_card2
 var loaded_card3
 var loaded_card4
-var positions_array = [Vector2(120.0,774.0), Vector2(346.0,774.0),Vector2(571.0,774.0),Vector2(798.0,774.0),Vector2(1029.0,774.0)]
+var positions_array = [Vector2(120.0,265.0), Vector2(346.0,265.0),Vector2(571.0,265.0),Vector2(798.0,265.0),Vector2(1029.0,265.0)]
 @onready var cards =[$Card, $Card2, $Card3, $Card4, $Card5]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(0,5):
 		var card_node = cards[i]
-		card_node.position = positions_array[i]
-		#set up array of what cars u have
-		Manager.setcards(card_node.cardType[0])
+		card_node.texture = preload("res://icon.svg")
 		if card_node == null:
 			print(card_node)
 			return
 		var card_name ="loaded_card%d"%i
 		var card_name_end ="loaded_card_end%d"%i
+		card_node.position = positions_array[i]
 		set(card_name, card_node)
-		set(card_name_end, (card_node.position.y -198))
+		set(card_name_end, (card_node.position.y + 270))
 		
 	await get_tree().create_timer(0.8).timeout
 

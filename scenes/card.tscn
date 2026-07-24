@@ -71,25 +71,25 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_pom5n")
 
 [node name="Sprite2D" type="Sprite2D" parent="visual" unique_id=348951911]
-position = Vector2(-0.99999994, -59.999996)
+position = Vector2(-1, -68.57143)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("2_6u4wf")
 
 [node name="Label" type="Label" parent="visual" unique_id=1384585475]
-offset_left = -63.999996
-offset_top = 8.999999
-offset_right = 74.0
-offset_bottom = 148.0
+offset_left = -34.28572
+offset_top = 64.28571
+offset_right = 103.71428
+offset_bottom = 203.2857
 mouse_filter = 1
 theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
 text = "meow "
 autowrap_mode = 3
 
 [node name="Panel2" type="Panel" parent="visual" unique_id=1220221136]
-offset_left = -112.99999
-offset_top = -162.0
-offset_right = 111.00001
-offset_bottom = 173.0
+offset_left = -114.28566
+offset_top = -162.85716
+offset_right = 109.71434
+offset_bottom = 172.14284
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_6u4wf")
 

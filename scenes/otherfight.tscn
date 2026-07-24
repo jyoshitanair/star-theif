@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dur04txuibxiu"]
+
+[ext_resource type="Script" uid="uid://cv3kbttpq7xug" path="res://scripts/otherfight.gd" id="1_0y6ex"]
+[ext_resource type="PackedScene" uid="uid://dubgistxl2rpq" path="res://scenes/othercard.tscn" id="2_0y6ex"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4i2l"]
+bg_color = Color(0.60784316, 0.5882353, 0.64705884, 0.75686276)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[node name="Otherfight" type="Node2D" unique_id=1814666265]
+script = ExtResource("1_0y6ex")
+
+[node name="Panel" type="Panel" parent="." unique_id=414842531]
+offset_top = 434.0
+offset_right = 1149.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_q4i2l")
+
+[node name="Card" parent="." unique_id=1135663207 instance=ExtResource("2_0y6ex")]
+position = Vector2(144, 265.00003)
+scale = Vector2(0.7, 0.7)
+
+[node name="Card2" parent="." unique_id=2113417883 instance=ExtResource("2_0y6ex")]
+position = Vector2(352, -173)
+scale = Vector2(0.7, 0.7)
+
+[node name="Card3" parent="." unique_id=694029723 instance=ExtResource("2_0y6ex")]
+position = Vector2(693, 95)
+scale = Vector2(0.7, 0.7)
+
+[node name="Card4" parent="." unique_id=1755309666 instance=ExtResource("2_0y6ex")]
+position = Vector2(407, 251)
+scale = Vector2(0.7, 0.7)
+
+[node name="Card5" parent="." unique_id=501485649 instance=ExtResource("2_0y6ex")]
+position = Vector2(459, -35)
+scale = Vector2(0.7, 0.7)
