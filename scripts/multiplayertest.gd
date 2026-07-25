@@ -6,8 +6,10 @@ var connected_players = []
 @onready var player_spawn: Node2D = $"player spawn"
 @onready var label_2: Label = $Label2
 @onready var label_3: Label = $Label3
+@onready var curcard: Node2D = $curcard
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Manager.newrandomcard()
 	spawn(multiplayer.get_unique_id())
 	multiplayer.peer_connected.connect(spawn)
 	multiplayer.peer_disconnected.connect(remove)
@@ -19,7 +21,7 @@ func _ready() -> void:
 		spawn(late)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	label_3.text = "Current Player:  Player 1" if Manager.p1turn else "Current Player:  PLayer 2"
+	label_3.text = "Current Player Turn:  Player 1" if Manager.p1turn else "Current Player:  PLayer 2"
 func spawn(id:int):
 	if player_spawn.has_node(str(id)):
 		return

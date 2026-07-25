@@ -1,6 +1,27 @@
 [gd_scene format=3 uid="uid://bkdgwpiv7ijcb"]
 
 [ext_resource type="Script" uid="uid://drg8mb76vhiaf" path="res://scripts/multiplayertest.gd" id="1_mnkun"]
+[ext_resource type="Texture2D" uid="uid://bdp5yi60dfikk" path="res://icon.svg" id="2_5pljh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2pta"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at2ej"]
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mr4xs"]
+bg_color = Color(0.74760276, 0.48319757, 0.8037548, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="Multiplayertest" type="Node2D" unique_id=861008214]
 script = ExtResource("1_mnkun")
@@ -15,23 +36,68 @@ color = Color(0.14911404, 0.14911404, 0.14911404, 1)
 [node name="player spawn" type="Node2D" parent="." unique_id=53855626]
 
 [node name="Label" type="Label" parent="." unique_id=314425771]
-offset_left = 361.0
-offset_top = 244.0
-offset_right = 928.0
-offset_bottom = 338.0
+offset_left = 11.0
+offset_top = 45.0
+offset_right = 578.0
+offset_bottom = 139.0
 text = "u failed
 "
 
 [node name="Label2" type="Label" parent="." unique_id=360477598]
-offset_left = 358.0
-offset_top = 284.0
-offset_right = 752.0
-offset_bottom = 402.0
+offset_left = 13.0
+offset_top = 74.0
+offset_right = 407.0
+offset_bottom = 192.0
 text = "wwww"
 
 [node name="Label3" type="Label" parent="." unique_id=360200999]
-offset_left = 19.0
-offset_top = 16.0
-offset_right = 122.0
-offset_bottom = 63.0
+offset_left = 10.0
+offset_top = 15.0
+offset_right = 113.0
+offset_bottom = 62.0
 text = "TURN:"
+metadata/_edit_use_anchors_ = true
+
+[node name="curcard" type="Node2D" parent="." unique_id=627302728 groups=["main_card"]]
+position = Vector2(576, 316)
+scale = Vector2(0.7, 0.7)
+
+[node name="Panel" type="Panel" parent="curcard" unique_id=2041330084]
+visible = false
+offset_left = -127.99999
+offset_top = -180.99998
+offset_right = 129.0
+offset_bottom = 189.00002
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_r2pta")
+
+[node name="ColorRect" type="Panel" parent="curcard" unique_id=521173080]
+offset_left = -112.99999
+offset_top = -162.0
+offset_right = 111.00001
+offset_bottom = 173.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_at2ej")
+
+[node name="ColorRect2" type="Panel" parent="curcard" unique_id=1678471595]
+offset_left = -100.99999
+offset_top = -148.99998
+offset_right = 98.00001
+offset_bottom = 160.00002
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_mr4xs")
+
+[node name="Sprite2D" type="Sprite2D" parent="curcard" unique_id=827502236]
+position = Vector2(-1, -68.57143)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_5pljh")
+
+[node name="Label" type="Label" parent="curcard" unique_id=1025504729]
+offset_left = -34.28572
+offset_top = 64.28571
+offset_right = 103.71428
+offset_bottom = 203.2857
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
+text = "meow "
+autowrap_mode = 3
