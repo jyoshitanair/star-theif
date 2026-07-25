@@ -1,4 +1,5 @@
 extends Node
+var p1turn = true
 var player = 1
 var move_clicked
 var clicked_before= false
@@ -10,8 +11,7 @@ var ready_players = []
 var done = false
 var p1 
 var p2
-var p1_card_clicked
-var p2_card_clicked
+var card_clicked
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -36,7 +36,7 @@ func card_sender(id, card) -> void:
 	if other_guy:
 		print("pessi")
 		if other_guy.has_method("otherplayerwantin"):
-			other_guy.otherplayerwantin(id,card)
+			other_guy.otherplayerwantin(card)
 @rpc("any_peer", "call_local")
 func check_ready(id_test) -> void: 
 	if !ready_players.has(id_test):

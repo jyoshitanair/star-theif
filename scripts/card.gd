@@ -47,7 +47,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Manager.clicked_before:
 		return
-	if Manager.done && bar.done && ! Manager.clicked_before:
+	var good = false
+	if multiplayer.get_unique_id() == Manager.p1:
+		#am player one
+		if Manager.p1turn:
+			good = true
+	else:
+		#am p2
+		if !Manager.p1turn:
+			good = true
+
+	if good && Manager.done && bar.done && ! Manager.clicked_before:
 		if current:
 			panel.show()
 			panel_2.hide()

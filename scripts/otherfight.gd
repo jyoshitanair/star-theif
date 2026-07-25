@@ -59,10 +59,6 @@ func _process(delta: float) -> void:
 			Manager.test_ready(multiplayer.get_unique_id())
 		done = true
 	
-func otherplayerwantin(id, card_value) -> void: 
-	if (id == Manager.p1):
-		Manager.p1_card_clicked = card_value
-		print("p1 clicked ",card_value)
-	else:
-		Manager.p2_card_clicked = card_value
-		print("p2 clicked ",card_value)		
+func otherplayerwantin(card_value) -> void: 
+	Manager.card_clicked = card_value
+	Manager.p1turn = !Manager.p1turn	
