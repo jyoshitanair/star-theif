@@ -10,7 +10,7 @@ corner_radius_top_right = 60
 corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
 
-[node name="Otherfight" type="Node2D" unique_id=1814666265]
+[node name="Otherfight" type="Node2D" unique_id=1814666265 groups=["p2"]]
 script = ExtResource("1_0y6ex")
 
 [node name="Panel" type="Panel" parent="." unique_id=414842531]

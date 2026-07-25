@@ -54,5 +54,15 @@ func _process(delta: float) -> void:
 					set(firstvariation, false)
 				break
 	else:
+		if !done: 
+			Manager.otherfight_loaded = true
+			Manager.test_ready(multiplayer.get_unique_id())
 		done = true
-				
+	
+func otherplayerwantin(id, card_value) -> void: 
+	if (id == Manager.p1):
+		Manager.p1_card_clicked = card_value
+		print("p1 clicked ",card_value)
+	else:
+		Manager.p2_card_clicked = card_value
+		print("p2 clicked ",card_value)		

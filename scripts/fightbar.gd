@@ -56,5 +56,8 @@ func _process(delta: float) -> void:
 					set(firstvariation, false)
 				break
 	else:
+		if !done: 
+			Manager.fight_loaded = true
+			Manager.test_ready(multiplayer.get_unique_id())
 		done = true
 				

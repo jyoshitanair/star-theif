@@ -47,15 +47,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Manager.clicked_before:
 		return
-	if bar.done && ! Manager.clicked_before:
+	if Manager.done && bar.done && ! Manager.clicked_before:
 		if current:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
-				Manager.move_clicked = move_clicked
 				current = false
 				Manager.clicked_before = true
 				print("me0w")
+				#
+				Manager.rpc("card_sender", multiplayer.get_unique_id(),cardType[0])
 				return
 		else:
 			panel_2.show()
