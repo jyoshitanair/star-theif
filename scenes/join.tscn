@@ -29,4 +29,9 @@ offset_bottom = 206.0
 theme_override_styles/disabled = SubResource("StyleBoxFlat_nhi6x")
 text = "join"
 
+[node name="Label2" type="Label" parent="." unique_id=1121243991]
+offset_top = -2.0
+offset_right = 1156.0
+offset_bottom = 135.0
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

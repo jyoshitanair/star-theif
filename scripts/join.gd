@@ -2,6 +2,7 @@ extends Node2D
 @onready var text_edit: TextEdit = $TextEdit
 var connected_once= true
 @onready var button: Button = $Button
+@onready var label_2: Label = $Label2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -9,7 +10,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	label_2.text = Network.error
 
 
 func _on_button_pressed() -> void:

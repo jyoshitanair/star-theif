@@ -10,6 +10,10 @@ var is_connecting: bool = false
 var last_logged_state: int = -1
 var is_host: bool = false
 
+# messages! 
+
+var error = ""
+
 # Kept as an Array as requested!
 const ALLOWED_CHARS: Array[String] = [
 	"A","B","C","D","E","F","G","H","J","K","L","M",
@@ -36,6 +40,7 @@ func join_room(room_code: String) -> void:
 	
 	# Rule 1: Check length (must be 6 characters)
 	if cleaned_code.length() != 6:
+		error = "Cannot join: Room code must be exactly 6 characters!"
 		print("[ERROR] Cannot join: Room code must be exactly 6 characters!")
 		return
 		
@@ -43,6 +48,7 @@ func join_room(room_code: String) -> void:
 	for i in range(cleaned_code.length()):
 		var char_letter = String(cleaned_code[i])
 		if not ALLOWED_CHARS.has(char_letter):
+			error = "Cannot join: Code contains invalid character '"+ char_letter+ "'"
 			print("[ERROR] Cannot join: Code contains invalid character '", char_letter, "'")
 			return
 			
@@ -59,6 +65,7 @@ func connect_to_match(room_name: String) -> void:
 	print("[DEBUG] connect_to_match called. Target Room: '", current_room_id, "' | Is Host: ", is_host)
 	
 	if current_room_id == "":
+		error = "Cannot connect! Room name parameter is empty."
 		print("[ERROR] Cannot connect! Room name parameter is empty.")
 		return
 		
@@ -69,6 +76,7 @@ func connect_to_match(room_name: String) -> void:
 	var err = client.connect_to_url(SIGNAL_URL)
 	
 	if err != OK:
+		error = "connect_to_url failed instantly: "+ err
 		print("[ERROR] connect_to_url failed instantly: ", err)
 	else:
 		is_connecting = true

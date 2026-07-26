@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 		if is_equal_approx(position.y, lerpTarg):
 			print("DONNEEEEEEEEE")
 			lerper = false
-			await get_tree().create_timer(3.0).timeout
+			await get_tree().create_timer(0.8).timeout
 			lerp2Targ = position.y + 200
 			#fade out
 			var tween = create_tween()
@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 			modulate.a = 1.0
 			#continue bleh belh
 			position.y = position.y + 500
-			await get_tree().create_timer(2.0).timeout
+			await get_tree().create_timer(1.3).timeout
 			lerper2 = true
 	if lerper2:
 		position.y = lerp(position.y,lerp2Targ, delta*13)
@@ -76,6 +76,7 @@ func _process(delta: float) -> void:
 			sprite_2d.texture = texture
 			label.text = text
 			lerper2 = false
+			Manager.rpc("card_sender", multiplayer.get_unique_id(),cardType[0])
 	good = false
 	if Manager.p1 != null && Manager.p2 != null:
 		if multiplayer.get_unique_id() == Manager.p1:
@@ -97,7 +98,6 @@ func _process(delta: float) -> void:
 				Manager.clicked_before = true
 				print("me0w")
 				#
-				Manager.rpc("card_sender", multiplayer.get_unique_id(),cardType[0])
 				return
 		else:
 			panel_2.show()
