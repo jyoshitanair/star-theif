@@ -55,11 +55,18 @@ func _process(delta: float) -> void:
 		if is_equal_approx(position.y, lerpTarg):
 			print("DONNEEEEEEEEE")
 			lerper = false
-			await get_tree().create_timer(4.0).timeout
+			await get_tree().create_timer(3.0).timeout
+			lerp2Targ = position.y + 200
+			#fade out
+			var tween = create_tween()
+			tween.tween_property(self, "modulate:a", 0.0, 1.0)
+			await tween.finished
+			modulate.a = 1.0
+			#continue bleh belh
+			position.y = position.y + 500
+			await get_tree().create_timer(2.0).timeout
 			lerper2 = true
-			lerp2Targ = position.y + 300
 	if lerper2:
-		visible = false
 		position.y = lerp(position.y,lerp2Targ, delta*13)
 		if is_equal_approx(position.y, lerp2Targ):
 			randomize()
@@ -68,7 +75,6 @@ func _process(delta: float) -> void:
 			texture = load(cardType[1])
 			sprite_2d.texture = texture
 			label.text = text
-			visible = true
 			lerper2 = false
 	good = false
 	if Manager.p1 != null && Manager.p2 != null:
@@ -86,7 +92,7 @@ func _process(delta: float) -> void:
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
 				lerper = true
-				lerpTarg = position.y - 300
+				lerpTarg = position.y - 200
 				current = false
 				Manager.clicked_before = true
 				print("me0w")

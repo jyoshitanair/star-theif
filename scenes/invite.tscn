@@ -17,4 +17,12 @@ offset_left = 188.0
 offset_top = 105.0
 offset_right = 856.0
 offset_bottom = 414.0
-text = "meow"
+
+[node name="Button" type="Button" parent="." unique_id=1334472448]
+offset_left = 491.0
+offset_top = 100.0
+offset_right = 613.0
+offset_bottom = 131.0
+text = "Generate code"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

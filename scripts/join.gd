@@ -18,7 +18,7 @@ func _on_button_pressed() -> void:
 	if text == "":
 		return
 	if connected_once:
-		Network.connect_to_match(text)
+		Network.join_room(text)
 		connected_once = false
 		button.disabled = true
 	else:

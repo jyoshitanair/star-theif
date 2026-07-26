@@ -13,17 +13,17 @@ offset_bottom = 682.0
 color = Color(0.14911404, 0.14911404, 0.14911404, 1)
 
 [node name="Button3" type="Button" parent="." unique_id=589646938]
-offset_left = 106.0
-offset_top = 389.0
-offset_right = 298.0
-offset_bottom = 583.0
+offset_left = 114.0
+offset_top = 407.0
+offset_right = 306.0
+offset_bottom = 601.0
 text = "new room"
 
 [node name="Button" type="Button" parent="." unique_id=1318884176]
-offset_left = 280.0
-offset_top = 96.0
-offset_right = 709.0
-offset_bottom = 305.0
+offset_left = 279.0
+offset_top = 74.0
+offset_right = 708.0
+offset_bottom = 283.0
 text = "join room
 "
 

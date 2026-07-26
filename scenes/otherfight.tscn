@@ -21,20 +21,20 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_q4i2l")
 
 [node name="Card" parent="." unique_id=1135663207 instance=ExtResource("2_0y6ex")]
 position = Vector2(144, 265.00003)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)
 
 [node name="Card2" parent="." unique_id=2113417883 instance=ExtResource("2_0y6ex")]
 position = Vector2(352, -173)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)
 
 [node name="Card3" parent="." unique_id=694029723 instance=ExtResource("2_0y6ex")]
 position = Vector2(693, 95)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)
 
 [node name="Card4" parent="." unique_id=1755309666 instance=ExtResource("2_0y6ex")]
 position = Vector2(407, 251)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)
 
 [node name="Card5" parent="." unique_id=501485649 instance=ExtResource("2_0y6ex")]
 position = Vector2(459, -35)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)

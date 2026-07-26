@@ -14,10 +14,10 @@ offset_bottom = 682.0
 color = Color(0.14911404, 0.14911404, 0.14911404, 1)
 
 [node name="Button" type="Button" parent="." unique_id=1843265971]
-offset_left = 363.0
-offset_top = 320.0
-offset_right = 791.0
-offset_bottom = 389.0
+offset_left = 379.0
+offset_top = 550.0
+offset_right = 807.0
+offset_bottom = 619.0
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cqrfi")
 text = "play!"
