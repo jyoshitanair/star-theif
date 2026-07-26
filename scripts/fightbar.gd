@@ -1,5 +1,4 @@
 extends Node2D
-var p1orp2 = 1
 var done = false
 var card = preload("res://scenes/card.tscn")
 var first1 = true
@@ -56,8 +55,8 @@ func _process(delta: float) -> void:
 					set(firstvariation, false)
 				break
 	else:
-		if !done: 
+		if not done: 
 			Manager.fight_loaded = true
 			Manager.test_ready(multiplayer.get_unique_id())
-		done = true
+			done = true
 				

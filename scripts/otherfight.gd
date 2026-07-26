@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 				if is_equal_approx(get(card_name_end1),target_pos):
 					set(firstvariation, false)
 				break
-	else:
+	else: 
 		if !done: 
 			Manager.otherfight_loaded = true
 			Manager.test_ready(multiplayer.get_unique_id())
@@ -62,3 +62,4 @@ func _process(delta: float) -> void:
 func otherplayerwantin(card_value) -> void: 
 	Manager.card_clicked = card_value
 	Manager.p1turn = !Manager.p1turn	
+	Manager.clicked_before = false

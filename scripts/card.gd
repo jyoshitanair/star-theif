@@ -12,6 +12,7 @@ extends Node2D
 @onready var label: Label = $visual/Label
 @onready var panel_2: Panel = $visual/Panel2
 @onready var visual: Node2D = $visual
+var good = false
 #7 norms,  2 special!
 var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
 var current = false
@@ -20,6 +21,10 @@ var up
 var down
 var bar
 var cardType = ["1","res://icon.svg"]
+var lerper = false
+var lerpTarg
+var lerper2 = false
+var lerp2Targ
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
@@ -45,23 +50,43 @@ func _ready() -> void:
 	color_rect_2.add_theme_stylebox_override("panel", style3)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Manager.clicked_before:
-		return
-	var good = false
-	if multiplayer.get_unique_id() == Manager.p1:
-		#am player one
-		if Manager.p1turn:
-			good = true
-	else:
-		#am p2
-		if !Manager.p1turn:
-			good = true
-
+	if lerper: 
+		position.y = lerp(position.y,lerpTarg, delta*13)
+		if is_equal_approx(position.y, lerpTarg):
+			print("DONNEEEEEEEEE")
+			lerper = false
+			await get_tree().create_timer(4.0).timeout
+			lerper2 = true
+			lerp2Targ = position.y + 300
+	if lerper2:
+		visible = false
+		position.y = lerp(position.y,lerp2Targ, delta*13)
+		if is_equal_approx(position.y, lerp2Targ):
+			randomize()
+			cardType = arraytocard[randi_range(0,8)]
+			text = cardType[0]
+			texture = load(cardType[1])
+			sprite_2d.texture = texture
+			label.text = text
+			visible = true
+			lerper2 = false
+	good = false
+	if Manager.p1 != null && Manager.p2 != null:
+		if multiplayer.get_unique_id() == Manager.p1:
+			#am player one
+			if Manager.p1turn:
+				good = true
+		else:
+			#am p2
+			if !Manager.p1turn:
+				good = true
 	if good && Manager.done && bar.done && ! Manager.clicked_before:
 		if current:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
+				lerper = true
+				lerpTarg = position.y - 300
 				current = false
 				Manager.clicked_before = true
 				print("me0w")
@@ -84,3 +109,10 @@ func _on_area_2d_mouse_exited() -> void:
 func change_text(new_txt) -> void: 
 	text = new_txt
 	label.text = text
+func handle_showy()-> void: 
+	position.y += 200
+	await get_tree().create_timer(0.5)
+	randomize()
+	cardType = arraytocard[randi_range(0,8)]
+	text = cardType[0]
+	texture = load(cardType[1])

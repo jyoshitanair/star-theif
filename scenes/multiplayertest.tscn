@@ -60,7 +60,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="curcard" type="Node2D" parent="." unique_id=627302728 groups=["main_card"]]
 position = Vector2(576, 316)
-scale = Vector2(0.7, 0.7)
+scale = Vector2(0.6, 0.6)
 
 [node name="Panel" type="Panel" parent="curcard" unique_id=2041330084]
 visible = false
