@@ -207,10 +207,18 @@ func _handle_signaling(msg: String) -> void:
 
 # --- WEBRTC CALLBACKS ---
 
-func _create_rtc_peer():
-	if OS.has_feature("web"):
-		return ClassDB.instantiate("WebRTCPeerConnectionExtension")
-	return WebRTCPeerConnection.new()
+func _create_rtc_peer() -> WebRTCPeerConnection:
+	var rtc_peer = WebRTCPeerConnection.new()
+	
+	# Initialize with public STUN servers (Crucial for WebRTC data channels)
+	rtc_peer.initialize({
+		"iceServers": [
+			{ "urls": ["stun:stun.l.google.com:19302"] },
+			{ "urls": ["stun:stun1.l.google.com:19302"] }
+		]
+	})
+	
+	return rtc_peer
 
 func _on_session_description_created(type: String, sdp: String, peer_id: int) -> void:
 	var connection = peer.get_peer(peer_id)["connection"]

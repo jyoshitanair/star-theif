@@ -6,10 +6,11 @@ var connected_players = []
 @onready var player_spawn: Node2D = $"player spawn"
 @onready var label_2: Label = $Label2
 @onready var label_3: Label = $Label3
-@onready var curcard: Node2D = $curcard
 @onready var checkmark: Sprite2D = $checkmark
 @onready var panel: Panel = $Panel
 var canclick = true
+var maincard_loaded = false
+var maincard = preload("res://scenes/curcard.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	checkmark.modulate.a = 0.0
@@ -32,6 +33,8 @@ func _process(delta: float) -> void:
 		label_2.text = "Player 2"
 	label_3.text = "Current Player Turn:  Player 1" if Manager.p1turn else "Current Player Turn:  Player 2"
 func spawn(id:int):
+	print("adding")
+	Manager.add_person.rpc(multiplayer.get_unique_id(), Network.is_host)
 	if player_spawn.has_node(str(id)):
 		return
 	if id == multiplayer.get_unique_id():
@@ -53,7 +56,11 @@ func spawn(id:int):
 		Manager.set_player(1)
 	else:
 		Manager.set_player(2)
-	Manager.add_person.rpc(multiplayer.get_unique_id(), Network.is_host)
+	if maincard_loaded == false:
+		maincard = maincard.instantiate()
+		add_child(maincard)
+		maincard.z_index = 1
+		maincard_loaded = true
 func remove(id:int): 
 	var player = player_spawn.get_node_or_null(str(id))
 	if player:

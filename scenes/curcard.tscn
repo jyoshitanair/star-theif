@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://cs6b37rus1e3u"]
+
+[ext_resource type="Script" uid="uid://c0f1mew0kppbm" path="res://scripts/curcard.gd" id="1_fc11w"]
+[ext_resource type="Texture2D" uid="uid://bdp5yi60dfikk" path="res://icon.svg" id="2_sgo3p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_janb2"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_862hv"]
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fayqi"]
+bg_color = Color(0.74760276, 0.48319757, 0.8037548, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Curcard" type="Node2D" unique_id=42140971]
+
+[node name="curcard" type="Node2D" parent="." unique_id=1766284662 groups=["main_card"]]
+position = Vector2(576, 316)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_fc11w")
+
+[node name="Panel" type="Panel" parent="curcard" unique_id=443644725]
+visible = false
+offset_left = -127.99999
+offset_top = -180.99998
+offset_right = 129.0
+offset_bottom = 189.00002
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_janb2")
+
+[node name="ColorRect" type="Panel" parent="curcard" unique_id=276435720]
+offset_left = -112.99999
+offset_top = -162.0
+offset_right = 111.00001
+offset_bottom = 173.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_862hv")
+
+[node name="ColorRect2" type="Panel" parent="curcard" unique_id=1032174988]
+offset_left = -100.99999
+offset_top = -148.99998
+offset_right = 98.00001
+offset_bottom = 160.00002
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_fayqi")
+
+[node name="Sprite2D" type="Sprite2D" parent="curcard" unique_id=542930044]
+position = Vector2(-1, -68.57143)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_sgo3p")
+
+[node name="Label" type="Label" parent="curcard" unique_id=403837620]
+offset_left = -34.28572
+offset_top = 64.28571
+offset_right = 103.71428
+offset_bottom = 203.2857
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
+text = "meow "
+autowrap_mode = 3

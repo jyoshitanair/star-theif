@@ -12,6 +12,7 @@ extends Node2D
 @onready var visual: Node2D = $visual
 var possible_colors = ["b657d3ff","9a8550ff","6587c6ff","d94d84ff"]
 var good = false
+signal clicked 
 #7 norms,  2 special!
 var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
 var current = false
@@ -26,32 +27,11 @@ var lerper2 = false
 var lerp2Targ
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	randomize()
-	color = possible_colors[randi_range(0,3)]
-	cardType = arraytocard[randi_range(0,8)]
-	text = cardType[0]
-	if text == "THEIF":
-		color ="56996eff"
-	if text == "STAR":
-		color = "e7beb8ff"
-	texture = load(cardType[1])
+	new_randi_card()
 	bar = get_parent()
 	up = Vector2(0, - 50)
 	down =Vector2.ZERO
-	sprite_2d.texture = texture
-	label.text = text
-	##
-	var style = panel.get_theme_stylebox("panel").duplicate()
-	style.bg_color = color.lightened(0.4)
-	panel.add_theme_stylebox_override("panel", style)
-	##
-	var style2 = color_rect_2.get_theme_stylebox("panel").duplicate()
-	style2.bg_color = color.darkened(0.4)
-	color_rect.add_theme_stylebox_override("panel", style2)
-	##
-	var style3 = color_rect_2.get_theme_stylebox("panel").duplicate()
-	style3.bg_color = color
-	color_rect_2.add_theme_stylebox_override("panel", style3)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if lerper: 
@@ -72,15 +52,11 @@ func _process(delta: float) -> void:
 			lerper2 = true
 			panel_2.show()
 			panel.hide()
+			Manager.change_cur_card.rpc(cardType)
 	if lerper2:
 		position.y = lerp(position.y,lerp2Targ, delta*13)
 		if is_equal_approx(position.y, lerp2Targ):
-			randomize()
-			cardType = arraytocard[randi_range(0,8)]
-			text = cardType[0]
-			texture = load(cardType[1])
-			sprite_2d.texture = texture
-			label.text = text
+			new_randi_card()
 			lerper2 = false
 			Manager.rpc("card_sender", multiplayer.get_unique_id(),cardType[0])
 	good = false
@@ -99,6 +75,7 @@ func _process(delta: float) -> void:
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
 				Manager.card_clicked = cardType
+				emit_signal("clicked")
 				lerper = true
 				lerpTarg = position.y - 200
 				current = false
@@ -133,3 +110,29 @@ func handle_showy()-> void:
 	texture = load(cardType[1])
 func check_if_compatible () -> void: 
 	pass
+func new_randi_card()-> void :
+	randomize()
+	color = Color(possible_colors[randi_range(0,3)])
+	var temp = arraytocard[randi_range(0,8)]
+	if temp[0] == "THEIF!":
+		color = Color("56996eff")
+	if temp[0] == "STAR":
+		color = Color("e7beb8ff")
+	cardType = [temp[0], temp[1], color.to_html()]
+	text = cardType[0]
+	texture = load(cardType[1])
+	sprite_2d.texture = texture
+	label.text = text
+	
+	##
+	var style = panel.get_theme_stylebox("panel").duplicate()
+	style.bg_color = color.lightened(0.4)
+	panel.add_theme_stylebox_override("panel", style)
+	##
+	var style2 = color_rect_2.get_theme_stylebox("panel").duplicate()
+	style2.bg_color = color.darkened(0.4)
+	color_rect.add_theme_stylebox_override("panel", style2)
+	##
+	var style3 = color_rect_2.get_theme_stylebox("panel").duplicate()
+	style3.bg_color = color
+	color_rect_2.add_theme_stylebox_override("panel", style3)

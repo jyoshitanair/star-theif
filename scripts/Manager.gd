@@ -1,4 +1,6 @@
 extends Node
+signal pass_index(index)
+
 var p1turn = true
 var player = 1
 var clicked_before= false
@@ -19,16 +21,15 @@ var color
 func _ready() -> void:
 	multiplayer.peer_connected.connect(give)
 func give(id) -> void: 
-	if multiplayer.is_server() and random_card != null:
-		Manager.change_cur_card(random_card)
-		rpc_id(id, "change_cur_card", random_card)
+	if Network.is_host and random_card != null:
+		change_cur_card.rpc_id(id, random_card)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass 
 func setcards(pe)->void: 
-	if player == 1:
+	if p1 == multiplayer.get_unique_id():
 		player1cards.append(pe)
-	if player == 2:
+	if p2 == multiplayer.get_unique_id():
 		player2cards.append(pe)
 func set_player(ini)->void:
 	player = ini
@@ -44,6 +45,9 @@ func test_ready(it) -> void:
 	if fight_loaded && otherfight_loaded:
 		rpc("check_ready",it)
 #sending data over the internet cause yeah :/
+@rpc("any_peer", "call_remote")
+func handle_click(index) -> void: 
+	pass_index.emit(index)
 @rpc("any_peer", "call_local")
 func card_sender(id, card) -> void: 
 	#get other guys clicks

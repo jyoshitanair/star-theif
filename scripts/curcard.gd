@@ -24,8 +24,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+func update_card(newcard) -> void:
+	Manager.change_cur_card.rpc(newcard)
 func get_new_card() -> void: 
-	print("hello")
+	print("Manager p1 ", Manager.p1)
 	if Manager.p1 == multiplayer.get_unique_id():
 		print("HELLOOOO??")
 		Manager.newrandomcard()

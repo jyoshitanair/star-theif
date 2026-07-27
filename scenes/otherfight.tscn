@@ -38,3 +38,5 @@ scale = Vector2(0.6, 0.6)
 [node name="Card5" parent="." unique_id=501485649 instance=ExtResource("2_0y6ex")]
 position = Vector2(459, -35)
 scale = Vector2(0.6, 0.6)
+
+[editable path="Card2"]

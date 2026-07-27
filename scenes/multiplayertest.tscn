@@ -1,30 +1,8 @@
 [gd_scene format=3 uid="uid://bkdgwpiv7ijcb"]
 
 [ext_resource type="Script" uid="uid://drg8mb76vhiaf" path="res://scripts/multiplayertest.gd" id="1_mnkun"]
-[ext_resource type="Texture2D" uid="uid://bdp5yi60dfikk" path="res://icon.svg" id="2_5pljh"]
-[ext_resource type="Script" uid="uid://c0f1mew0kppbm" path="res://scripts/curcard.gd" id="2_mr4xs"]
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_r2pta"]
 [ext_resource type="Texture2D" uid="uid://dt65c2s6y1ony" path="res://exports/index.png" id="4_at2ej"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2pta"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at2ej"]
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mr4xs"]
-bg_color = Color(0.74760276, 0.48319757, 0.8037548, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqrfi"]
 
@@ -69,51 +47,6 @@ offset_bottom = 62.0
 text = "TURN:"
 metadata/_edit_use_anchors_ = true
 
-[node name="curcard" type="Node2D" parent="." unique_id=627302728 groups=["main_card"]]
-position = Vector2(576, 316)
-scale = Vector2(0.6, 0.6)
-script = ExtResource("2_mr4xs")
-
-[node name="Panel" type="Panel" parent="curcard" unique_id=2041330084]
-visible = false
-offset_left = -127.99999
-offset_top = -180.99998
-offset_right = 129.0
-offset_bottom = 189.00002
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_r2pta")
-
-[node name="ColorRect" type="Panel" parent="curcard" unique_id=521173080]
-offset_left = -112.99999
-offset_top = -162.0
-offset_right = 111.00001
-offset_bottom = 173.0
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_at2ej")
-
-[node name="ColorRect2" type="Panel" parent="curcard" unique_id=1678471595]
-offset_left = -100.99999
-offset_top = -148.99998
-offset_right = 98.00001
-offset_bottom = 160.00002
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_mr4xs")
-
-[node name="Sprite2D" type="Sprite2D" parent="curcard" unique_id=827502236]
-position = Vector2(-1, -68.57143)
-scale = Vector2(0.99999994, 0.99999994)
-texture = ExtResource("2_5pljh")
-
-[node name="Label" type="Label" parent="curcard" unique_id=1025504729]
-offset_left = -34.28572
-offset_top = 64.28571
-offset_right = 103.71428
-offset_bottom = 203.2857
-mouse_filter = 1
-theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
-text = "meow "
-autowrap_mode = 3
-
 [node name="Button" type="Button" parent="." unique_id=1855480497]
 offset_left = 9.0
 offset_top = 41.0
@@ -142,6 +75,7 @@ texture = ExtResource("4_at2ej")
 
 [node name="Panel" type="Panel" parent="." unique_id=392434104]
 visible = false
+z_index = 2
 offset_left = 27.0
 offset_top = 162.0
 offset_right = 1110.0

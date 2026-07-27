@@ -18,10 +18,17 @@ var loaded_card1
 var loaded_card2
 var loaded_card3
 var loaded_card4
+var card_clicked
 var positions_array = [Vector2(120.0,265.0), Vector2(346.0,265.0),Vector2(571.0,265.0),Vector2(798.0,265.0),Vector2(1029.0,265.0)]
 @onready var cards =[$Card, $Card2, $Card3, $Card4, $Card5]
+var lerper = false
+var lerpTarg = false
+var lerp2Targ = false
+var lerper2 = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Manager.pass_index.connect(_show_moving)
 	for i in range(0,5):
 		var card_node = cards[i]
 		card_node.texture = preload("res://icon.svg")
@@ -38,6 +45,26 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if lerper: 
+		card_clicked.position.y = lerp(card_clicked.position.y,lerpTarg, delta*13)
+		if is_equal_approx(card_clicked.position.y, lerpTarg):
+			print("DONNEEEEEEEEE")
+			lerper = false
+			await get_tree().create_timer(0.8).timeout
+			lerp2Targ = card_clicked.position.y - 200
+			#fade out
+			var tween = create_tween()
+			tween.tween_property(card_clicked, "modulate:a", 0.0, 1.0)
+			await tween.finished
+			card_clicked.modulate.a = 1.0
+			#continue bleh belh
+			card_clicked.position.y = card_clicked.position.y - 500
+			await get_tree().create_timer(1.3).timeout
+			lerper2 = true
+	if lerper2:
+		card_clicked.position.y = lerp(card_clicked.position.y,lerp2Targ, delta*13)
+		if is_equal_approx(card_clicked.position.y, lerp2Targ):
+			lerper2 = false
 	if first1 ||first2 ||first3 ||first4 ||first5:
 		for i in range(0,5):
 			var firstvariation = "first%d"%(i+1)
@@ -62,3 +89,7 @@ func _process(delta: float) -> void:
 func otherplayerwantin(card_value) -> void: 
 	Manager.p1turn = !Manager.p1turn	
 	Manager.clicked_before = false
+func _show_moving(index) -> void: 
+	card_clicked = cards[index]
+	lerper = true 
+	lerpTarg = card_clicked.position.y +200

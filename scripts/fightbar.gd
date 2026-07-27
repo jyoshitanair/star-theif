@@ -24,6 +24,7 @@ var positions_array = [Vector2(120.0,774.0), Vector2(346.0,774.0),Vector2(571.0,
 func _ready() -> void:
 	for i in range(0,5):
 		var card_node = cards[i]
+		card_node.clicked.connect(_on_click.bind(i))
 		card_node.position = positions_array[i]
 		#set up array of what cars u have
 		Manager.setcards(card_node.cardType[0])
@@ -59,4 +60,6 @@ func _process(delta: float) -> void:
 			Manager.fight_loaded = true
 			Manager.test_ready(multiplayer.get_unique_id())
 			done = true
-				
+func _on_click(index) -> void: 
+	Manager.handle_click.rpc(index)
+	print("clicked card ", index)		
