@@ -22,7 +22,6 @@ var positions_array = [Vector2(120.0,774.0), Vector2(346.0,774.0),Vector2(571.0,
 @onready var cards =[$Card, $Card2, $Card3, $Card4, $Card5]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Manager.test_ready(multiplayer.get_unique_id())
 	for i in range(0,5):
 		var card_node = cards[i]
 		card_node.position = positions_array[i]

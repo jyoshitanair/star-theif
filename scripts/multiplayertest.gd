@@ -13,21 +13,23 @@ var canclick = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	checkmark.modulate.a = 0.0
-	Manager.newrandomcard()
 	spawn(multiplayer.get_unique_id())
 	multiplayer.peer_connected.connect(spawn)
 	multiplayer.peer_disconnected.connect(remove)
 	label.text = "Room Code: " + Network.current_room_id
-	print("who is p1??", Manager.p1, "this is me ", multiplayer.get_unique_id() )
-	if multiplayer.get_unique_id() == Manager.p1:
-		label_2.text = "Player 1" 
-	else:
-		label_2.text = "Player 2"
 	#meow
 	for late in multiplayer.get_peers():
 		spawn(late)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Manager.p2 != null:
+		panel.visible = false
+	else:
+		panel.visible = true
+	if multiplayer.get_unique_id() == Manager.p1:
+		label_2.text = "Player 1" 
+	else:
+		label_2.text = "Player 2"
 	label_3.text = "Current Player Turn:  Player 1" if Manager.p1turn else "Current Player Turn:  Player 2"
 func spawn(id:int):
 	if player_spawn.has_node(str(id)):
@@ -51,10 +53,7 @@ func spawn(id:int):
 		Manager.set_player(1)
 	else:
 		Manager.set_player(2)
-	if Manager.p2 != null:
-		Panel.visible = false
-	else:
-		Panel.visible = true
+	Manager.add_person.rpc(multiplayer.get_unique_id(), Network.is_host)
 func remove(id:int): 
 	var player = player_spawn.get_node_or_null(str(id))
 	if player:
@@ -62,7 +61,6 @@ func remove(id:int):
 
 func _on_button_pressed() -> void:
 	if canclick:
-		print("clicked")
 		canclick = false
 		DisplayServer.clipboard_set(Network.current_room_id)
 		tweener(1.0)

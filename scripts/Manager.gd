@@ -15,9 +15,6 @@ var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://ico
 var card_clicked
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#give cur car
-	if multiplayer.is_server():
-		newrandomcard()
 	multiplayer.peer_connected.connect(give)
 func give(id) -> void: 
 	if multiplayer.is_server():
@@ -32,14 +29,18 @@ func setcards(pe)->void:
 		player2cards.append(pe)
 func set_player(ini)->void:
 	player = ini
+@rpc("any_peer", "call_local")
+func add_person(id, is_host) -> void:
+	if is_host:
+		#i am the host
+		print("HOST")
+		p1 = id
+	else:
+		print("NOT HOST")
+		p2 = id
+		
 func test_ready(it) -> void:
-	if !ready_players.has(it):
-		ready_players.append(it)
-	#this is me
-	if Network.is_host:	
-		print("host")
-		p1 = it
-	if fight_loaded && otherfight_loaded: 
+	if fight_loaded && otherfight_loaded:
 		rpc("check_ready",it)
 #sending data over the internet cause yeah :/
 @rpc("any_peer", "call_local")
@@ -52,43 +53,27 @@ func card_sender(id, card) -> void:
 			other_guy.otherplayerwantin(card)
 @rpc("any_peer", "call_local")
 func check_ready(id_test) -> void: 
+	if !ready_players.has(id_test):
+		ready_players.append(id_test)
 	if ready_players.size()>=2:
 		print(ready_players)
-		print("done")
-		ready_players.sort()
-		if ready_players[0] == multiplayer.get_unique_id():
-			#this is me
-			if Network.is_host:	
-				print("host")
-				p1 = ready_players[0]
-				p2 = ready_players[1]
-			else:
-				p1 = ready_players[1]
-				p2 = ready_players[0]
-		else:
-			#not me
-			if Network.is_host:	
-				p1 = ready_players[1]
-				p2 = ready_players[0]
-			else:
-				p1 = ready_players[0]
-				p2 = ready_players[1]
 		done = true
 	print(ready_players)
 	print("one pass")
-func newrandomcard() -> void: 
-	#set up random card in the middle at the start
-	#only host
-	if multiplayer.is_server():
-		randomize()
-		random_card = arraytocard[randi_range(0,8)]
-		rpc("change_cur_card",random_card)
+#func newrandomcard() -> void: 
+	##set up random card in the middle at the start
+	##only host
+	#if multiplayer.is_server():
+		#randomize()
+		#random_card = arraytocard[randi_range(0,8)]
+		#rpc("change_cur_card",random_card)
 @rpc("any_peer", "call_local")
 func change_cur_card(random_card2) -> void: 
 	random_card = random_card2
 	print("anything?? ", random_card)
 	for curcard in get_tree().get_nodes_in_group("main_card"):
 		print("found one!")
+		curcard.color = random_card[2]
 		curcard.get_node_or_null("Label").text = random_card[0]
 		curcard.get_node_or_null("Sprite2D").texture = load(random_card[1])	
 ##updating local var 

@@ -1,5 +1,5 @@
 extends Node2D
-@export var color:Color = Color("#95abdc")
+@export var color:Color = Color("e7beb8ff")
 @export var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
 @export var texture: Texture2D = preload("res://icon.svg")
 
@@ -10,6 +10,7 @@ extends Node2D
 @onready var label: Label = $visual/Label
 @onready var panel_2: Panel = $visual/Panel2
 @onready var visual: Node2D = $visual
+var possible_colors = ["b657d3ff","9a8550ff","6587c6ff","d94d84ff"]
 var good = false
 #7 norms,  2 special!
 var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
@@ -26,8 +27,13 @@ var lerp2Targ
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	randomize()
+	color = possible_colors[randi_range(0,3)]
 	cardType = arraytocard[randi_range(0,8)]
 	text = cardType[0]
+	if text == "THEIF":
+		color ="56996eff"
+	if text == "STAR":
+		color = "e7beb8ff"
 	texture = load(cardType[1])
 	bar = get_parent()
 	up = Vector2(0, - 50)
@@ -125,3 +131,5 @@ func handle_showy()-> void:
 	cardType = arraytocard[randi_range(0,8)]
 	text = cardType[0]
 	texture = load(cardType[1])
+func check_if_compatible () -> void: 
+	pass

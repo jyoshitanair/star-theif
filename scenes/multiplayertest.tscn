@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drg8mb76vhiaf" path="res://scripts/multiplayertest.gd" id="1_mnkun"]
 [ext_resource type="Texture2D" uid="uid://bdp5yi60dfikk" path="res://icon.svg" id="2_5pljh"]
+[ext_resource type="Script" uid="uid://c0f1mew0kppbm" path="res://scripts/curcard.gd" id="2_mr4xs"]
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_r2pta"]
 [ext_resource type="Texture2D" uid="uid://dt65c2s6y1ony" path="res://exports/index.png" id="4_at2ej"]
 
@@ -71,6 +72,7 @@ metadata/_edit_use_anchors_ = true
 [node name="curcard" type="Node2D" parent="." unique_id=627302728 groups=["main_card"]]
 position = Vector2(576, 316)
 scale = Vector2(0.6, 0.6)
+script = ExtResource("2_mr4xs")
 
 [node name="Panel" type="Panel" parent="curcard" unique_id=2041330084]
 visible = false
