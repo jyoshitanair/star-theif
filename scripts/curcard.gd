@@ -18,37 +18,33 @@ var cardType = ["1","res://icon.svg", "3840b9ff"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#give cur car
-	get_new_card()
+	add_to_group("main_card")
+	get_new_card.call_deferred()
+	print("jhellooo")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 func get_new_card() -> void: 
-	randomize()
-	color = Color(possible_colors[randi_range(0,3)])
-	var temp = arraytocard[randi_range(0,8)]
-	cardType = [temp[0], temp[1], color]
-	text = cardType[0]
-	if text == "THEIF!":
-		color ="56996eff"
-	if text == "STAR":
-		color = "e7beb8ff"
-	if multiplayer.is_server():
-		Manager.rpc("change_cur_card",cardType)
-	texture = load(cardType[1])
-	sprite_2d.texture = texture
-	label.text = text
-	##
-	var style = panel.get_theme_stylebox("panel").duplicate()
-	style.bg_color = color.lightened(0.4)
-	panel.add_theme_stylebox_override("panel", style)
-	##
-	var style2 = color_rect_2.get_theme_stylebox("panel").duplicate()
-	style2.bg_color = color.darkened(0.4)
-	color_rect.add_theme_stylebox_override("panel", style2)
-	##
-	var style3 = color_rect_2.get_theme_stylebox("panel").duplicate()
-	style3.bg_color = color
-	color_rect_2.add_theme_stylebox_override("panel", style3)
-	
-	
+	print("hello")
+	if Manager.p1 == multiplayer.get_unique_id():
+		print("HELLOOOO??")
+		Manager.newrandomcard()
+func update_ui() -> void:
+	if Manager.random_card:
+		sprite_2d.texture = load(Manager.random_card[1])
+		label.text = Manager.random_card[0]
+		color = Color(Manager.random_card[2])
+		##
+		var style = panel.get_theme_stylebox("panel").duplicate()
+		style.bg_color = color.lightened(0.4)
+		panel.add_theme_stylebox_override("panel", style)
+		##
+		var style2 = color_rect_2.get_theme_stylebox("panel").duplicate()
+		style2.bg_color = color.darkened(0.4)
+		color_rect.add_theme_stylebox_override("panel", style2)
+		##
+		var style3 = color_rect_2.get_theme_stylebox("panel").duplicate()
+		style3.bg_color = color
+		color_rect_2.add_theme_stylebox_override("panel", style3)
+		
+		

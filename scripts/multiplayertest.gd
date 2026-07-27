@@ -13,7 +13,7 @@ var canclick = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	checkmark.modulate.a = 0.0
-	spawn(multiplayer.get_unique_id())
+	spawn.call_deferred(multiplayer.get_unique_id())
 	multiplayer.peer_connected.connect(spawn)
 	multiplayer.peer_disconnected.connect(remove)
 	label.text = "Room Code: " + Network.current_room_id
