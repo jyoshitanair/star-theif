@@ -60,6 +60,5 @@ func _process(delta: float) -> void:
 		done = true
 	
 func otherplayerwantin(card_value) -> void: 
-	Manager.card_clicked = card_value
 	Manager.p1turn = !Manager.p1turn	
 	Manager.clicked_before = false

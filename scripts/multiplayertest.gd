@@ -7,21 +7,28 @@ var connected_players = []
 @onready var label_2: Label = $Label2
 @onready var label_3: Label = $Label3
 @onready var curcard: Node2D = $curcard
+@onready var checkmark: Sprite2D = $checkmark
+@onready var panel: Panel = $Panel
+var canclick = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	checkmark.modulate.a = 0.0
 	Manager.newrandomcard()
 	spawn(multiplayer.get_unique_id())
 	multiplayer.peer_connected.connect(spawn)
 	multiplayer.peer_disconnected.connect(remove)
-	label.text = Network.current_room_id
-	label_2.text = str(multiplayer.get_unique_id())
-	
+	label.text = "Room Code: " + Network.current_room_id
+	print("who is p1??", Manager.p1, "this is me ", multiplayer.get_unique_id() )
+	if multiplayer.get_unique_id() == Manager.p1:
+		label_2.text = "Player 1" 
+	else:
+		label_2.text = "Player 2"
 	#meow
 	for late in multiplayer.get_peers():
 		spawn(late)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	label_3.text = "Current Player Turn:  Player 1" if Manager.p1turn else "Current Player:  PLayer 2"
+	label_3.text = "Current Player Turn:  Player 1" if Manager.p1turn else "Current Player Turn:  Player 2"
 func spawn(id:int):
 	if player_spawn.has_node(str(id)):
 		return
@@ -44,7 +51,27 @@ func spawn(id:int):
 		Manager.set_player(1)
 	else:
 		Manager.set_player(2)
+	if Manager.p2 != null:
+		Panel.visible = false
+	else:
+		Panel.visible = true
 func remove(id:int): 
 	var player = player_spawn.get_node_or_null(str(id))
 	if player:
 		player.queue_free()
+
+func _on_button_pressed() -> void:
+	if canclick:
+		print("clicked")
+		canclick = false
+		DisplayServer.clipboard_set(Network.current_room_id)
+		tweener(1.0)
+		await get_tree().create_timer(2.0).timeout
+		tweener(0.0)
+		canclick = true
+func tweener(end) -> void: 
+	var tween = create_tween()
+	tween.tween_property(checkmark, "modulate:a",end,0.8)
+	await tween.finished
+	tween.kill()
+	

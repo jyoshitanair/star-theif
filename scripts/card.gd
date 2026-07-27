@@ -2,8 +2,6 @@ extends Node2D
 @export var color:Color = Color("#95abdc")
 @export var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
 @export var texture: Texture2D = preload("res://icon.svg")
-@export var move_clicked:String = "speed"
-
 
 @onready var panel: Panel = $visual/Panel
 @onready var color_rect: Panel = $visual/ColorRect
@@ -66,6 +64,8 @@ func _process(delta: float) -> void:
 			position.y = position.y + 500
 			await get_tree().create_timer(1.3).timeout
 			lerper2 = true
+			panel_2.show()
+			panel.hide()
 	if lerper2:
 		position.y = lerp(position.y,lerp2Targ, delta*13)
 		if is_equal_approx(position.y, lerp2Targ):
@@ -92,9 +92,12 @@ func _process(delta: float) -> void:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
+				Manager.card_clicked = cardType
 				lerper = true
 				lerpTarg = position.y - 200
 				current = false
+				old_current = false
+				visual.position = down
 				Manager.clicked_before = true
 				print("me0w")
 				#
@@ -115,7 +118,7 @@ func _on_area_2d_mouse_exited() -> void:
 func change_text(new_txt) -> void: 
 	text = new_txt
 	label.text = text
-func handle_showy()-> void: 
+func handle_showy()-> void: 	
 	position.y += 200
 	await get_tree().create_timer(0.5)
 	randomize()

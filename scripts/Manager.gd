@@ -33,6 +33,12 @@ func setcards(pe)->void:
 func set_player(ini)->void:
 	player = ini
 func test_ready(it) -> void:
+	if !ready_players.has(it):
+		ready_players.append(it)
+	#this is me
+	if Network.is_host:	
+		print("host")
+		p1 = it
 	if fight_loaded && otherfight_loaded: 
 		rpc("check_ready",it)
 #sending data over the internet cause yeah :/
@@ -46,14 +52,27 @@ func card_sender(id, card) -> void:
 			other_guy.otherplayerwantin(card)
 @rpc("any_peer", "call_local")
 func check_ready(id_test) -> void: 
-	if !ready_players.has(id_test):
-		ready_players.append(id_test)
 	if ready_players.size()>=2:
 		print(ready_players)
 		print("done")
 		ready_players.sort()
-		p1 = ready_players[0]
-		p2 = ready_players[1]
+		if ready_players[0] == multiplayer.get_unique_id():
+			#this is me
+			if Network.is_host:	
+				print("host")
+				p1 = ready_players[0]
+				p2 = ready_players[1]
+			else:
+				p1 = ready_players[1]
+				p2 = ready_players[0]
+		else:
+			#not me
+			if Network.is_host:	
+				p1 = ready_players[1]
+				p2 = ready_players[0]
+			else:
+				p1 = ready_players[0]
+				p2 = ready_players[1]
 		done = true
 	print(ready_players)
 	print("one pass")

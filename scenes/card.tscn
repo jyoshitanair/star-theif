@@ -61,6 +61,7 @@ offset_right = 111.00001
 offset_bottom = 173.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_rid7q")
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect2" type="Panel" parent="visual" unique_id=1342244455]
 offset_left = -100.99999
@@ -69,6 +70,7 @@ offset_right = 98.00001
 offset_bottom = 160.00002
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_pom5n")
+metadata/_edit_use_anchors_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="visual" unique_id=348951911]
 position = Vector2(-1, -68.57143)
@@ -84,6 +86,7 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
 text = "meow "
 autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Panel2" type="Panel" parent="visual" unique_id=1220221136]
 offset_left = -114.28566
@@ -92,6 +95,7 @@ offset_right = 109.71434
 offset_bottom = 172.14284
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_6u4wf")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
