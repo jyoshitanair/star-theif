@@ -1,6 +1,6 @@
 extends Node
 signal pass_index(index)
-
+signal doneer
 var p1turn = true
 var player = 1
 var clicked_before= false
@@ -26,11 +26,15 @@ func give(id) -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass 
-func setcards(pe)->void: 
-	if p1 == multiplayer.get_unique_id():
-		player1cards.append(pe)
-	if p2 == multiplayer.get_unique_id():
-		player2cards.append(pe)
+@rpc("any_peer", "call_local")
+func setcards(pe, sender)->void: 
+	print("p1 = ",p1)
+	print("p2 = ",p2)
+	print("sender = ",sender)
+	if p1 == sender:
+		player1cards = pe
+	if p2 == sender:
+		player2cards = pe
 func set_player(ini)->void:
 	player = ini
 @rpc("any_peer", "call_local")
@@ -40,7 +44,8 @@ func add_person(id, is_host) -> void:
 		p1 = id
 	else:
 		p2 = id
-		
+	if p1 != null && p2 != null: 
+		emit_signal("doneer")
 func test_ready(it) -> void:
 	if fight_loaded && otherfight_loaded:
 		rpc("check_ready",it)
@@ -98,6 +103,10 @@ func is_possible(card) -> bool:
 	if my_color == needed_color:
 		return true
 	elif my_term == needed_term:
+		return true
+	elif my_term == "THEIF!":
+		return true
+	elif my_term == "STAR":
 		return true
 	else:
 		print("my color ",my_color)

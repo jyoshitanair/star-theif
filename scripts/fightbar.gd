@@ -21,6 +21,7 @@ var loaded_card1
 var loaded_card2
 var loaded_card3
 var loaded_card4
+var all_cards = []
 var positions_array = [Vector2(120.0,774.0), Vector2(346.0,774.0),Vector2(571.0,774.0),Vector2(798.0,774.0),Vector2(1029.0,774.0)]
 @onready var cards =[$Card, $Card2, $Card3, $Card4, $Card5]
 # Called when the node enters the scene tree for the first time.
@@ -30,7 +31,7 @@ func _ready() -> void:
 		card_node.clicked.connect(_on_click.bind(i))
 		card_node.position = positions_array[i]
 		#set up array of what cars u have
-		Manager.setcards(card_node.cardType[0])
+		all_cards.append(card_node.cardType)
 		if card_node == null:
 			print(card_node)
 			return
@@ -38,7 +39,7 @@ func _ready() -> void:
 		var card_name_end ="loaded_card_end%d"%i
 		set(card_name, card_node)
 		set(card_name_end, (card_node.position.y -198))
-		
+	Manager.doneer.connect(_set_cards.bind(all_cards))	
 	await get_tree().create_timer(0.8).timeout
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -73,5 +74,6 @@ func invalid_card() -> void:
 		await get_tree().create_timer(3.0).timeout
 		panel_2.hide()
 		processing = false
-
+func _set_cards(card_node1) -> void: 
+	Manager.setcards.rpc.call_deferred(card_node1, multiplayer.get_unique_id())
 		

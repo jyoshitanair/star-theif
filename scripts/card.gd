@@ -2,7 +2,7 @@ extends Node2D
 @export var color:Color = Color("e7beb8ff")
 @export var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
 @export var texture: Texture2D = preload("res://icon.svg")
-
+#theif = steal an opponents card, star = see the oponents cards for 1 second.
 @onready var panel: Panel = $visual/Panel
 @onready var color_rect: Panel = $visual/ColorRect
 @onready var color_rect_2: Panel = $visual/ColorRect2
