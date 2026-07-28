@@ -15,6 +15,7 @@ var good = false
 var busy = false
 var index
 var index1
+var old_card 
 signal clicked 
 #7 norms,  2 special!
 var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
@@ -42,6 +43,12 @@ func _process(delta: float) -> void:
 	if lerper: 
 		position.y = lerp(position.y,lerpTarg, delta*13)
 		if is_equal_approx(position.y, lerpTarg):
+			if cardType[0] == "STAR":
+				#star stuff 
+				var other = get_tree().get_first_node_in_group("p2")
+				busy = true 
+				await other.show_card()
+				busy = false 
 			print("DONNEEEEEEEEE")
 			lerper = false
 			await get_tree().create_timer(0.8).timeout
@@ -70,6 +77,17 @@ func _process(delta: float) -> void:
 			else:
 				print("calling ",cardType)
 				Manager.update_set.rpc(2,cardType, index)
+			if Manager.theif == true: 
+				#theif stuff
+				#Manager.theif = false
+					#second click!	
+				Manager.first_time = false
+				busy = true 
+				var other = get_tree().get_first_node_in_group("fightbar")
+				other.button.disabled = true 
+				bar.show_theif_card()
+				old_card = cardType
+				busy = false 
 	good = false
 	if Manager.p1 != null && Manager.p2 != null:
 		if multiplayer.get_unique_id() == Manager.p1:
@@ -85,6 +103,18 @@ func _process(delta: float) -> void:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
+				if Manager.is_possible(cardType) == false:
+					bar.invalid_card()
+					return
+				if Manager.theif == true && !Manager.first_time: 
+					#theif stuff
+					Manager.theif = false
+					var player
+					if Network.is_host:
+						player = 1
+					else:
+						player = 2
+					Manager.switcheroo.rpc(old_card, cardType, player)
 				if bar.switch_mode == true: 
 					##switch logic 
 					var full
@@ -110,19 +140,6 @@ func _process(delta: float) -> void:
 					panel_2.show()
 					panel.hide()
 					return
-				if Manager.is_possible(cardType) == false:
-					bar.invalid_card()
-					return
-				if Manager.theif == true: 
-					#theif stuff
-					Manager.theif = false
-				if Manager.star == true:
-					Manager.star = false
-					#star stuff 
-					var other = get_tree().get_first_node_in_group("p2")
-					busy = true 
-					await other.show_card()
-					busy = false 
 				####
 				var full 
 				if Network.is_host:
@@ -201,3 +218,16 @@ func new_randi_card()-> void :
 	var style3 = color_rect_2.get_theme_stylebox("panel").duplicate()
 	style3.bg_color = color
 	color_rect_2.add_theme_stylebox_override("panel", style3)
+func update_ui(card) -> void:
+	sprite_2d.texture = load(card[1])
+	label.text = card[0]
+	color = Color(card[2])
+	_apply_panel_color(color_rect, color.darkened(0.4))
+	_apply_panel_color(panel, color.lightened(0.4))
+	_apply_panel_color(color_rect_2, color)
+func _apply_panel_color(targetNode, color) -> void: 
+		##
+		var style = targetNode.get_theme_stylebox("panel").duplicate()
+		style.bg_color = color
+		targetNode.add_theme_stylebox_override("panel", style)
+		##

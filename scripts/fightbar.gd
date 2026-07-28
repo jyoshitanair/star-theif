@@ -110,3 +110,7 @@ func _on_button_pressed() -> void:
 		switch_mode = true
 		panel_3.visible = true
 		button.disabled = true 
+func show_theif_card() -> void: 
+	if Manager.done:
+		panel_3.visible = true
+		

@@ -3,8 +3,9 @@ signal pass_index(index)
 signal doneer
 var player1points = 0 
 var player2points = 0 
+var first_time = false
+var theifcard
 var theif = false
-var star = false 
 var p1turn = true
 var player = 1
 var clicked_before= false
@@ -27,6 +28,31 @@ func _ready() -> void:
 @rpc("any_peer", "call_local")
 func js_toggle_turn() -> void: 
 	p1turn = !p1turn
+@rpc("any_peer", "call_local")
+func switcheroo(old_card, card, p1orp2) -> void:
+	#look for my card in old_card, their card in card. 
+	var otherplayer
+	var full #mycards
+	var otherplayerfull #theircards
+	if p1orp2 == 1:
+		otherplayer = 2
+		full = player1cards
+		otherplayerfull = player2cards
+	else: 
+		otherplayer = 1
+		full = player2cards
+		otherplayerfull = player1cards
+	var index
+	var old_index
+	for i in range(len(full)):
+		if old_card == full[i]:
+			index = i 
+	for i in range(len(otherplayerfull)):		
+		if card== full[i]:
+			old_index = i
+	update_set.rpc(p1orp2, card,index)
+	update_set.rpc(otherplayer, old_card,old_index)
+	
 func give(id) -> void: 
 	if Network.is_host and random_card != null:
 		change_cur_card.rpc_id(id, random_card)
@@ -121,7 +147,6 @@ func is_possible(card) -> bool:
 		theif = true 
 		return true
 	elif my_term == "STAR" || needed_term == "STAR" :
-		star = true 
 		return true
 	else:
 		print("my color ",my_color)
@@ -146,7 +171,7 @@ func switch(p1orp2, old_card, cardType) -> void:
 		full = Manager.player2cards
 	for i in range(len(full)):
 		if cardType == full[i]:
-			update_set(p1orp2, cardType,i)
+			update_set.rpc(p1orp2, cardType,i)
 			print("FOUND!!!")
 			#correct element to switch. 
 	

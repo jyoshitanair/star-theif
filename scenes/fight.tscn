@@ -68,7 +68,7 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[node name="bar" type="Node2D" unique_id=1185309514]
+[node name="bar" type="Node2D" unique_id=1185309514 groups=["fightbar"]]
 script = ExtResource("1_htrw1")
 
 [node name="Panel" type="Panel" parent="." unique_id=1969611259]
@@ -156,10 +156,10 @@ text = "meow "
 autowrap_mode = 3
 
 [node name="Button" type="Button" parent="." unique_id=540692585]
-offset_left = 935.0
-offset_top = 367.0
-offset_right = 1128.0
-offset_bottom = 421.0
+offset_left = 880.0
+offset_top = 370.0
+offset_right = 1073.0
+offset_bottom = 424.0
 theme_override_fonts/font = ExtResource("3_osnhv")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_pom5n")
