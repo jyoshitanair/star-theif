@@ -74,6 +74,9 @@ func _process(delta: float) -> void:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
+				if Manager.is_possible(cardType) == false:
+					bar.invalid_card()
+					return
 				Manager.card_clicked = cardType
 				emit_signal("clicked")
 				lerper = true

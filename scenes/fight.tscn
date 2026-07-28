@@ -2,6 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://5ylr2mwi4mbt" path="res://scenes/card.tscn" id="1_537il"]
 [ext_resource type="Script" uid="uid://f5s7jq1wrknt" path="res://scripts/fightbar.gd" id="1_htrw1"]
+[ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_osnhv"]
+[ext_resource type="Script" uid="uid://c0f1mew0kppbm" path="res://scripts/curcard.gd" id="4_qogor"]
+[ext_resource type="Texture2D" uid="uid://bdp5yi60dfikk" path="res://icon.svg" id="5_57w1i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqrfi"]
 bg_color = Color(0.60784316, 0.5882353, 0.64705884, 0.75686276)
@@ -9,6 +12,26 @@ corner_radius_top_left = 60
 corner_radius_top_right = 60
 corner_radius_bottom_right = 60
 corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rid7q"]
+bg_color = Color(0.21873006, 0.1701434, 0.16785508, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i268b"]
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bjlyo"]
+bg_color = Color(0.74760276, 0.48319757, 0.8037548, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="bar" type="Node2D" unique_id=1185309514]
 script = ExtResource("1_htrw1")
@@ -22,19 +45,91 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 [node name="Card" parent="." unique_id=1194118314 instance=ExtResource("1_537il")]
 position = Vector2(123, 774)
 scale = Vector2(0.6, 0.6)
+color = null
+text = null
+texture = null
 
 [node name="Card2" parent="." unique_id=1797223111 instance=ExtResource("1_537il")]
 position = Vector2(346, 772)
 scale = Vector2(0.6, 0.6)
+color = null
+text = null
+texture = null
 
 [node name="Card3" parent="." unique_id=1169197280 instance=ExtResource("1_537il")]
 position = Vector2(571, 771)
 scale = Vector2(0.6, 0.6)
+color = null
+text = null
+texture = null
 
 [node name="Card4" parent="." unique_id=1048180784 instance=ExtResource("1_537il")]
 position = Vector2(797.99994, 769)
 scale = Vector2(0.6, 0.6)
+color = null
+text = null
+texture = null
 
 [node name="Card5" parent="." unique_id=1396641506 instance=ExtResource("1_537il")]
 position = Vector2(1029.0001, 764)
 scale = Vector2(0.6, 0.6)
+color = null
+text = null
+texture = null
+
+[node name="Panel2" type="Panel" parent="." unique_id=1504518307]
+visible = false
+offset_left = 14.0
+offset_top = 354.0
+offset_right = 385.0
+offset_bottom = 420.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rid7q")
+
+[node name="Label" type="Label" parent="Panel2" unique_id=1835130936]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_osnhv")
+theme_override_font_sizes/font_size = 29
+text = " Invalid Card placed :/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="curcard" type="Node2D" parent="." unique_id=847612341 groups=["main_card"]]
+position = Vector2(576, 316)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("4_qogor")
+
+[node name="ColorRect" type="Panel" parent="curcard" unique_id=1618973100]
+offset_left = -112.99999
+offset_top = -162.0
+offset_right = 111.00001
+offset_bottom = 173.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_i268b")
+
+[node name="ColorRect2" type="Panel" parent="curcard" unique_id=240746774]
+offset_left = -100.99999
+offset_top = -148.99998
+offset_right = 98.00001
+offset_bottom = 160.00002
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_bjlyo")
+
+[node name="Sprite2D" type="Sprite2D" parent="curcard" unique_id=2108554691]
+position = Vector2(-1, -68.57143)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("5_57w1i")
+
+[node name="Label" type="Label" parent="curcard" unique_id=1037105198]
+offset_left = -34.28572
+offset_top = 64.28571
+offset_right = 103.71428
+offset_bottom = 203.2857
+mouse_filter = 1
+theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
+text = "meow "
+autowrap_mode = 3

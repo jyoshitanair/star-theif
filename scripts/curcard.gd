@@ -1,16 +1,15 @@
 extends Node2D
-@export var color:Color = Color("5f1e72ff")
-@export var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
-@export var texture: Texture2D = preload("res://icon.svg")
+var color:Color = Color("5f1e72ff")
+var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
+var texture: Texture2D = preload("res://icon.svg")
 
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var label: Label = $Label
-@onready var panel: Panel = $Panel
 @onready var color_rect_2: Panel = $ColorRect2
 @onready var color_rect: Panel = $ColorRect
 
-var possible_colors = ["3840b9ff","07092fff","847025ff","5f1e72ff"]
+var possible_colors = ["b657d3ff","9a8550ff","6587c6ff","d94d84ff"]
 
 #7 norms,  2 special!
 var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
@@ -36,17 +35,11 @@ func update_ui() -> void:
 		sprite_2d.texture = load(Manager.random_card[1])
 		label.text = Manager.random_card[0]
 		color = Color(Manager.random_card[2])
+		_apply_panel_color(color_rect, color.darkened(0.4))
+		_apply_panel_color(color_rect_2, color)
+func _apply_panel_color(targetNode, color) -> void: 
 		##
-		var style = panel.get_theme_stylebox("panel").duplicate()
-		style.bg_color = color.lightened(0.4)
-		panel.add_theme_stylebox_override("panel", style)
+		var style = targetNode.get_theme_stylebox("panel").duplicate()
+		style.bg_color = color
+		targetNode.add_theme_stylebox_override("panel", style)
 		##
-		var style2 = color_rect_2.get_theme_stylebox("panel").duplicate()
-		style2.bg_color = color.darkened(0.4)
-		color_rect.add_theme_stylebox_override("panel", style2)
-		##
-		var style3 = color_rect_2.get_theme_stylebox("panel").duplicate()
-		style3.bg_color = color
-		color_rect_2.add_theme_stylebox_override("panel", style3)
-		
-		

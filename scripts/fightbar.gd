@@ -1,4 +1,5 @@
 extends Node2D
+@onready var panel_2: Panel = $Panel2
 var done = false
 var card = preload("res://scenes/card.tscn")
 var first1 = true
@@ -6,6 +7,8 @@ var first2 = true
 var first3 = true
 var first4 = true
 var first5 = true
+
+var processing = false
 ############
 var loaded_card0
 var loaded_card_end0
@@ -63,3 +66,12 @@ func _process(delta: float) -> void:
 func _on_click(index) -> void: 
 	Manager.handle_click.rpc(index)
 	print("clicked card ", index)		
+func invalid_card() -> void: 
+	if !processing: 
+		processing = true
+		panel_2.show()
+		await get_tree().create_timer(3.0).timeout
+		panel_2.hide()
+		processing = false
+
+		

@@ -13,7 +13,7 @@ var done = false
 var p1 
 var p2
 var random_card
-var possible_colors = ["3840b9ff","07092fff","847025ff","5f1e72ff"]
+var possible_colors = ["b657d3ff","9a8550ff","6587c6ff","d94d84ff"]
 var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
 var card_clicked
 var color
@@ -81,9 +81,6 @@ func change_cur_card(random_card2) -> void:
 	random_card = random_card2
 	print("anything?? ", random_card)
 	for curcard in get_tree().get_nodes_in_group("main_card"):
-		curcard.color = Color(random_card[2])
-		curcard.get_node_or_null("Label").text = random_card[0]
-		curcard.get_node_or_null("Sprite2D").texture = load(random_card[1])	
 		curcard.update_ui()
 ##updating local var 
 
@@ -93,3 +90,21 @@ func reset() -> void:
 	ready_players.clear()
 	done = false
 	clicked_before = false
+func is_possible(card) -> bool: 
+	var my_term = card[0]
+	var my_color = card[2]
+	var needed_term = random_card[0]
+	var needed_color = random_card[2]
+	if my_color == needed_color:
+		return true
+	elif my_term == needed_term:
+		return true
+	else:
+		print("my color ",my_color)
+		print("my term ",my_term)
+		print("the color ",needed_color)
+		print("the term ",needed_term)
+		return false
+	
+	
+	
