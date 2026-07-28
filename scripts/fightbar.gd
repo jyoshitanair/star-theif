@@ -77,3 +77,7 @@ func invalid_card() -> void:
 func _set_cards(card_node1) -> void: 
 	Manager.setcards.rpc.call_deferred(card_node1, multiplayer.get_unique_id())
 		
+
+
+func _on_button_pressed() -> void:
+	pass # Replace with function body.
