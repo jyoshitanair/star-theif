@@ -114,6 +114,13 @@ func is_possible(card) -> bool:
 		print("the color ",needed_color)
 		print("the term ",needed_term)
 		return false
-	
+@rpc("any_peer", "call_local")
+func update_set(p1orp2, cardType,index) -> void:
+	var full 
+	if p1orp2 == 1:
+		full = Manager.player1cards
+	if p1orp2 == 2:
+		full = Manager.player2cards
+	full[index] = cardType
 	
 	

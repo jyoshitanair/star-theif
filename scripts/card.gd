@@ -12,6 +12,7 @@ extends Node2D
 @onready var visual: Node2D = $visual
 var possible_colors = ["b657d3ff","9a8550ff","6587c6ff","d94d84ff"]
 var good = false
+var index
 signal clicked 
 #7 norms,  2 special!
 var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
@@ -59,6 +60,12 @@ func _process(delta: float) -> void:
 			new_randi_card()
 			lerper2 = false
 			Manager.rpc("card_sender", multiplayer.get_unique_id(),cardType[0])
+			if Network.is_host:
+				print("calling ",cardType)
+				Manager.update_set.rpc(1,cardType, index)
+			else:
+				print("calling ",cardType)
+				Manager.update_set.rpc(2,cardType, index)
 	good = false
 	if Manager.p1 != null && Manager.p2 != null:
 		if multiplayer.get_unique_id() == Manager.p1:
@@ -77,6 +84,16 @@ func _process(delta: float) -> void:
 				if Manager.is_possible(cardType) == false:
 					bar.invalid_card()
 					return
+				####
+				var full 
+				if Network.is_host:
+					full = Manager.player1cards
+				else:
+					full = Manager.player2cards
+				for i in range(len(full)):
+					if cardType == full[i]:
+						index = i
+						print("FOUND!!!")
 				Manager.card_clicked = cardType
 				emit_signal("clicked")
 				lerper = true
