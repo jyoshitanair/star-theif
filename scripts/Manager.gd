@@ -1,6 +1,8 @@
 extends Node
 signal pass_index(index)
 signal doneer
+var theif = false
+var star = false 
 var p1turn = true
 var player = 1
 var clicked_before= false
@@ -104,9 +106,11 @@ func is_possible(card) -> bool:
 		return true
 	elif my_term == needed_term:
 		return true
-	elif my_term == "THEIF!":
+	elif my_term == "THEIF!" || needed_term == "THEIF!":
+		theif = true 
 		return true
-	elif my_term == "STAR":
+	elif my_term == "STAR" || needed_term == "STAR" :
+		star = true 
 		return true
 	else:
 		print("my color ",my_color)

@@ -93,3 +93,18 @@ func _show_moving(index) -> void:
 	card_clicked = cards[index]
 	lerper = true 
 	lerpTarg = card_clicked.position.y +200
+func show_card() -> void:
+	print("HELLOOO????") 
+	var showncard
+	if Network.is_host: 
+		showncard = Manager.player2cards
+	else:
+		showncard = Manager.player1cards
+	for i in range(0,5):
+		var card_node = cards[i]
+		var cur_needed_card = showncard[i]
+		card_node.update(cur_needed_card[0],Color(cur_needed_card[2]),cur_needed_card[1])
+	await get_tree().create_timer(1.0).timeout
+	for i in range(0,5):
+		var card_node = cards[i]
+		card_node.update("star theif!",Color("5b76b4ff"),"res://icon.svg")

@@ -12,6 +12,7 @@ extends Node2D
 @onready var visual: Node2D = $visual
 var possible_colors = ["b657d3ff","9a8550ff","6587c6ff","d94d84ff"]
 var good = false
+var busy = false
 var index
 signal clicked 
 #7 norms,  2 special!
@@ -35,6 +36,8 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if busy: 
+		return 
 	if lerper: 
 		position.y = lerp(position.y,lerpTarg, delta*13)
 		if is_equal_approx(position.y, lerpTarg):
@@ -84,6 +87,16 @@ func _process(delta: float) -> void:
 				if Manager.is_possible(cardType) == false:
 					bar.invalid_card()
 					return
+				if Manager.theif == true: 
+					#theif stuff
+					Manager.theif = false
+				if Manager.star == true:
+					Manager.star = false
+					#star stuff 
+					var other = get_tree().get_first_node_in_group("p2")
+					busy = true 
+					await other.show_card()
+					busy = false 
 				####
 				var full 
 				if Network.is_host:

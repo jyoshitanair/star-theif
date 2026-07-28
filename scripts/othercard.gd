@@ -1,7 +1,7 @@
 extends Node2D
 @export var color:Color = Color("5b76b4ff")
 @export var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
-@export var texture: Texture2D = preload("res://icon.svg")
+@export var texture = "res://icon.svg"
 
 @onready var panel: Panel = $visual/Panel
 @onready var color_rect: Panel = $visual/ColorRect
@@ -9,11 +9,10 @@ extends Node2D
 @onready var sprite_2d: Sprite2D = $visual/Sprite2D
 @onready var label: Label = $visual/Label
 var bar
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	text = "star theif!"
-	bar = get_parent()
+func update(text1, color1, texture1) -> void: 
+	color = color1
+	text = text1
+	texture = load(texture1)
 	sprite_2d.texture = texture
 	label.text = text
 	##
@@ -28,3 +27,7 @@ func _ready() -> void:
 	var style3 = color_rect_2.get_theme_stylebox("panel").duplicate()
 	style3.bg_color = color
 	color_rect_2.add_theme_stylebox_override("panel", style3)
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	bar = get_parent()
+	update("star theif!",color,texture)
