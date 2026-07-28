@@ -1,6 +1,8 @@
 extends Node
 signal pass_index(index)
 signal doneer
+var player1points = 0 
+var player2points = 0 
 var theif = false
 var star = false 
 var p1turn = true
@@ -22,12 +24,21 @@ var color
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	multiplayer.peer_connected.connect(give)
+@rpc("any_peer", "call_local")
+func js_toggle_turn() -> void: 
+	p1turn = !p1turn
 func give(id) -> void: 
 	if Network.is_host and random_card != null:
 		change_cur_card.rpc_id(id, random_card)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass 
+@rpc("any_peer", "call_local")
+func updatepoints(p1o2p2)-> void: 
+	if p1o2p2 == 1: 
+		player1points += 1
+	if p1o2p2 == 2: 
+		player2points += 1
 @rpc("any_peer", "call_local")
 func setcards(pe, sender)->void: 
 	print("p1 = ",p1)
@@ -126,5 +137,16 @@ func update_set(p1orp2, cardType,index) -> void:
 	if p1orp2 == 2:
 		full = Manager.player2cards
 	full[index] = cardType
-	
+@rpc("any_peer", "call_local")
+func switch(p1orp2, old_card, cardType) -> void: 
+	var full 
+	if p1orp2 == 1:
+		full = Manager.player1cards
+	if p1orp2 == 2:
+		full = Manager.player2cards
+	for i in range(len(full)):
+		if cardType == full[i]:
+			update_set(p1orp2, cardType,i)
+			print("FOUND!!!")
+			#correct element to switch. 
 	

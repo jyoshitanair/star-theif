@@ -104,7 +104,8 @@ func show_card() -> void:
 		var card_node = cards[i]
 		var cur_needed_card = showncard[i]
 		card_node.update(cur_needed_card[0],Color(cur_needed_card[2]),cur_needed_card[1])
-	await get_tree().create_timer(1.0).timeout
+	var amount = randf_range(0.8,2.0)
+	await get_tree().create_timer(amount).timeout
 	for i in range(0,5):
 		var card_node = cards[i]
 		card_node.update("star theif!",Color("5b76b4ff"),"res://icon.svg")

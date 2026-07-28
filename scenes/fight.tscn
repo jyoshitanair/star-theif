@@ -33,6 +33,41 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pom5n"]
+bg_color = Color(0.15736651, 0.12096069, 0.37330872, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qogor"]
+bg_color = Color(0.08037747, 0.05756446, 0.21864966, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57w1i"]
+bg_color = Color(0.2618826, 0.21218333, 0.5789663, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f43n0"]
+bg_color = Color(0.03734398, 0.023952398, 0.13169011, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8bj8"]
+bg_color = Color(0.32843718, 0.27380282, 0.69973207, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
 [node name="bar" type="Node2D" unique_id=1185309514]
 script = ExtResource("1_htrw1")
 
@@ -45,37 +80,22 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 [node name="Card" parent="." unique_id=1194118314 instance=ExtResource("1_537il")]
 position = Vector2(123, 774)
 scale = Vector2(0.6, 0.6)
-color = null
-text = null
-texture = null
 
 [node name="Card2" parent="." unique_id=1797223111 instance=ExtResource("1_537il")]
 position = Vector2(346, 772)
 scale = Vector2(0.6, 0.6)
-color = null
-text = null
-texture = null
 
 [node name="Card3" parent="." unique_id=1169197280 instance=ExtResource("1_537il")]
 position = Vector2(571, 771)
 scale = Vector2(0.6, 0.6)
-color = null
-text = null
-texture = null
 
 [node name="Card4" parent="." unique_id=1048180784 instance=ExtResource("1_537il")]
 position = Vector2(797.99994, 769)
 scale = Vector2(0.6, 0.6)
-color = null
-text = null
-texture = null
 
 [node name="Card5" parent="." unique_id=1396641506 instance=ExtResource("1_537il")]
 position = Vector2(1029.0001, 764)
 scale = Vector2(0.6, 0.6)
-color = null
-text = null
-texture = null
 
 [node name="Panel2" type="Panel" parent="." unique_id=1504518307]
 visible = false
@@ -99,6 +119,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="curcard" type="Node2D" parent="." unique_id=847612341 groups=["main_card"]]
+z_index = -10
 position = Vector2(576, 316)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("4_qogor")
@@ -133,3 +154,41 @@ mouse_filter = 1
 theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
 text = "meow "
 autowrap_mode = 3
+
+[node name="Button" type="Button" parent="." unique_id=540692585]
+offset_left = 935.0
+offset_top = 367.0
+offset_right = 1128.0
+offset_bottom = 421.0
+theme_override_fonts/font = ExtResource("3_osnhv")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_pom5n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qogor")
+theme_override_styles/hover = SubResource("StyleBoxFlat_57w1i")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f43n0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_b8bj8")
+disabled = true
+text = "Switch Card "
+
+[node name="Panel3" type="Panel" parent="." unique_id=165771588]
+visible = false
+offset_left = 14.0
+offset_top = 354.0
+offset_right = 385.0
+offset_bottom = 420.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rid7q")
+
+[node name="Label" type="Label" parent="Panel3" unique_id=1003398182]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_osnhv")
+theme_override_font_sizes/font_size = 29
+text = "Choose a card to swap"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

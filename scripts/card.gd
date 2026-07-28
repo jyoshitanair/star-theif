@@ -14,6 +14,7 @@ var possible_colors = ["b657d3ff","9a8550ff","6587c6ff","d94d84ff"]
 var good = false
 var busy = false
 var index
+var index1
 signal clicked 
 #7 norms,  2 special!
 var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
@@ -84,6 +85,31 @@ func _process(delta: float) -> void:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
+				if bar.switch_mode == true: 
+					##switch logic 
+					var full
+					var p1orp2 
+					if Network.is_host: 
+						full = Manager.player1cards
+						p1orp2 =1
+					else: 
+						full = Manager.player2cards
+						p1orp2 = 2
+					for i in range(len(full)):
+						if cardType == full[i]:
+							index1 = i
+							break
+					new_randi_card()
+					Manager.update_set.rpc(p1orp2, cardType,index1)
+					Manager.js_toggle_turn.rpc()	
+					bar.switch_mode = false
+					bar.panel_3.visible = false
+					current = false
+					old_current = false
+					visual.position = down
+					panel_2.show()
+					panel.hide()
+					return
 				if Manager.is_possible(cardType) == false:
 					bar.invalid_card()
 					return
@@ -116,6 +142,12 @@ func _process(delta: float) -> void:
 				visual.position = down
 				Manager.clicked_before = true
 				print("me0w")
+				var player 
+				if Network.is_host: 
+					player = 1
+				else: 
+					player = 2
+				Manager.updatepoints.rpc(player)
 				#
 				return
 		else:

@@ -1,5 +1,7 @@
 extends Node2D
 @onready var panel_2: Panel = $Panel2
+@onready var panel_3: Panel = $Panel3
+@onready var button: Button = $Button
 var done = false
 var card = preload("res://scenes/card.tscn")
 var first1 = true
@@ -7,7 +9,7 @@ var first2 = true
 var first3 = true
 var first4 = true
 var first5 = true
-
+var switch_mode = false
 var processing = false
 ############
 var loaded_card0
@@ -22,6 +24,8 @@ var loaded_card2
 var loaded_card3
 var loaded_card4
 var all_cards = []
+var check_done = false
+var good = false
 var positions_array = [Vector2(120.0,774.0), Vector2(346.0,774.0),Vector2(571.0,774.0),Vector2(798.0,774.0),Vector2(1029.0,774.0)]
 @onready var cards =[$Card, $Card2, $Card3, $Card4, $Card5]
 # Called when the node enters the scene tree for the first time.
@@ -44,6 +48,30 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	##wait for ready 
+	
+	if Manager.done && check_done == false:
+		button.disabled = false
+		check_done = true
+		
+	##good boy
+	
+	good = false
+	if Manager.p1 != null && Manager.p2 != null:
+		if multiplayer.get_unique_id() == Manager.p1:
+			#am player one
+			if Manager.p1turn:
+				good = true
+		else:
+			#am p2
+			if !Manager.p1turn:
+				good = true
+				
+	if !good: 
+		button.disabled = true
+	else: 
+		button.disabled = false
+		
 	if first1 ||first2 ||first3 ||first4 ||first5:
 		for i in range(0,5):
 			var firstvariation = "first%d"%(i+1)
@@ -77,7 +105,8 @@ func invalid_card() -> void:
 func _set_cards(card_node1) -> void: 
 	Manager.setcards.rpc.call_deferred(card_node1, multiplayer.get_unique_id())
 		
-
-
 func _on_button_pressed() -> void:
-	pass # Replace with function body.
+	if Manager.done:
+		switch_mode = true
+		panel_3.visible = true
+		button.disabled = true 
