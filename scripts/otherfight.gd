@@ -25,7 +25,6 @@ var lerper = false
 var lerpTarg = false
 var lerp2Targ = false
 var lerper2 = false
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Manager.pass_index.connect(_show_moving)

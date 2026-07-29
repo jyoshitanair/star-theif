@@ -65,6 +65,9 @@ func remove(id:int):
 	var player = player_spawn.get_node_or_null(str(id))
 	if player:
 		player.queue_free()
+	if connected_players.has(id):
+		connected_players.erase(id)
+	Manager.clean_up.rpc(id)
 
 func _on_button_pressed() -> void:
 	if canclick:

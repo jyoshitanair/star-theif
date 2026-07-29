@@ -2,6 +2,7 @@ extends Node
 var synced_players = []
 signal pass_index(index)
 signal doneer
+var local_click = false
 var player1points = 0 
 var player2points = 0 
 var first_time = false
@@ -38,10 +39,22 @@ func card_syncer(id) -> void:
 		synced_players.clear()
 		rpc("js_toggle_turn")
 @rpc("any_peer", "call_local")
-func switcheroo(p1_index, p2_index) -> void:
+func switcheroo(p1_index, p2_index, selfer, p1orp2) -> void:
+	print("made it to switcheroo")
 	var temp = player1cards[p1_index]
-	player1cards[p1_index] = player2cards[p2_index]
+	var temp2 = player2cards[p2_index]
+	player1cards[p1_index] = temp2
 	player2cards[p2_index] = temp
+	##SOMETHING TO UPDATE UII!!
+	##the node
+	var updateable 
+	if p1orp2 == 1:
+		updateable = temp2
+	else:
+		updateable = temp
+	var selfer_node = get_node_or_null(selfer)
+	if selfer_node and selfer_node.has_method("update"):
+		selfer_node.update(updateable[0], updateable[2], updateable[1])
 func give(id) -> void: 
 	if Network.is_host and random_card != null:
 		change_cur_card.rpc_id(id, random_card)
@@ -152,16 +165,36 @@ func update_set(p1orp2, cardType,index) -> void:
 	if p1orp2 == 2:
 		full = Manager.player2cards
 	full[index] = cardType
+#@rpc("any_peer", "call_local")
+#func switch(p1orp2, old_card, cardType) -> void: 
+	#var full 
+	#if p1orp2 == 1:
+		#full = Manager.player1cards
+	#if p1orp2 == 2:
+		#full = Manager.player2cards
+	#for i in range(len(full)):
+		#if cardType == full[i]:
+			#update_set.rpc(p1orp2, cardType,i)
+			#print("FOUND!!!")
+			##correct element to switch. 
 @rpc("any_peer", "call_local")
-func switch(p1orp2, old_card, cardType) -> void: 
-	var full 
-	if p1orp2 == 1:
-		full = Manager.player1cards
-	if p1orp2 == 2:
-		full = Manager.player2cards
-	for i in range(len(full)):
-		if cardType == full[i]:
-			update_set.rpc(p1orp2, cardType,i)
-			print("FOUND!!!")
-			#correct element to switch. 
-	
+func clean_up(id) -> void: 
+	# Unassign player slots
+	if p1 == id:
+		p1 = null
+	elif p2 == id:
+		p2 = null
+	done = false
+	p1turn = true
+	clicked_before = false
+	fight_loaded = false
+	otherfight_loaded = false
+	player1cards.clear()
+	player2cards.clear()
+	ready_players.clear()
+	synced_players.clear()
+	random_card = []
+	player1points = 0
+	player2points = 0
+func on_theif_clicked() -> void :
+	pass

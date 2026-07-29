@@ -40,14 +40,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("clicked"):
 		if mayclick: 
+			print("yes")
 			mayclick = false
 			var temp_index = 4 - index
 				##cards are stored 0,1,2,3,4. displayed 4,3,2,1,0.
 				# 0-4 ; 1-3; 2-2; 3-1; 4-0 -> end = 4-start
 			if Network.is_host:
-				Manager.switcheroo.rpc(index,temp_index)
+				Manager.switcheroo.rpc(old_card,temp_index, get_path(), 1)
 			else:
-				Manager.switcheroo.rpc(temp_index,index)
-func _ask_to_switch(carder) -> void: 
+				Manager.switcheroo.rpc(temp_index,old_card, get_path(), 2)
+			get_tree().get_first_node_in_group("fightbar").panel_3.visible = false
+			Manager.rpc("card_sender",multiplayer.get_unique_id(),"THEIF!" )
+			Manager.clicked_before = true
+func _ask_to_switch(index) -> void: 
 	mayclick = true 
-	old_card = carder
+	old_card = index
+	get_tree().get_first_node_in_group("fightbar").show_other_card()
+
+	

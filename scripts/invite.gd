@@ -7,11 +7,11 @@ var connected_once = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	label_2.text = Network.error
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	label_2.text = Network.msg
 func on_recived() -> void: 
 	pass
 

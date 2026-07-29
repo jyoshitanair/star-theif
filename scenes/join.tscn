@@ -34,4 +34,11 @@ offset_top = -2.0
 offset_right = 1156.0
 offset_bottom = 135.0
 
+[node name="Label" type="Label" parent="." unique_id=117763819]
+offset_left = 249.0
+offset_top = 489.0
+offset_right = 1150.0
+offset_bottom = 541.0
+text = "noot noot"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

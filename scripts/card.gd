@@ -29,6 +29,7 @@ var lerper = false
 var lerpTarg
 var lerper2 = false
 var lerp2Targ
+var theif_mode= false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	new_randi_card()
@@ -64,28 +65,26 @@ func _process(delta: float) -> void:
 			lerper2 = true
 			panel_2.show()
 			panel.hide()
-			Manager.change_cur_card.rpc(cardType)
+			if cardType[0] != "THEIF!":
+				Manager.change_cur_card.rpc(cardType)
+			else: 
+				#theif stuff
+				var other = get_tree().get_first_node_in_group("fightbar")
+				other.button.disabled = true 
+				bar.show_theif_card()
 	if lerper2:
 		position.y = lerp(position.y,lerp2Targ, delta*13)
 		if is_equal_approx(position.y, lerp2Targ):
 			new_randi_card()
 			lerper2 = false
-			Manager.rpc("card_sender", multiplayer.get_unique_id(),cardType[0])
 			if Network.is_host:
-				print("calling ",cardType)
 				Manager.update_set.rpc(1,cardType, index)
 			else:
-				print("calling ",cardType)
 				Manager.update_set.rpc(2,cardType, index)
-			if cardType[0] == "THEIF!": 
-				#theif stuff
-				emit_signal("theif_clicked",cardType)
-				busy = true 
-				var other = get_tree().get_first_node_in_group("fightbar")
-				other.button.disabled = true 
-				bar.show_theif_card()
-				old_card = cardType
-				busy = false 
+			if cardType[0] != "THEIF!":
+				Manager.js_toggle_turn.rpc()
+				Manager.rpc("card_sender", multiplayer.get_unique_id(),cardType[0])
+			Manager.local_click = false
 	good = false
 	if Manager.p1 != null && Manager.p2 != null:
 		if multiplayer.get_unique_id() == Manager.p1:
@@ -101,6 +100,15 @@ func _process(delta: float) -> void:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
+				Manager.local_click = true
+				bar.button.disabled = true
+				if theif_mode:
+					#next card clicked is the thing to switch!
+					emit_signal("theif_clicked",index) 
+					Manager.local_click = false
+					theif_mode = false
+					return
+					#old_card = cardType
 				if bar.switch_mode == true: 
 					var p1orp2 
 					if Network.is_host: 
@@ -118,33 +126,54 @@ func _process(delta: float) -> void:
 					visual.position = down
 					panel_2.show()
 					panel.hide()
+					Manager.local_click = false
 					return
 				####
 				if Manager.is_possible(cardType) == false:
 					bar.invalid_card()
+					Manager.local_click = false
+					bar.button.disabled = false
 					return
-				var full 
-				if Network.is_host:
-					full = Manager.player1cards
-				else:
-					full = Manager.player2cards
-				Manager.card_clicked = cardType
-				emit_signal("clicked")
-				lerper = true
-				lerpTarg = position.y - 200
-				current = false
-				old_current = false
-				visual.position = down
 				Manager.clicked_before = true
-				print("me0w")
-				var player 
-				if Network.is_host: 
-					player = 1
-				else: 
-					player = 2
-				Manager.updatepoints.rpc(player)
-				#
-				return
+				#var full 
+				#if Network.is_host:
+					#full = Manager.player1cards
+				#else:
+					#full = Manager.player2cards
+				#Manager.card_clicked = cardType
+				#emit_signal("clicked")
+				#lerper = true
+				#lerpTarg = position.y - 200
+				#current = false
+				#old_current = false
+				#visual.position = down
+				if cardType[0] != "THEIF!":
+					theif_mode = true
+					emit_signal("clicked")
+					lerper = true
+					lerpTarg = position.y - 200
+					current = false
+					old_current = false
+					visual.position = down
+					return
+			Manager.card_clicked = cardType
+			emit_signal("clicked")
+			lerper = true
+			lerpTarg = position.y - 200
+			current = false
+			old_current = false
+			visual.position = down
+			var player = 1 if Network.is_host else 2
+			Manager.updatepoints.rpc(player)
+			
+					#var player 
+					#if Network.is_host: 
+						#player = 1
+					#else: 
+						#player = 2
+					#Manager.updatepoints.rpc(player)
+					#
+			return
 		else:
 			panel_2.show()
 			panel.hide()

@@ -186,8 +186,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_osnhv")
-theme_override_font_sizes/font_size = 29
-text = "Choose a card to swap"
+theme_override_font_sizes/font_size = 25
+text = "Choose your card to swap"
 horizontal_alignment = 1
 vertical_alignment = 1
 

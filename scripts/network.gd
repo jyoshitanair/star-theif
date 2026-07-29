@@ -4,7 +4,7 @@ var peer: WebRTCMultiplayerPeer = WebRTCMultiplayerPeer.new()
 var client: WebSocketPeer = WebSocketPeer.new()
 
 const SIGNAL_URL = "wss://star-theif.onrender.com" 
-
+var msg = ""
 var current_room_id: String = ""
 var is_connecting: bool = false
 var last_logged_state: int = -1
@@ -123,10 +123,12 @@ func _process(_delta: float) -> void:
 
 func _print_state_name(state_id: int) -> void:
 	match state_id:
-		0: print("[STATE CHANGE] STATE_CONNECTING (0) - Building socket...")
-		1: print("[STATE CHANGE] STATE_OPEN (1) - Handshake complete!")
-		2: print("[STATE CHANGE] STATE_CLOSING (2) - Socket closing...")
-		3: print("[STATE CHANGE] STATE_CLOSED (3) - Socket closed or rejected.")
+		0: msg = "Connecting!"
+		1: msg = "Completed!"
+		2: msg = "Closing..."
+		3: msg = "Uh oh! I'm unable to connect right now. Please try again later!"
+	print(msg)
+	
 
 # --- SIGNALING HANDLER ---
 
