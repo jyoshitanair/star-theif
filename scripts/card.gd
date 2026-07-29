@@ -109,7 +109,7 @@ func _process(delta: float) -> void:
 				if Manager.theif_mode:
 					print("THEIF MODEE!!")
 					#next card clicked is the thing to switch!
-					emit_signal("theif_clicked",index, get_path()) 
+					emit_signal("theif_clicked",index) 
 					Manager.clicked_before = true
 					Manager.local_click = false
 					Manager.theif_mode = false
@@ -208,6 +208,7 @@ func new_randi_card()-> void :
 	style3.bg_color = color
 	color_rect_2.add_theme_stylebox_override("panel", style3)
 func update_ui(card) -> void:
+	print("CHANGING, ", self.name, "TO ", card)
 	sprite_2d.texture = load(card[1])
 	label.text = card[0]
 	color = Color(card[2])

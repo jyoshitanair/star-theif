@@ -42,31 +42,31 @@ func card_syncer(id) -> void:
 		synced_players.clear()
 		rpc("js_toggle_turn")
 @rpc("any_peer", "call_local")
-func switcheroo(p1_index, p2_index, selfer, p1orp2) -> void:
+func switcheroo(p1_index, p2_index) -> void:
+	if p1_index >= player1cards.size() or  p2_index >= player2cards.size():
+		print("WTF ARE WE DOING???!")
 	var temp = player1cards[p1_index]
 	var temp2 = player2cards[p2_index]
 	player1cards[p1_index] = temp2
 	player2cards[p2_index] = temp
 	##SOMETHING TO UPDATE UII!!
 	##the node
-	var updateable 
-	var carder
-	if p1orp2 == 1:
-		#p1 started it
-		updateable = p1_index
-		carder = player1cards[p1_index]
-	else:
-		#p2 started it
-		updateable = p2_index
-		carder = player2cards[p2_index]
 	var fightbar = get_tree().get_first_node_in_group("fightbar")
+	if !fightbar: 
+		return
+	#UPDATE UI!!
+	#updateable is me!
+	var p1calling = (p1 == multiplayer.get_unique_id())
 	for card in fightbar.cards:
-		if card.index == updateable:
+		if card.index == p1_index && p1calling:
 			##this is the node that started it!!
-			card.update_ui(carder)
-	#var selfer_node = get_node_or_null(selfer)
-	#if selfer_node and selfer_node.has_method("update"):
-		#selfer_node.update(updateable[0], updateable[2], updateable[1])
+			print("PLayer 1~ ", player1cards[p1_index])
+			card.update_ui(player1cards[p1_index])
+		if card.index == p2_index && !p1calling:
+			print("PLayer 2~ ", player2cards[p2_index])
+			card.update_ui(player2cards[p2_index])
+	##UPDATE OTHER PLAYER UI!!
+	
 func give(id) -> void: 
 	if Network.is_host and random_card != null:
 		change_cur_card.rpc_id(id, random_card)
@@ -81,13 +81,14 @@ func updatepoints(p1o2p2)-> void:
 		player2points += 1
 @rpc("any_peer", "call_local")
 func setcards(pe, sender)->void: 
+	print("SET CARDS CALLED??")
 	print("p1 = ",p1)
 	print("p2 = ",p2)
 	print("sender = ",sender)
-	if p1 == sender or (p1 == null and sender == 1):
-		player1cards = pe
-	if p2 == sender or (p2 == null and sender != 1):
-		player2cards = pe
+	if sender == p1:
+		player1cards = pe.duplicate(true)
+	if sender == p2:
+		player2cards = pe.duplicate(true)
 	
 func set_player(ini)->void:
 	player = ini
@@ -173,22 +174,11 @@ func is_possible(card) -> bool:
 func update_set(p1orp2, cardType,index) -> void:
 	var full 
 	if p1orp2 == 1:
+		print("UPDATING PLAYER 1 CARDS")
 		full = Manager.player1cards
 	if p1orp2 == 2:
 		full = Manager.player2cards
 	full[index] = cardType
-#@rpc("any_peer", "call_local")
-#func switch(p1orp2, old_card, cardType) -> void: 
-	#var full 
-	#if p1orp2 == 1:
-		#full = Manager.player1cards
-	#if p1orp2 == 2:
-		#full = Manager.player2cards
-	#for i in range(len(full)):
-		#if cardType == full[i]:
-			#update_set.rpc(p1orp2, cardType,i)
-			#print("FOUND!!!")
-			##correct element to switch. 
 @rpc("any_peer", "call_local")
 func clean_up(id) -> void: 
 	# Unassign player slots

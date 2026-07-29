@@ -12,7 +12,6 @@ var mayclick = false
 var current = false
 var old_card
 var bar
-var ui_node_to_change 
 func update(text1, color1, texture1) -> void: 
 	color = Color(color1)
 	text = text1
@@ -48,23 +47,19 @@ func _process(delta: float) -> void:
 				# 0-4 ; 1-3; 2-2; 3-1; 4-0 -> end = 4-start
 			var p1_inx
 			var p2_inx
-			var p1orp2
 			if Network.is_host:
 				p1_inx = old_card
 				p2_inx = temp_index
-				p1orp2 = 1
 			else:
 				p1_inx = temp_index
 				p2_inx = old_card
-				p1orp2 = 2
-			Manager.switcheroo.rpc(p1_inx,p2_inx,ui_node_to_change, p1orp2)
+			Manager.switcheroo.rpc(p1_inx,p2_inx)
 			get_tree().get_first_node_in_group("fightbar").panel_3.visible = false
 			Manager.rpc("card_sender", multiplayer.get_unique_id(), "THEIF!")
 			Manager.js_toggle_turn.rpc()
-func _ask_to_switch(theirindex, path) -> void: 
+func _ask_to_switch(theirindex) -> void: 
 	mayclick = true 
 	old_card = theirindex
-	ui_node_to_change = path
 	get_tree().get_first_node_in_group("fightbar").show_other_card()
 
 	
