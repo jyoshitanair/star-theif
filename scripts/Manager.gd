@@ -1,4 +1,5 @@
 extends Node
+var synced_players = []
 signal pass_index(index)
 signal doneer
 var player1points = 0 
@@ -28,31 +29,19 @@ func _ready() -> void:
 @rpc("any_peer", "call_local")
 func js_toggle_turn() -> void: 
 	p1turn = !p1turn
+	clicked_before = false
 @rpc("any_peer", "call_local")
-func switcheroo(old_card, card, p1orp2) -> void:
-	#look for my card in old_card, their card in card. 
-	var otherplayer
-	var full #mycards
-	var otherplayerfull #theircards
-	if p1orp2 == 1:
-		otherplayer = 2
-		full = player1cards
-		otherplayerfull = player2cards
-	else: 
-		otherplayer = 1
-		full = player2cards
-		otherplayerfull = player1cards
-	var index
-	var old_index
-	for i in range(len(full)):
-		if old_card == full[i]:
-			index = i 
-	for i in range(len(otherplayerfull)):		
-		if card== full[i]:
-			old_index = i
-	update_set.rpc(p1orp2, card,index)
-	update_set.rpc(otherplayer, old_card,old_index)
-	
+func card_syncer(id) -> void: 
+	if not synced_players.has(id): 
+		synced_players.append(id)
+	if synced_players.size() >= 2: 
+		synced_players.clear()
+		rpc("js_toggle_turn")
+@rpc("any_peer", "call_local")
+func switcheroo(p1_index, p2_index) -> void:
+	var temp = player1cards[p1_index]
+	player1cards[p1_index] = player2cards[p2_index]
+	player2cards[p2_index] = temp
 func give(id) -> void: 
 	if Network.is_host and random_card != null:
 		change_cur_card.rpc_id(id, random_card)
@@ -70,10 +59,11 @@ func setcards(pe, sender)->void:
 	print("p1 = ",p1)
 	print("p2 = ",p2)
 	print("sender = ",sender)
-	if p1 == sender:
+	if p1 == sender or (p1 == null and sender == 1):
 		player1cards = pe
-	if p2 == sender:
+	if p2 == sender or (p2 == null and sender != 1):
 		player2cards = pe
+	
 func set_player(ini)->void:
 	player = ini
 @rpc("any_peer", "call_local")

@@ -14,7 +14,7 @@ var possible_colors = ["b657d3ff","9a8550ff","6587c6ff","d94d84ff"]
 var good = false
 var busy = false
 var index
-var index1
+signal theif_clicked
 var old_card 
 signal clicked 
 #7 norms,  2 special!
@@ -77,11 +77,9 @@ func _process(delta: float) -> void:
 			else:
 				print("calling ",cardType)
 				Manager.update_set.rpc(2,cardType, index)
-			if Manager.theif == true: 
+			if cardType[0] == "THEIF!": 
 				#theif stuff
-				#Manager.theif = false
-					#second click!	
-				Manager.first_time = false
+				emit_signal("theif_clicked",cardType)
 				busy = true 
 				var other = get_tree().get_first_node_in_group("fightbar")
 				other.button.disabled = true 
@@ -103,35 +101,16 @@ func _process(delta: float) -> void:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
-				if Manager.is_possible(cardType) == false:
-					bar.invalid_card()
-					return
-				if Manager.theif == true && !Manager.first_time: 
-					#theif stuff
-					Manager.theif = false
-					var player
-					if Network.is_host:
-						player = 1
-					else:
-						player = 2
-					Manager.switcheroo.rpc(old_card, cardType, player)
 				if bar.switch_mode == true: 
-					##switch logic 
-					var full
 					var p1orp2 
 					if Network.is_host: 
-						full = Manager.player1cards
 						p1orp2 =1
 					else: 
-						full = Manager.player2cards
 						p1orp2 = 2
-					for i in range(len(full)):
-						if cardType == full[i]:
-							index1 = i
-							break
 					new_randi_card()
-					Manager.update_set.rpc(p1orp2, cardType,index1)
-					Manager.js_toggle_turn.rpc()	
+					Manager.update_set.rpc(p1orp2, cardType,index)	
+					Manager.js_toggle_turn.rpc()
+					
 					bar.switch_mode = false
 					bar.panel_3.visible = false
 					current = false
@@ -141,15 +120,14 @@ func _process(delta: float) -> void:
 					panel.hide()
 					return
 				####
+				if Manager.is_possible(cardType) == false:
+					bar.invalid_card()
+					return
 				var full 
 				if Network.is_host:
 					full = Manager.player1cards
 				else:
 					full = Manager.player2cards
-				for i in range(len(full)):
-					if cardType == full[i]:
-						index = i
-						print("FOUND!!!")
 				Manager.card_clicked = cardType
 				emit_signal("clicked")
 				lerper = true

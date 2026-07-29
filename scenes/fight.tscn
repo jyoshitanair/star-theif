@@ -77,23 +77,23 @@ offset_right = 1149.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 
-[node name="Card" parent="." unique_id=1194118314 instance=ExtResource("1_537il")]
+[node name="Card" parent="." unique_id=1194118314 groups=["card"] instance=ExtResource("1_537il")]
 position = Vector2(123, 774)
 scale = Vector2(0.6, 0.6)
 
-[node name="Card2" parent="." unique_id=1797223111 instance=ExtResource("1_537il")]
+[node name="Card2" parent="." unique_id=1797223111 groups=["card"] instance=ExtResource("1_537il")]
 position = Vector2(346, 772)
 scale = Vector2(0.6, 0.6)
 
-[node name="Card3" parent="." unique_id=1169197280 instance=ExtResource("1_537il")]
+[node name="Card3" parent="." unique_id=1169197280 groups=["card"] instance=ExtResource("1_537il")]
 position = Vector2(571, 771)
 scale = Vector2(0.6, 0.6)
 
-[node name="Card4" parent="." unique_id=1048180784 instance=ExtResource("1_537il")]
+[node name="Card4" parent="." unique_id=1048180784 groups=["card"] instance=ExtResource("1_537il")]
 position = Vector2(797.99994, 769)
 scale = Vector2(0.6, 0.6)
 
-[node name="Card5" parent="." unique_id=1396641506 instance=ExtResource("1_537il")]
+[node name="Card5" parent="." unique_id=1396641506 groups=["card"] instance=ExtResource("1_537il")]
 position = Vector2(1029.0001, 764)
 scale = Vector2(0.6, 0.6)
 

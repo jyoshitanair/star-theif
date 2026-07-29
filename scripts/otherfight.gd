@@ -31,6 +31,7 @@ func _ready() -> void:
 	Manager.pass_index.connect(_show_moving)
 	for i in range(0,5):
 		var card_node = cards[i]
+		card_node.index = i
 		card_node.texture = preload("res://icon.svg")
 		if card_node == null:
 			print(card_node)
@@ -102,7 +103,7 @@ func show_card() -> void:
 		showncard = Manager.player1cards
 	for i in range(0,5):
 		var card_node = cards[i]
-		var cur_needed_card = showncard[i]
+		var cur_needed_card = showncard[ 4- i]
 		card_node.update(cur_needed_card[0],Color(cur_needed_card[2]),cur_needed_card[1])
 	var amount = randf_range(0.8,2.0)
 	await get_tree().create_timer(amount).timeout

@@ -32,6 +32,7 @@ var positions_array = [Vector2(120.0,774.0), Vector2(346.0,774.0),Vector2(571.0,
 func _ready() -> void:
 	for i in range(0,5):
 		var card_node = cards[i]
+		card_node.index = i
 		card_node.clicked.connect(_on_click.bind(i))
 		card_node.position = positions_array[i]
 		#set up array of what cars u have
