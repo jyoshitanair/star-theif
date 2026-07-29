@@ -29,7 +29,6 @@ var lerper = false
 var lerpTarg
 var lerper2 = false
 var lerp2Targ
-var theif_mode= false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	new_randi_card()
@@ -70,20 +69,25 @@ func _process(delta: float) -> void:
 			else: 
 				#theif stuff
 				var other = get_tree().get_first_node_in_group("fightbar")
-				other.button.disabled = true 
+				if other and "button" in other:
+					other.button.disabled = true 
 				bar.show_theif_card()
+				Manager.clicked_before = false
 	if lerper2:
 		position.y = lerp(position.y,lerp2Targ, delta*13)
 		if is_equal_approx(position.y, lerp2Targ):
+			var old_card = cardType[0]
+			var played_theif = (old_card == "THEIF!")
 			new_randi_card()
-			lerper2 = false
 			if Network.is_host:
 				Manager.update_set.rpc(1,cardType, index)
 			else:
 				Manager.update_set.rpc(2,cardType, index)
-			if cardType[0] != "THEIF!":
+			if not played_theif:
+				print("GOING TO TOGGLEE")
 				Manager.js_toggle_turn.rpc()
-				Manager.rpc("card_sender", multiplayer.get_unique_id(),cardType[0])
+				Manager.rpc("card_sender", multiplayer.get_unique_id(),old_card)
+			lerper2 = false
 			Manager.local_click = false
 	good = false
 	if Manager.p1 != null && Manager.p2 != null:
@@ -102,23 +106,20 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("clicked"):
 				Manager.local_click = true
 				bar.button.disabled = true
-				if theif_mode:
+				if Manager.theif_mode:
+					print("THEIF MODEE!!")
 					#next card clicked is the thing to switch!
 					emit_signal("theif_clicked",index) 
+					Manager.clicked_before = true
 					Manager.local_click = false
-					theif_mode = false
+					Manager.theif_mode = false
 					return
 					#old_card = cardType
 				if bar.switch_mode == true: 
-					var p1orp2 
-					if Network.is_host: 
-						p1orp2 =1
-					else: 
-						p1orp2 = 2
+					var p1orp2 = 1 if Network.is_host else 2
 					new_randi_card()
 					Manager.update_set.rpc(p1orp2, cardType,index)	
 					Manager.js_toggle_turn.rpc()
-					
 					bar.switch_mode = false
 					bar.panel_3.visible = false
 					current = false
@@ -134,21 +135,9 @@ func _process(delta: float) -> void:
 					Manager.local_click = false
 					bar.button.disabled = false
 					return
-				Manager.clicked_before = true
-				#var full 
-				#if Network.is_host:
-					#full = Manager.player1cards
-				#else:
-					#full = Manager.player2cards
-				#Manager.card_clicked = cardType
-				#emit_signal("clicked")
-				#lerper = true
-				#lerpTarg = position.y - 200
-				#current = false
-				#old_current = false
-				#visual.position = down
-				if cardType[0] != "THEIF!":
-					theif_mode = true
+				Manager.clicked_before = true	
+				if cardType[0] == "THEIF!":
+					Manager.theif_mode = true
 					emit_signal("clicked")
 					lerper = true
 					lerpTarg = position.y - 200
@@ -156,24 +145,17 @@ func _process(delta: float) -> void:
 					old_current = false
 					visual.position = down
 					return
-			Manager.card_clicked = cardType
-			emit_signal("clicked")
-			lerper = true
-			lerpTarg = position.y - 200
-			current = false
-			old_current = false
-			visual.position = down
-			var player = 1 if Network.is_host else 2
-			Manager.updatepoints.rpc(player)
-			
-					#var player 
-					#if Network.is_host: 
-						#player = 1
-					#else: 
-						#player = 2
-					#Manager.updatepoints.rpc(player)
-					#
-			return
+				else:
+					Manager.card_clicked = cardType
+					emit_signal("clicked")
+					lerper = true
+					lerpTarg = position.y - 200
+					current = false
+					old_current = false
+					visual.position = down
+					var player = 1 if Network.is_host else 2
+					Manager.updatepoints.rpc(player)
+					return
 		else:
 			panel_2.show()
 			panel.hide()

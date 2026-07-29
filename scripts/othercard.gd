@@ -9,11 +9,11 @@ var index = 0
 @onready var sprite_2d: Sprite2D = $visual/Sprite2D
 @onready var label: Label = $visual/Label
 var mayclick = false
-
+var current = false
 var old_card
 var bar
 func update(text1, color1, texture1) -> void: 
-	color = color1
+	color = Color(color1)
 	text = text1
 	texture = load(texture1)
 	sprite_2d.texture = texture
@@ -39,9 +39,10 @@ func _ready() -> void:
 	update("star theif!",color,texture)
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("clicked"):
-		if mayclick: 
+		if mayclick and current: 
 			print("yes")
 			mayclick = false
+			print("IVE BEEN CLICKED ",old_card )
 			var temp_index = 4 - index
 				##cards are stored 0,1,2,3,4. displayed 4,3,2,1,0.
 				# 0-4 ; 1-3; 2-2; 3-1; 4-0 -> end = 4-start
@@ -50,11 +51,19 @@ func _process(delta: float) -> void:
 			else:
 				Manager.switcheroo.rpc(temp_index,old_card, get_path(), 2)
 			get_tree().get_first_node_in_group("fightbar").panel_3.visible = false
-			Manager.rpc("card_sender",multiplayer.get_unique_id(),"THEIF!" )
-			Manager.clicked_before = true
-func _ask_to_switch(index) -> void: 
+			Manager.rpc("card_sender", multiplayer.get_unique_id(), "THEIF!")
+			Manager.js_toggle_turn.rpc()
+func _ask_to_switch(theirindex) -> void: 
 	mayclick = true 
-	old_card = index
+	old_card = theirindex
 	get_tree().get_first_node_in_group("fightbar").show_other_card()
 
 	
+
+
+func _on_area_2d_mouse_entered() -> void:
+	current = true
+
+
+func _on_area_2d_mouse_exited() -> void:
+	current = false

@@ -87,8 +87,9 @@ func _process(delta: float) -> void:
 		done = true
 	
 func otherplayerwantin(card_value) -> void: 
-	Manager.p1turn = !Manager.p1turn	
-	Manager.clicked_before = false
+	#Manager.p1turn = !Manager.p1turn	
+	#Manager.clicked_before = false
+	pass
 func _show_moving(index) -> void: 
 	card_clicked = cards[index]
 	lerper = true 

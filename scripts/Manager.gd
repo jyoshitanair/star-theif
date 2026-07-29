@@ -1,5 +1,6 @@
 extends Node
 var synced_players = []
+var theif_mode = false
 signal pass_index(index)
 signal doneer
 var local_click = false
@@ -29,7 +30,9 @@ func _ready() -> void:
 	multiplayer.peer_connected.connect(give)
 @rpc("any_peer", "call_local")
 func js_toggle_turn() -> void: 
+	print("CALLED BY ", multiplayer.get_unique_id())
 	p1turn = !p1turn
+	print(p1turn)
 	clicked_before = false
 @rpc("any_peer", "call_local")
 func card_syncer(id) -> void: 

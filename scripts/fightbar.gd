@@ -116,7 +116,9 @@ func show_theif_card() -> void:
 		panel_3.get_node("Label").text = "Choose your card to swap"
 		panel_3.visible = true
 func show_other_card() -> void: 
+	print('called show other card')
 	if Manager.done:
+		print('inint')
 		panel_3.get_node("Label").text = "Choose their card to swap"
 		panel_3.visible = true
 	
