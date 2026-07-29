@@ -109,7 +109,7 @@ func _process(delta: float) -> void:
 				if Manager.theif_mode:
 					print("THEIF MODEE!!")
 					#next card clicked is the thing to switch!
-					emit_signal("theif_clicked",index) 
+					emit_signal("theif_clicked",index, get_path()) 
 					Manager.clicked_before = true
 					Manager.local_click = false
 					Manager.theif_mode = false

@@ -12,6 +12,7 @@ var mayclick = false
 var current = false
 var old_card
 var bar
+var ui_node_to_change 
 func update(text1, color1, texture1) -> void: 
 	color = Color(color1)
 	text = text1
@@ -40,22 +41,30 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("clicked"):
 		if mayclick and current: 
-			print("yes")
 			mayclick = false
 			print("IVE BEEN CLICKED ",old_card )
 			var temp_index = 4 - index
 				##cards are stored 0,1,2,3,4. displayed 4,3,2,1,0.
 				# 0-4 ; 1-3; 2-2; 3-1; 4-0 -> end = 4-start
+			var p1_inx
+			var p2_inx
+			var p1orp2
 			if Network.is_host:
-				Manager.switcheroo.rpc(old_card,temp_index, get_path(), 1)
+				p1_inx = old_card
+				p2_inx = temp_index
+				p1orp2 = 1
 			else:
-				Manager.switcheroo.rpc(temp_index,old_card, get_path(), 2)
+				p1_inx = temp_index
+				p2_inx = old_card
+				p1orp2 = 2
+			Manager.switcheroo.rpc(p1_inx,p2_inx,ui_node_to_change, p1orp2)
 			get_tree().get_first_node_in_group("fightbar").panel_3.visible = false
 			Manager.rpc("card_sender", multiplayer.get_unique_id(), "THEIF!")
 			Manager.js_toggle_turn.rpc()
-func _ask_to_switch(theirindex) -> void: 
+func _ask_to_switch(theirindex, path) -> void: 
 	mayclick = true 
 	old_card = theirindex
+	ui_node_to_change = path
 	get_tree().get_first_node_in_group("fightbar").show_other_card()
 
 	

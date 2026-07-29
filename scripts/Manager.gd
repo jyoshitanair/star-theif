@@ -43,7 +43,6 @@ func card_syncer(id) -> void:
 		rpc("js_toggle_turn")
 @rpc("any_peer", "call_local")
 func switcheroo(p1_index, p2_index, selfer, p1orp2) -> void:
-	print("made it to switcheroo")
 	var temp = player1cards[p1_index]
 	var temp2 = player2cards[p2_index]
 	player1cards[p1_index] = temp2
@@ -51,13 +50,23 @@ func switcheroo(p1_index, p2_index, selfer, p1orp2) -> void:
 	##SOMETHING TO UPDATE UII!!
 	##the node
 	var updateable 
+	var carder
 	if p1orp2 == 1:
-		updateable = temp2
+		#p1 started it
+		updateable = p1_index
+		carder = player1cards[p1_index]
 	else:
-		updateable = temp
-	var selfer_node = get_node_or_null(selfer)
-	if selfer_node and selfer_node.has_method("update"):
-		selfer_node.update(updateable[0], updateable[2], updateable[1])
+		#p2 started it
+		updateable = p2_index
+		carder = player2cards[p2_index]
+	var fightbar = get_tree().get_first_node_in_group("fightbar")
+	for card in fightbar.cards:
+		if card.index == updateable:
+			##this is the node that started it!!
+			card.update_ui(carder)
+	#var selfer_node = get_node_or_null(selfer)
+	#if selfer_node and selfer_node.has_method("update"):
+		#selfer_node.update(updateable[0], updateable[2], updateable[1])
 func give(id) -> void: 
 	if Network.is_host and random_card != null:
 		change_cur_card.rpc_id(id, random_card)
