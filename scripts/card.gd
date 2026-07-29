@@ -38,6 +38,8 @@ func _ready() -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Manager.changing_scenes:
+		return
 	if busy: 
 		return 
 	if lerper: 
@@ -86,7 +88,6 @@ func _process(delta: float) -> void:
 			if not played_theif:
 				print("GOING TO TOGGLEE")
 				Manager.js_toggle_turn.rpc()
-				Manager.rpc("card_sender", multiplayer.get_unique_id(),old_card)
 			lerper2 = false
 			Manager.local_click = false
 	good = false
@@ -166,22 +167,30 @@ func _process(delta: float) -> void:
 func _on_area_2d_mouse_entered() -> void:
 	if ! Manager.clicked_before:
 		current = true
+	if Manager.changing_scenes:
+		current = false
 func _on_area_2d_mouse_exited() -> void:
 	if ! Manager.clicked_before:
 		current = false
 func change_text(new_txt) -> void: 
+	if Manager.changing_scenes:
+		return
 	text = new_txt
 	label.text = text
-func handle_showy()-> void: 	
+func handle_showy()-> void: 
+	if Manager.changing_scenes:
+		return	
 	position.y += 200
 	await get_tree().create_timer(0.5)
 	randomize()
 	cardType = arraytocard[randi_range(0,8)]
 	text = cardType[0]
 	texture = load(cardType[1])
-func check_if_compatible () -> void: 
-	pass
+#func check_if_compatible () -> void: 
+	#pass
 func new_randi_card()-> void :
+	if Manager.changing_scenes:
+		return
 	randomize()
 	color = Color(possible_colors[randi_range(0,3)])
 	var temp = arraytocard[randi_range(0,8)]
@@ -208,6 +217,8 @@ func new_randi_card()-> void :
 	style3.bg_color = color
 	color_rect_2.add_theme_stylebox_override("panel", style3)
 func update_ui(card) -> void:
+	if Manager.changing_scenes:
+		return
 	print("CHANGING, ", self.name, "TO ", card)
 	sprite_2d.texture = load(card[1])
 	label.text = card[0]
@@ -216,6 +227,8 @@ func update_ui(card) -> void:
 	_apply_panel_color(panel, color.lightened(0.4))
 	_apply_panel_color(color_rect_2, color)
 func _apply_panel_color(targetNode, color) -> void: 
+		if Manager.changing_scenes:
+			return
 		##
 		var style = targetNode.get_theme_stylebox("panel").duplicate()
 		style.bg_color = color

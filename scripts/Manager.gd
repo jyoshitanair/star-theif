@@ -1,4 +1,6 @@
 extends Node
+var changing_scenes = false
+var total_turns = 0 
 var synced_players = []
 var theif_mode = false
 signal pass_index(index)
@@ -30,12 +32,24 @@ func _ready() -> void:
 	multiplayer.peer_connected.connect(give)
 @rpc("any_peer", "call_local")
 func js_toggle_turn() -> void: 
+	if changing_scenes:
+		return
 	print("CALLED BY ", multiplayer.get_unique_id())
 	p1turn = !p1turn
+	total_turns += 1
 	print(p1turn)
 	clicked_before = false
+	if total_turns == 1:
+		#ITS BEEN TEN MOVES!
+		changing_scenes = true
+		scene_change.rpc()
+@rpc("any_peer", "call_local")
+func scene_change() -> void: 
+	get_tree().change_scene_to_file("res://scenes/end.tscn")
 @rpc("any_peer", "call_local")
 func card_syncer(id) -> void: 
+	if changing_scenes:
+		return
 	if not synced_players.has(id): 
 		synced_players.append(id)
 	if synced_players.size() >= 2: 
@@ -43,6 +57,8 @@ func card_syncer(id) -> void:
 		rpc("js_toggle_turn")
 @rpc("any_peer", "call_local")
 func switcheroo(p1_index, p2_index) -> void:
+	if changing_scenes:
+		return
 	if p1_index >= player1cards.size() or  p2_index >= player2cards.size():
 		print("WTF ARE WE DOING???!")
 	var temp = player1cards[p1_index]
@@ -68,19 +84,22 @@ func switcheroo(p1_index, p2_index) -> void:
 	##UPDATE OTHER PLAYER UI!!
 	
 func give(id) -> void: 
+	if changing_scenes:
+		return
 	if Network.is_host and random_card != null:
 		change_cur_card.rpc_id(id, random_card)
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass 
 @rpc("any_peer", "call_local")
-func updatepoints(p1o2p2)-> void: 
+func updatepoints(p1o2p2)-> void:
+	if changing_scenes:
+		return 
 	if p1o2p2 == 1: 
 		player1points += 1
 	if p1o2p2 == 2: 
 		player2points += 1
 @rpc("any_peer", "call_local")
 func setcards(pe, sender)->void: 
+	if changing_scenes:
+		return
 	print("SET CARDS CALLED??")
 	print("p1 = ",p1)
 	print("p2 = ",p2)
@@ -91,9 +110,13 @@ func setcards(pe, sender)->void:
 		player2cards = pe.duplicate(true)
 	
 func set_player(ini)->void:
+	if changing_scenes:
+		return
 	player = ini
 @rpc("any_peer", "call_local")
 func add_person(id, is_host) -> void:
+	if changing_scenes:
+		return
 	if is_host:
 		#i am the host
 		p1 = id
@@ -102,26 +125,27 @@ func add_person(id, is_host) -> void:
 	if p1 != null && p2 != null: 
 		emit_signal("doneer")
 func test_ready(it) -> void:
+	if changing_scenes:
+		return
 	if fight_loaded && otherfight_loaded:
 		rpc("check_ready",it)
 #sending data over the internet cause yeah :/
 @rpc("any_peer", "call_remote")
-func handle_click(index) -> void: 
+func handle_click(index) -> void:
+	if changing_scenes:
+		return 
 	pass_index.emit(index)
 @rpc("any_peer", "call_local")
-func card_sender(id, card) -> void: 
-	#get other guys clicks
-	var other_guy = get_tree().get_first_node_in_group("p2")
-	if other_guy:
-		if other_guy.has_method("otherplayerwantin"):
-			other_guy.otherplayerwantin(card)
-@rpc("any_peer", "call_local")
 func check_ready(id_test) -> void: 
+	if changing_scenes:
+		return
 	if !ready_players.has(id_test):
 		ready_players.append(id_test)
 	if ready_players.size()>=2:
 		done = true
 func newrandomcard() -> void: 
+	if changing_scenes:
+		return
 	#set up random card in the middle at the start
 	#only host
 	if p1 == multiplayer.get_unique_id():
@@ -138,6 +162,8 @@ func newrandomcard() -> void:
 		change_cur_card.rpc(random_card)
 @rpc("any_peer", "call_local")
 func change_cur_card(random_card2) -> void: 
+	if changing_scenes:
+		return
 	random_card = random_card2
 	print("anything?? ", random_card)
 	for curcard in get_tree().get_nodes_in_group("main_card"):
@@ -147,10 +173,14 @@ func change_cur_card(random_card2) -> void:
 #reseting a round
 
 func reset() -> void: 
+	if changing_scenes:
+		return
 	ready_players.clear()
 	done = false
 	clicked_before = false
 func is_possible(card) -> bool: 
+	if changing_scenes:
+		return false
 	var my_term = card[0]
 	var my_color = card[2]
 	var needed_term = random_card[0]
@@ -172,6 +202,8 @@ func is_possible(card) -> bool:
 		return false
 @rpc("any_peer", "call_local")
 func update_set(p1orp2, cardType,index) -> void:
+	if changing_scenes:
+		return
 	var full 
 	if p1orp2 == 1:
 		print("UPDATING PLAYER 1 CARDS")
@@ -181,6 +213,8 @@ func update_set(p1orp2, cardType,index) -> void:
 	full[index] = cardType
 @rpc("any_peer", "call_local")
 func clean_up(id) -> void: 
+	if changing_scenes:
+		return
 	# Unassign player slots
 	if p1 == id:
 		p1 = null
@@ -198,5 +232,5 @@ func clean_up(id) -> void:
 	random_card = []
 	player1points = 0
 	player2points = 0
-func on_theif_clicked() -> void :
-	pass
+#func on_theif_clicked() -> void :
+	#pass

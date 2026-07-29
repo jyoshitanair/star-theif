@@ -47,6 +47,13 @@ offset_bottom = 62.0
 text = "TURN:"
 metadata/_edit_use_anchors_ = true
 
+[node name="Label4" type="Label" parent="." unique_id=705130969]
+offset_left = 13.0
+offset_top = 101.0
+offset_right = 90.0
+offset_bottom = 124.0
+text = "noot noot"
+
 [node name="Button" type="Button" parent="." unique_id=1855480497]
 offset_left = 9.0
 offset_top = 41.0

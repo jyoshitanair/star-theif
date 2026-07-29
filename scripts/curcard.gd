@@ -20,24 +20,30 @@ func _ready() -> void:
 	add_to_group("main_card")
 	get_new_card.call_deferred()
 	print("jhellooo")
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
 func update_card(newcard) -> void:
+	if Manager.changing_scenes:
+		return
 	Manager.change_cur_card.rpc(newcard)
 func get_new_card() -> void: 
+	if Manager.changing_scenes:
+		return
 	print("Manager p1 ", Manager.p1)
 	if Manager.p1 == multiplayer.get_unique_id():
 		print("HELLOOOO??")
 		Manager.newrandomcard()
 func update_ui() -> void:
+	if Manager.changing_scenes:
+		return
 	if Manager.random_card:
 		sprite_2d.texture = load(Manager.random_card[1])
 		label.text = Manager.random_card[0]
 		color = Color(Manager.random_card[2])
 		_apply_panel_color(color_rect, color.darkened(0.4))
 		_apply_panel_color(color_rect_2, color)
-func _apply_panel_color(targetNode, color) -> void: 
+func _apply_panel_color(targetNode, color) -> void:
+	if Manager.changing_scenes:
+		return 
 		##
 		var style = targetNode.get_theme_stylebox("panel").duplicate()
 		style.bg_color = color

@@ -49,6 +49,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Manager.changing_scenes:
+		return
 	##wait for ready 
 	
 	if Manager.done && check_done == false:
@@ -94,28 +96,40 @@ func _process(delta: float) -> void:
 			Manager.test_ready(multiplayer.get_unique_id())
 			done = true
 func _on_click(index) -> void: 
+	if Manager.changing_scenes:
+		return
 	Manager.handle_click.rpc(index)
 	print("clicked card ", index)		
 func invalid_card() -> void: 
+	if Manager.changing_scenes:
+		return
 	if !processing: 
 		processing = true
 		panel_2.show()
 		await get_tree().create_timer(3.0).timeout
 		panel_2.hide()
 		processing = false
-func _set_cards(card_node1) -> void: 
+func _set_cards(card_node1) -> void:
+	if Manager.changing_scenes:
+		return 
 	Manager.setcards.rpc.call_deferred(card_node1, multiplayer.get_unique_id())
 		
 func _on_button_pressed() -> void:
+	if Manager.changing_scenes:
+		return
 	if Manager.done:
 		switch_mode = true
 		panel_3.visible = true
 		button.disabled = true 
 func show_theif_card() -> void: 
+	if Manager.changing_scenes:
+		return
 	if Manager.done:
 		panel_3.get_node("Label").text = "Choose your card to swap"
 		panel_3.visible = true
 func show_other_card() -> void: 
+	if Manager.changing_scenes:
+		return
 	print('called show other card')
 	if Manager.done:
 		print('inint')

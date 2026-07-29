@@ -8,6 +8,7 @@ var connected_players = []
 @onready var label_3: Label = $Label3
 @onready var checkmark: Sprite2D = $checkmark
 @onready var panel: Panel = $Panel
+@onready var label_4: Label = $Label4
 var canclick = true
 var maincard_loaded = false
 var maincard = preload("res://scenes/curcard.tscn")
@@ -31,6 +32,7 @@ func _process(delta: float) -> void:
 		label_2.text = "Player 1" 
 	else:
 		label_2.text = "Player 2"
+	label_4.text = "Total Turns: %d/20"%[floori(Manager.total_turns/2)]
 	label_3.text = "Current Player Turn:  Player 1" if Manager.p1turn else "Current Player Turn:  Player 2"
 func spawn(id:int):
 	print("adding")

@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://bdqojlebfn12q"]
+
+[ext_resource type="Script" uid="uid://bmp4y85vcobvo" path="res://scripts/end.gd" id="1_s4tl2"]
+[ext_resource type="FontFile" uid="uid://dlp4mqlqcwqri" path="res://addons/Cat_font-Regular.ttf" id="2_8hmjt"]
+[ext_resource type="PackedScene" uid="uid://djob6sk2ll2ge" path="res://scenes/end_card.tscn" id="3_o5lv4"]
+[ext_resource type="Script" uid="uid://brb6517su2vba" path="res://scripts/end_card.gd" id="4_ee763"]
+[ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="5_nl5ow"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovs12"]
+bg_color = Color(0.74329555, 0.54577166, 0.48536807, 0.75686276)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oc5t2"]
+bg_color = Color(0.70384085, 0.651886, 0.88506943, 0.75686276)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
+
+[node name="End" type="Node2D" unique_id=1365695246]
+script = ExtResource("1_s4tl2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1149021609]
+offset_left = -36.0
+offset_top = -32.0
+offset_right = 1172.0
+offset_bottom = 682.0
+color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1993264796]
+offset_left = 223.0
+offset_top = 267.0
+offset_right = 925.0
+offset_bottom = 380.0
+theme_override_fonts/font = ExtResource("2_8hmjt")
+theme_override_font_sizes/font_size = 120
+text = "GAME OVER!"
+
+[node name="their" type="Panel" parent="." unique_id=38817114]
+offset_top = 434.0
+offset_right = 1149.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ovs12")
+
+[node name="their cards" type="Node2D" parent="." unique_id=1043454454]
+position = Vector2(0, 434)
+
+[node name="card1" parent="their cards" unique_id=1484971130 instance=ExtResource("3_o5lv4")]
+position = Vector2(125, 81)
+script = ExtResource("4_ee763")
+
+[node name="card2" parent="their cards" unique_id=545945743 instance=ExtResource("3_o5lv4")]
+position = Vector2(354, 78)
+
+[node name="card3" parent="their cards" unique_id=1132215127 instance=ExtResource("3_o5lv4")]
+position = Vector2(575, 78)
+
+[node name="card4" parent="their cards" unique_id=724459789 instance=ExtResource("3_o5lv4")]
+position = Vector2(806, 76)
+
+[node name="card5" parent="their cards" unique_id=1695763833 instance=ExtResource("3_o5lv4")]
+position = Vector2(1020, 74)
+
+[node name="yours" type="Panel" parent="." unique_id=1212315695]
+offset_right = 1149.0
+offset_bottom = 214.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oc5t2")
+
+[node name="your cards" type="Node2D" parent="." unique_id=109995138]
+position = Vector2(7, 30)
+metadata/_edit_group_ = true
+
+[node name="card1" parent="your cards" unique_id=893365659 instance=ExtResource("3_o5lv4")]
+position = Vector2(125, 81)
+
+[node name="card2" parent="your cards" unique_id=1312477378 instance=ExtResource("3_o5lv4")]
+position = Vector2(354, 78)
+
+[node name="card3" parent="your cards" unique_id=115035083 instance=ExtResource("3_o5lv4")]
+position = Vector2(575, 78)
+
+[node name="card4" parent="your cards" unique_id=818588804 instance=ExtResource("3_o5lv4")]
+position = Vector2(806, 76)
+
+[node name="card5" parent="your cards" unique_id=111014079 instance=ExtResource("3_o5lv4")]
+position = Vector2(1020, 74)
+
+[node name="Label2" type="Label" parent="." unique_id=591049558]
+offset_left = 26.0
+offset_top = -1.0
+offset_right = 289.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0.11083988, 0.0883965, 0.33219135, 1)
+theme_override_fonts/font = ExtResource("5_nl5ow")
+theme_override_font_sizes/font_size = 29
+text = "Your deck"
+
+[node name="Label3" type="Label" parent="." unique_id=828733577]
+offset_left = 941.0
+offset_top = 591.0
+offset_right = 1204.0
+offset_bottom = 668.0
+theme_override_colors/font_color = Color(0.3278671, 0.117344104, 0.041653693, 1)
+theme_override_fonts/font = ExtResource("5_nl5ow")
+theme_override_font_sizes/font_size = 29
+text = "Their Deck"

@@ -45,6 +45,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Manager.changing_scenes:
+		return
 	if lerper: 
 		card_clicked.position.y = lerp(card_clicked.position.y,lerpTarg, delta*13)
 		if is_equal_approx(card_clicked.position.y, lerpTarg):
@@ -86,15 +88,19 @@ func _process(delta: float) -> void:
 			Manager.test_ready(multiplayer.get_unique_id())
 		done = true
 	
-func otherplayerwantin(card_value) -> void: 
-	#Manager.p1turn = !Manager.p1turn	
-	#Manager.clicked_before = false
-	pass
+#func otherplayerwantin(card_value) -> void: 
+	##Manager.p1turn = !Manager.p1turn	
+	##Manager.clicked_before = false
+	#pass
 func _show_moving(index) -> void: 
+	if Manager.changing_scenes:
+		return
 	card_clicked = cards[index]
 	lerper = true 
 	lerpTarg = card_clicked.position.y +200
 func show_card() -> void:
+	if Manager.changing_scenes:
+		return
 	print("HELLOOO????") 
 	var showncard
 	if Network.is_host: 

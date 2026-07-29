@@ -13,6 +13,8 @@ var current = false
 var old_card
 var bar
 func update(text1, color1, texture1) -> void: 
+	if Manager.changing_scenes:
+		return
 	color = Color(color1)
 	text = text1
 	texture = load(texture1)
@@ -38,6 +40,8 @@ func _ready() -> void:
 	bar = get_parent()
 	update("star theif!",color,texture)
 func _process(delta: float) -> void:
+	if Manager.changing_scenes:
+		return
 	if Input.is_action_just_pressed("clicked"):
 		if mayclick and current: 
 			mayclick = false
@@ -55,18 +59,17 @@ func _process(delta: float) -> void:
 				p2_inx = old_card
 			Manager.switcheroo.rpc(p1_inx,p2_inx)
 			get_tree().get_first_node_in_group("fightbar").panel_3.visible = false
-			Manager.rpc("card_sender", multiplayer.get_unique_id(), "THEIF!")
 			Manager.js_toggle_turn.rpc()
-func _ask_to_switch(theirindex) -> void: 
+func _ask_to_switch(theirindex) -> void:
+	if Manager.changing_scenes:
+		return 
 	mayclick = true 
 	old_card = theirindex
 	get_tree().get_first_node_in_group("fightbar").show_other_card()
-
-	
-
-
 func _on_area_2d_mouse_entered() -> void:
 	current = true
+	if Manager.changing_scenes:
+		current = false
 
 
 func _on_area_2d_mouse_exited() -> void:
