@@ -19,3 +19,9 @@ func _on_button_3_pressed() -> void:
 func _on_button_pressed() -> void:
 	##join
 	get_tree().change_scene_to_file("res://scenes/join.tscn")
+
+
+func _on_button_2_pressed() -> void:
+	##RULES
+	get_tree().change_scene_to_file("res://scenes/rules.tscn")
+	

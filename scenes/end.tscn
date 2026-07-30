@@ -50,6 +50,21 @@ shadow_size = 11
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rid7q"]
 bg_color = Color(0.41070396, 0.6648273, 0.529356, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pom5n"]
+bg_color = Color(0.085649975, 0.21635956, 0.115888156, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5lv4"]
+bg_color = Color(0.04700058, 0.14055541, 0.069690704, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee763"]
+bg_color = Color(0.23377305, 0.49458545, 0.2966873, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl5ow"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njoby"]
+bg_color = Color(0.2798887, 0.5791349, 0.35180354, 1)
+
 [node name="End" type="Node2D" unique_id=1365695246]
 script = ExtResource("1_s4tl2")
 
@@ -234,10 +249,10 @@ vertical_alignment = 1
 
 [node name="winner" type="Panel" parent="." unique_id=164220061]
 visible = false
-offset_left = 131.0
-offset_top = 189.0
-offset_right = 1009.0
-offset_bottom = 430.0
+offset_left = 11.0
+offset_top = 239.0
+offset_right = 1134.0
+offset_bottom = 382.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_rid7q")
 
 [node name="Label" type="Label" parent="winner" unique_id=1344253677]
@@ -252,3 +267,18 @@ theme_override_font_sizes/font_size = 100
 text = "WINNER: ???"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="winner" unique_id=1445934114]
+layout_mode = 0
+offset_left = 926.0
+offset_top = 87.0
+offset_right = 1110.0
+offset_bottom = 136.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_pom5n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o5lv4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ee763")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nl5ow")
+theme_override_styles/focus = SubResource("StyleBoxFlat_njoby")
+text = "Play Again?"
+
+[connection signal="pressed" from="winner/Button" to="." method="_on_button_pressed"]

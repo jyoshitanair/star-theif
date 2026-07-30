@@ -1,4 +1,5 @@
 extends Node
+var finished_players = []
 var changing_scenes = false
 var total_turns = 0 
 var synced_players = []
@@ -235,5 +236,29 @@ func clean_up(id) -> void:
 	random_card = []
 	player1points = 0
 	player2points = 0
-#func on_theif_clicked() -> void :
-	#pass
+@rpc("any_peer", "call_local")
+func play_again(id) -> void: 
+	if !finished_players.has(id):
+		finished_players.append(id)
+	if finished_players.size()>=2:
+		reset_game()
+		get_tree().change_scene_to_file("res://scenes/multiplayertest.tscn")
+@rpc("any_peer", "call_local")
+func reset_game() -> void: 
+	changing_scenes = false
+	total_turns = 0 
+	finished_players.clear()
+	done = false
+	p1turn = true
+	clicked_before = false
+	fight_loaded = false
+	otherfight_loaded = false
+	player1cards.clear()
+	player2cards.clear()
+	ready_players.clear()
+	synced_players.clear()
+	random_card = []
+	player1points = 0
+	player2points = 0
+	
+	

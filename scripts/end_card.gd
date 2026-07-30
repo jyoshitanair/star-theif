@@ -6,11 +6,13 @@ extends Node2D
 @onready var label: Label = $Label
 @onready var panel_2: Panel = $Panel2
 
-var color = Color("ff0000ff")
+@export var color = Color("ff0000ff")
+@export var texture = "res://icon.svg"
+@export var text = "LOADING..."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	update_ui(["LOADING...", "res://icon.svg", "ff0000ff"])
+	update_ui([text, texture, color])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

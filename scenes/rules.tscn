@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://di5mgh5hc70ah"]
+
+[ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="1_66h5d"]
+[ext_resource type="PackedScene" uid="uid://djob6sk2ll2ge" path="res://scenes/end_card.tscn" id="2_1m7fe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqrfi"]
+
+[node name="Rules" type="Node2D" unique_id=1459682441]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=415045154]
+offset_left = -36.0
+offset_top = -32.0
+offset_right = 1172.0
+offset_bottom = 682.0
+color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+
+[node name="page 1" type="Node2D" parent="." unique_id=532095466]
+visible = false
+
+[node name="Label" type="Label" parent="page 1" unique_id=1906212643]
+offset_left = 36.0
+offset_top = 42.0
+offset_right = 1118.0
+offset_bottom = 534.0
+theme_override_fonts/font = ExtResource("1_66h5d")
+theme_override_font_sizes/font_size = 30
+text = "Every player gets 5 cards. 
+
+These are either number cards (1-7) or
+
+
+
+
+a special card (THEIF!/STAR)
+"
+
+[node name="card3" parent="page 1" unique_id=1484971130 instance=ExtResource("2_1m7fe")]
+position = Vector2(188, 290)
+scale = Vector2(0.5, 0.5)
+color = Color(0.7137255, 0.34117648, 0.827451, 1)
+text = "1"
+
+[node name="card4" parent="page 1" unique_id=2081975234 instance=ExtResource("2_1m7fe")]
+position = Vector2(356, 292)
+scale = Vector2(0.5, 0.5)
+color = Color(0.6039216, 0.52156866, 0.3137255, 1)
+text = "3"
+
+[node name="card5" parent="page 1" unique_id=674828571 instance=ExtResource("2_1m7fe")]
+position = Vector2(520, 291)
+scale = Vector2(0.5, 0.5)
+color = Color(0.39607844, 0.5294118, 0.7764706, 1)
+text = "5"
+
+[node name="card6" parent="page 1" unique_id=2147255058 instance=ExtResource("2_1m7fe")]
+position = Vector2(686, 288)
+scale = Vector2(0.5, 0.5)
+color = Color(0.8509804, 0.3019608, 0.5176471, 1)
+text = "7"
+
+[node name="card7" parent="page 1" unique_id=645371942 instance=ExtResource("2_1m7fe")]
+position = Vector2(630.00006, 551)
+rotation = 0.429351
+scale = Vector2(0.5, 0.5)
+color = Color(0.90588236, 0.74509805, 0.72156864, 1)
+text = "STAR"
+
+[node name="card8" parent="page 1" unique_id=1914296534 instance=ExtResource("2_1m7fe")]
+position = Vector2(509, 534)
+rotation = -0.36826447
+scale = Vector2(0.5, 0.5)
+color = Color(0.3372549, 0.6, 0.43137255, 1)
+text = "THEIF!"
+
+[node name="Label2" type="Label" parent="page 1" unique_id=1885794196]
+offset_left = 828.0
+offset_top = 261.0
+offset_right = 1037.0
+offset_bottom = 323.0
+text = "Number cards get one of
+these four unique colors!"
+
+[node name="Label3" type="Label" parent="page 1" unique_id=375183526]
+offset_left = 207.0
+offset_top = 542.0
+offset_right = 416.0
+offset_bottom = 604.0
+text = "STAR/THEIF! Cards have
+unique colors too!"
+
+[node name="Button" type="Button" parent="." unique_id=1456775515]
+visible = false
+offset_left = -29.0
+offset_top = -25.0
+offset_right = 1172.0
+offset_bottom = 678.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cqrfi")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cqrfi")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_cqrfi")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_cqrfi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cqrfi")
+
+[node name="page 2" type="Node2D" parent="." unique_id=579226729]
+
+[node name="Label" type="Label" parent="page 2" unique_id=68964972]
+offset_left = 183.0
+offset_top = 30.0
+offset_right = 372.0
+offset_bottom = 75.0
+text = "PAGE TWO!"
+
+[node name="card5" parent="page 2" unique_id=1180612790 instance=ExtResource("2_1m7fe")]
+position = Vector2(590, 299)
+scale = Vector2(0.5, 0.5)
+color = Color(0.39607844, 0.5294118, 0.7764706, 1)
+text = "7"
+
+[node name="Label2" type="Label" parent="page 2" unique_id=113381251]
+offset_left = 422.0
+offset_top = 251.0
+offset_right = 1504.0
+offset_bottom = 743.0
+theme_override_fonts/font = ExtResource("1_66h5d")
+theme_override_font_sizes/font_size = 30
+text = "This is what the game interface looks like."
+
+[node name="page 3" type="Node2D" parent="." unique_id=93331656]
+visible = false
+
+[node name="Label" type="Label" parent="page 3" unique_id=705827577]
+offset_left = 540.0
+offset_top = 302.0
+offset_right = 643.0
+offset_bottom = 347.0
+text = "PAGE THREE!"
+
+[node name="page 4" type="Node2D" parent="." unique_id=1311825946]
+visible = false
+
+[node name="Label" type="Label" parent="page 4" unique_id=832968149]
+offset_left = 540.0
+offset_top = 302.0
+offset_right = 643.0
+offset_bottom = 347.0
+text = "PAGE FOUR!"
+
+[node name="page 5" type="Node2D" parent="." unique_id=27461761]
+visible = false
+
+[node name="Label" type="Label" parent="page 5" unique_id=936306163]
+offset_left = 540.0
+offset_top = 302.0
+offset_right = 643.0
+offset_bottom = 347.0
+text = "PAGE FIVE!"
+
+[node name="page 6" type="Node2D" parent="." unique_id=749196496]
+visible = false
+
+[node name="Label" type="Label" parent="page 6" unique_id=368480206]
+offset_left = 540.0
+offset_top = 302.0
+offset_right = 643.0
+offset_bottom = 347.0
+text = "PAGE SIX!"
