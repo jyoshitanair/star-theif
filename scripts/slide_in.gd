@@ -124,9 +124,9 @@ func check_combos(noot) -> Array:
 	if max_num >= 4:
 		return [5, "4 of a kind"]	
 	if max_num >= 3:
-		return [3, "3 of a kind"]	
+		return [4, "3 of a kind"]	
 	if max_num >= 2:
-		return [3, "Pair"]	
+		return [2, "Pair"]	
 	if total_stars >= 1 or total_theived >= 1:
 		return [1, "High Card"]
 	return [0, "Nothing :/"]

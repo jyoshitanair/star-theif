@@ -47,6 +47,9 @@ corner_radius_bottom_left = 50
 shadow_color = Color(0.9892046, 0.8531236, 0.82639015, 0.6)
 shadow_size = 11
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rid7q"]
+bg_color = Color(0.41070396, 0.6648273, 0.529356, 1)
+
 [node name="End" type="Node2D" unique_id=1365695246]
 script = ExtResource("1_s4tl2")
 
@@ -226,5 +229,26 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_nl5ow")
 theme_override_font_sizes/font_size = 25
 text = "Play:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="winner" type="Panel" parent="." unique_id=164220061]
+visible = false
+offset_left = 131.0
+offset_top = 189.0
+offset_right = 1009.0
+offset_bottom = 430.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rid7q")
+
+[node name="Label" type="Label" parent="winner" unique_id=1344253677]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_nl5ow")
+theme_override_font_sizes/font_size = 100
+text = "WINNER: ???"
 horizontal_alignment = 1
 vertical_alignment = 1
