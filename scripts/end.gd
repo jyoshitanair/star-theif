@@ -10,17 +10,12 @@ func _ready() -> void:
 	player_set = Manager.get("player%dcards"%[player])
 	other_player_set = Manager.get("player%dcards"%[3-player])
 	#end = 3- start   (3-1 = 2) or (3-2 = 1)
-	for card in their_cards.get_children():
-		##get other_player
-		for manager_element in other_player_set:
-		#for i in range(len(other_player_set)):
-			card.update_ui(manager_element)
-	for card in their_cards.get_children():
-		##get player_set
-		for manager_element in player_set:
-		#for i in range(len(player_set)):
-			card.update_ui(manager_element)
-		pass
+	var theirSet =  their_cards.get_children()
+	var yourSet =  your_cards.get_children()
+	for i in range(min(theirSet.size(),other_player_set.size())):
+		theirSet[i].update_ui(other_player_set[i])
+	for i in range(min(yourSet.size(),player_set.size())):
+		yourSet[i].update_ui(player_set[i])
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

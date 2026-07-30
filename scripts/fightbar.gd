@@ -2,6 +2,7 @@ extends Node2D
 @onready var panel_2: Panel = $Panel2
 @onready var panel_3: Panel = $Panel3
 @onready var button: Button = $Button
+@onready var panel_4: Panel = $Panel4
 var done = false
 var card = preload("res://scenes/card.tscn")
 var first1 = true
@@ -50,6 +51,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Manager.changing_scenes:
+		button.disabled = true
 		return
 	##wait for ready 
 	
@@ -135,5 +137,6 @@ func show_other_card() -> void:
 		print('inint')
 		panel_3.get_node("Label").text = "Choose their card to swap"
 		panel_3.visible = true
-	
+func show_wait() -> void: 
+	panel_4.visible = true
 		

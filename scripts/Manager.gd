@@ -42,6 +42,9 @@ func js_toggle_turn() -> void:
 	if total_turns == 1:
 		#ITS BEEN TEN MOVES!
 		changing_scenes = true
+		var node_show = get_tree().get_first_node_in_group("fightbar")
+		node_show.show_wait()
+		await get_tree().create_timer(5.0).timeout
 		scene_change.rpc()
 @rpc("any_peer", "call_local")
 func scene_change() -> void: 

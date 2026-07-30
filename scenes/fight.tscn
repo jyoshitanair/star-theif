@@ -191,4 +191,25 @@ text = "Choose your card to swap"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Panel4" type="Panel" parent="." unique_id=1965085320]
+visible = false
+offset_left = 14.0
+offset_top = 354.0
+offset_right = 385.0
+offset_bottom = 420.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rid7q")
+
+[node name="Label" type="Label" parent="Panel4" unique_id=1335105816]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_osnhv")
+theme_override_font_sizes/font_size = 29
+text = "Game over! Loading. . ."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
