@@ -38,6 +38,15 @@ corner_radius_bottom_left = 50
 shadow_color = Color(0.9892046, 0.8531236, 0.82639015, 0.6)
 shadow_size = 11
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s4tl2"]
+bg_color = Color(0.6133159, 0.20246261, 0.16598806, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_color = Color(0.9892046, 0.8531236, 0.82639015, 0.6)
+shadow_size = 11
+
 [node name="End" type="Node2D" unique_id=1365695246]
 script = ExtResource("1_s4tl2")
 
@@ -173,5 +182,49 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_nl5ow")
 theme_override_font_sizes/font_size = 25
 text = "Points:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play_yours" type="Panel" parent="." unique_id=1509235938]
+visible = false
+offset_left = 699.0
+offset_top = 160.0
+offset_right = 1117.0
+offset_bottom = 225.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="play_yours" unique_id=2103408915]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_nl5ow")
+theme_override_font_sizes/font_size = 25
+text = "Play:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="play_theirs" type="Panel" parent="." unique_id=810526675]
+visible = false
+offset_left = 28.0
+offset_top = 408.0
+offset_right = 446.0
+offset_bottom = 473.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_s4tl2")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="play_theirs" unique_id=128831821]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_nl5ow")
+theme_override_font_sizes/font_size = 25
+text = "Play:"
 horizontal_alignment = 1
 vertical_alignment = 1

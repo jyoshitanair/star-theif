@@ -44,8 +44,6 @@ func update_ui() -> void:
 func _apply_panel_color(targetNode, color) -> void:
 	if Manager.changing_scenes:
 		return 
-		##
-		var style = targetNode.get_theme_stylebox("panel").duplicate()
-		style.bg_color = color
-		targetNode.add_theme_stylebox_override("panel", style)
-		##
+	var style = targetNode.get_theme_stylebox("panel").duplicate()
+	style.bg_color = color
+	targetNode.add_theme_stylebox_override("panel", style)
