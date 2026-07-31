@@ -22,3 +22,13 @@ func _on_button_pressed() -> void:
 	label.text = code
 	connected_once = true
 	button.disabled = true
+
+
+func _on_button_2_pressed() -> void:
+	#menu
+	get_tree().change_scene_to_file("res://scenes/multiplayer.tscn")
+
+
+func _on_button_3_pressed() -> void:
+	#join
+	get_tree().change_scene_to_file("res://scenes/join.tscn")

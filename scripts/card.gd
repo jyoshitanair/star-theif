@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 	if lerper: 
 		position.y = lerp(position.y,lerpTarg, delta*13)
 		if is_equal_approx(position.y, lerpTarg):
-			if cardType[0]== "STAR":
+			if cardType[0] == "STAR":
 				#star stuff 
 				var other = get_tree().get_first_node_in_group("p2")
 				busy = true 
@@ -123,14 +123,9 @@ func _process(delta: float) -> void:
 					Manager.clicked_before = true
 					Manager.local_click = false
 					Manager.theif_mode = false
-					current = false
-					old_current = false
-					visual.position = down
-					panel_2.show()
-					panel.hide()
 					return
 					#old_card = cardType
-				if bar.switch_mode == true and bar.loaded: 
+				if bar.switch_mode == true: 
 					var p1orp2 = 1 if Network.is_host else 2
 					new_randi_card()
 					Manager.update_set.rpc(p1orp2, cardType,index)	
@@ -143,14 +138,14 @@ func _process(delta: float) -> void:
 					panel_2.show()
 					panel.hide()
 					Manager.local_click = false
-					bar.loaded = false
 					return
 				####
 				if Manager.is_possible(cardType) == false:
 					bar.invalid_card()
 					Manager.local_click = false
 					bar.button.disabled = false
-					return	
+					return
+				Manager.clicked_before = true	
 				if cardType[0] == "THEIF!":
 					Manager.theif_mode = true
 					emit_signal("clicked")
@@ -161,7 +156,6 @@ func _process(delta: float) -> void:
 					visual.position = down
 					return
 				else:
-					Manager.clicked_before = true
 					Manager.card_clicked = cardType
 					emit_signal("clicked")
 					lerper = true

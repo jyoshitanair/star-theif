@@ -2,7 +2,7 @@ extends Node
 
 var peer: WebRTCMultiplayerPeer = WebRTCMultiplayerPeer.new()
 var client: WebSocketPeer = WebSocketPeer.new()
-
+signal full
 const SIGNAL_URL = "wss://star-theif.onrender.com" 
 var msg = ""
 var current_room_id: String = ""
@@ -35,14 +35,14 @@ func create_room() -> String:
 	return new_code
 
 ## Call this to join an existing room code!
-func join_room(room_code: String) -> void:
+func join_room(room_code: String) -> bool:
 	var cleaned_code = room_code.strip_edges().to_upper()
 	
 	# Rule 1: Check length (must be 6 characters)
 	if cleaned_code.length() != 6:
 		error = "Cannot join: Room code must be exactly 6 characters!"
 		print("[ERROR] Cannot join: Room code must be exactly 6 characters!")
-		return
+		return false
 		
 	# Rule 2: Ensure every character belongs to ALLOWED_CHARS array
 	for i in range(cleaned_code.length()):
@@ -50,10 +50,11 @@ func join_room(room_code: String) -> void:
 		if not ALLOWED_CHARS.has(char_letter):
 			error = "Cannot join: Code contains invalid character '"+ char_letter+ "'"
 			print("[ERROR] Cannot join: Code contains invalid character '", char_letter, "'")
-			return
+			return false
 			
 	is_host = false
 	connect_to_match(cleaned_code)
+	return true
 
 ## Internal connection handler
 func connect_to_match(room_name: String) -> void:
@@ -65,7 +66,7 @@ func connect_to_match(room_name: String) -> void:
 	print("[DEBUG] connect_to_match called. Target Room: '", current_room_id, "' | Is Host: ", is_host)
 	
 	if current_room_id == "":
-		error = "Cannot connect! Room name parameter is empty."
+		error = "Cannot connect! Room name is empty."
 		print("[ERROR] Cannot connect! Room name parameter is empty.")
 		return
 		
@@ -76,7 +77,7 @@ func connect_to_match(room_name: String) -> void:
 	var err = client.connect_to_url(SIGNAL_URL)
 	
 	if err != OK:
-		error = "connect_to_url failed instantly: "+ err
+		error = "Failed to connect: : "+ err
 		print("[ERROR] connect_to_url failed instantly: ", err)
 	else:
 		is_connecting = true
@@ -122,6 +123,9 @@ func _process(_delta: float) -> void:
 		is_connecting = false 
 
 func _print_state_name(state_id: int) -> void:
+	if error == "Room does not exist!":
+		msg = ""
+		return
 	match state_id:
 		0: msg = "Connecting!"
 		1: msg = "Completed!"
@@ -163,8 +167,9 @@ func _handle_signaling(msg: String) -> void:
 		client.close()
 		multiplayer.multiplayer_peer = null
 		is_connecting = false
-		get_tree().change_scene_to_file("res://scenes/loading.tscn")
-
+		#get_tree().change_scene_to_file("res://scenes/loading.tscn")
+		error = "Room is either full or doesn't exist!"
+		emit_signal("full")
 	elif msg.begins_with("D:"):
 		var peer_id = msg.get_slice(":", 1).to_int()
 		print("[SIGNAL] Peer disconnected from signaler: ", peer_id)
