@@ -145,6 +145,7 @@ func test_ready(it) -> void:
 #sending data over the internet cause yeah :/
 @rpc("any_peer", "call_remote")
 func handle_click(index) -> void:
+	print("HANDLE CLICK ", index) 
 	if changing_scenes:
 		return 
 	pass_index.emit(index)

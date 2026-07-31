@@ -24,6 +24,13 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jjqk"]
+bg_color = Color(0.17254902, 0.17254902, 0.17254902, 0.6392157)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cqrfi"]
 size = Vector2(224, 335)
 
@@ -63,16 +70,25 @@ scale = Vector2(0.09999999, 0.09999999)
 texture = ExtResource("2_0jjqk")
 
 [node name="Label" type="Label" parent="visual" unique_id=2131895754]
-offset_left = -86.66665
-offset_top = 73.33332
-offset_right = 120.00001
-offset_bottom = 212.33331
+offset_left = -85.66665
+offset_top = 81.33332
+offset_right = 121.00001
+offset_bottom = 220.33331
 mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_fyr7y")
-theme_override_font_sizes/font_size = 43
-text = "LOADING..."
+theme_override_font_sizes/font_size = 30
+text = "STAR THEIF!"
 autowrap_mode = 3
+
+[node name="Panel2" type="Panel" parent="visual" unique_id=1471811492]
+offset_left = -114.28566
+offset_top = -162.85716
+offset_right = 109.71434
+offset_bottom = 172.14284
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_0jjqk")
+metadata/_edit_use_anchors_ = true
 
 [node name="Area2D" type="Area2D" parent="." unique_id=406021652]
 

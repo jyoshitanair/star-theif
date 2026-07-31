@@ -92,7 +92,8 @@ func _process(delta: float) -> void:
 	##Manager.p1turn = !Manager.p1turn	
 	##Manager.clicked_before = false
 	#pass
-func _show_moving(index) -> void: 
+func _show_moving(index) -> void:
+	print("SHOW MOVED ", index) 
 	if Manager.changing_scenes:
 		return
 	card_clicked = cards[index]
@@ -111,7 +112,7 @@ func show_card() -> void:
 		var card_node = cards[i]
 		var cur_needed_card = showncard[ 4- i]
 		card_node.update(cur_needed_card[0],Color(cur_needed_card[2]),cur_needed_card[1])
-	var amount = randf_range(0.8,2.0)
+	var amount = randf_range(0.6,1.0)
 	await get_tree().create_timer(amount).timeout
 	for i in range(0,5):
 		var card_node = cards[i]

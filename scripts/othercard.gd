@@ -2,6 +2,8 @@ extends Node2D
 @export var color:Color = Color("5b76b4ff")
 @export var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
 @export var texture = "res://assets/images/Illustration 20260731 3_1.PNG"
+@onready var panel_2: Panel = $visual/Panel2
+@onready var visual: Node2D = $visual
 var index = 0 
 @onready var panel: Panel = $visual/Panel
 @onready var color_rect: Panel = $visual/ColorRect
@@ -12,6 +14,8 @@ var mayclick = false
 var current = false
 var old_card
 var bar
+var up
+var down
 func update(text1, color1, texture1) -> void: 
 	if Manager.changing_scenes:
 		return
@@ -34,6 +38,8 @@ func update(text1, color1, texture1) -> void:
 	color_rect_2.add_theme_stylebox_override("panel", style3)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	down = position.y
+	up = position.y+ 50
 	var cards = get_tree().get_nodes_in_group('card')
 	for card in cards:
 		card.theif_clicked.connect(_ask_to_switch)
@@ -42,6 +48,15 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Manager.changing_scenes:
 		return
+	if current and mayclick:
+		print("PERMISSION")
+		panel.show()
+		panel_2.hide()
+		visual.position.y = up
+	else:
+		panel.hide()
+		panel_2.show()
+		visual.position.y = down
 	if Input.is_action_just_pressed("clicked"):
 		if mayclick and current: 
 			mayclick = false

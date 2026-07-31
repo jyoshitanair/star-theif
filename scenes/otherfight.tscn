@@ -20,23 +20,24 @@ offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_q4i2l")
 
 [node name="Card" parent="." unique_id=1135663207 instance=ExtResource("2_0y6ex")]
-position = Vector2(144, 265.00003)
+position = Vector2(110, 51)
 scale = Vector2(0.6, 0.6)
 
 [node name="Card2" parent="." unique_id=2113417883 instance=ExtResource("2_0y6ex")]
-position = Vector2(352, -173)
+position = Vector2(1006, 53)
 scale = Vector2(0.6, 0.6)
+metadata/_edit_group_ = true
 
 [node name="Card3" parent="." unique_id=694029723 instance=ExtResource("2_0y6ex")]
-position = Vector2(693, 95)
+position = Vector2(551, 55)
 scale = Vector2(0.6, 0.6)
 
 [node name="Card4" parent="." unique_id=1755309666 instance=ExtResource("2_0y6ex")]
-position = Vector2(407, 251)
+position = Vector2(331, 55)
 scale = Vector2(0.6, 0.6)
 
 [node name="Card5" parent="." unique_id=501485649 instance=ExtResource("2_0y6ex")]
-position = Vector2(459, -35)
+position = Vector2(779, 55)
 scale = Vector2(0.6, 0.6)
 
 [editable path="Card2"]

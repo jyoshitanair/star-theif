@@ -3,6 +3,7 @@ extends Node2D
 @onready var panel_3: Panel = $Panel3
 @onready var button: Button = $Button
 @onready var panel_4: Panel = $Panel4
+var loaded = false
 var done = false
 var card = preload("res://scenes/card.tscn")
 var first1 = true
@@ -101,7 +102,8 @@ func _on_click(index) -> void:
 	if Manager.changing_scenes:
 		return
 	Manager.handle_click.rpc(index)
-	print("clicked card ", index)		
+	print("clicked card ", index)	
+	Manager.clicked_before = true	
 func invalid_card() -> void: 
 	if Manager.changing_scenes:
 		return
@@ -129,6 +131,7 @@ func show_theif_card() -> void:
 	if Manager.done:
 		panel_3.get_node("Label").text = "Choose your card to swap"
 		panel_3.visible = true
+		
 func show_other_card() -> void: 
 	if Manager.changing_scenes:
 		return
