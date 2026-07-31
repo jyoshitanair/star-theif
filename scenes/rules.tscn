@@ -1,11 +1,22 @@
 [gd_scene format=3 uid="uid://di5mgh5hc70ah"]
 
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="1_66h5d"]
+[ext_resource type="Script" uid="uid://b86qr6ym4yuhl" path="res://scripts/rules.gd" id="1_kpkwe"]
 [ext_resource type="PackedScene" uid="uid://djob6sk2ll2ge" path="res://scenes/end_card.tscn" id="2_1m7fe"]
+[ext_resource type="Texture2D" uid="uid://chkuqijif5ym3" path="res://assets/images/game-interface.png" id="4_gro0m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqrfi"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8901961, 0.20392157, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqrfi"]
 
 [node name="Rules" type="Node2D" unique_id=1459682441]
+script = ExtResource("1_kpkwe")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=415045154]
 offset_left = -36.0
@@ -15,7 +26,6 @@ offset_bottom = 682.0
 color = Color(0.14911404, 0.14911404, 0.14911404, 1)
 
 [node name="page 1" type="Node2D" parent="." unique_id=532095466]
-visible = false
 
 [node name="Label" type="Label" parent="page 1" unique_id=1906212643]
 offset_left = 36.0
@@ -88,8 +98,254 @@ offset_bottom = 604.0
 text = "STAR/THEIF! Cards have
 unique colors too!"
 
-[node name="Button" type="Button" parent="." unique_id=1456775515]
+[node name="page 2" type="Node2D" parent="." unique_id=579226729]
 visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="page 2" unique_id=1515077739]
+position = Vector2(572, 329.00003)
+scale = Vector2(1.0140351, 1.028125)
+texture = ExtResource("4_gro0m")
+
+[node name="Label" type="Label" parent="page 2" unique_id=68964972]
+offset_left = 7.0
+offset_top = 156.0
+offset_right = 233.0
+offset_bottom = 205.0
+theme_override_colors/font_color = Color(0.8901961, 0.20392157, 0, 1)
+theme_override_colors/font_outline_color = Color(0.26839146, 0.03381858, 0, 1)
+theme_override_constants/outline_size = 5
+text = "Informatino on current game"
+
+[node name="Label2" type="Label" parent="page 2" unique_id=113381251]
+offset_left = 448.0
+offset_top = 15.0
+offset_right = 1530.0
+offset_bottom = 72.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("1_66h5d")
+theme_override_font_sizes/font_size = 30
+text = "This is what the game interface looks like."
+
+[node name="Panel" type="Panel" parent="page 2" unique_id=24655769]
+offset_left = -4.0
+offset_right = 347.0
+offset_bottom = 142.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
+
+[node name="Panel" type="Panel" parent="page 2/Panel" unique_id=1397926934]
+layout_mode = 0
+offset_left = 497.0
+offset_top = 209.0
+offset_right = 662.0
+offset_bottom = 439.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
+
+[node name="Label3" type="Label" parent="page 2" unique_id=2052498698]
+offset_left = 695.0
+offset_top = 180.0
+offset_right = 1098.0
+offset_bottom = 376.0
+theme_override_colors/font_color = Color(0.8901961, 0.20392157, 0, 1)
+theme_override_colors/font_outline_color = Color(0.26839146, 0.03381858, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 17
+text = "The current card. 
+
+When it's your turn play a card of the same color 
+or number as this card.
+
+if this card is a STAR/THEIF!
+you may place any card ontop !"
+
+[node name="page 3" type="Node2D" parent="." unique_id=93331656]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="page 3" unique_id=317685290]
+position = Vector2(572, 329.00003)
+scale = Vector2(1.0140351, 1.028125)
+texture = ExtResource("4_gro0m")
+
+[node name="Label2" type="Label" parent="page 3" unique_id=1338627071]
+offset_left = 31.0
+offset_top = 459.0
+offset_right = 734.0
+offset_bottom = 508.0
+theme_override_colors/font_color = Color(0.8901961, 0.20392157, 0, 1)
+theme_override_colors/font_outline_color = Color(0.26839146, 0.03381858, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_font_sizes/font_size = 25
+text = "If it's possible you may click one of these cards to place ontop. This gives you +1 base point!"
+
+[node name="Label3" type="Label" parent="page 3" unique_id=298585785]
+offset_left = 414.0
+offset_top = 45.0
+offset_right = 1496.0
+offset_bottom = 102.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("1_66h5d")
+theme_override_font_sizes/font_size = 30
+text = "Once it's your turn...."
+
+[node name="Panel2" type="Panel" parent="page 3" unique_id=1146485242]
+offset_left = 10.0
+offset_top = 442.0
+offset_right = 1148.0
+offset_bottom = 659.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
+
+[node name="Panel" type="Panel" parent="page 3" unique_id=59672546]
+offset_left = 876.0
+offset_top = 368.0
+offset_right = 1085.0
+offset_bottom = 437.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
+
+[node name="Label4" type="Label" parent="page 3" unique_id=721183215]
+offset_left = 683.0
+offset_top = 286.0
+offset_right = 1086.0
+offset_bottom = 349.0
+theme_override_colors/font_color = Color(0.8901961, 0.20392157, 0, 1)
+theme_override_colors/font_outline_color = Color(0.26839146, 0.03381858, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 17
+text = "Or, click this button and a card to switch. 
+This gives you + 0 base points."
+horizontal_alignment = 2
+
+[node name="page 4" type="Node2D" parent="." unique_id=1311825946]
+visible = false
+
+[node name="Label" type="Label" parent="page 4" unique_id=832968149]
+offset_left = 328.0
+offset_top = 309.0
+offset_right = 807.0
+offset_bottom = 354.0
+theme_override_font_sizes/font_size = 21
+text = "Both still only give you  +1 base points per turn!"
+
+[node name="Label3" type="Label" parent="page 4" unique_id=5082053]
+offset_left = 827.0
+offset_top = 29.0
+offset_right = 1909.0
+offset_bottom = 86.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("1_66h5d")
+theme_override_font_sizes/font_size = 30
+text = "Special Cards!"
+
+[node name="card7" parent="page 4" unique_id=1679915217 instance=ExtResource("2_1m7fe")]
+position = Vector2(135.00003, 326)
+scale = Vector2(0.8, 0.8)
+color = Color(0.90588236, 0.74509805, 0.72156864, 1)
+text = "STAR"
+
+[node name="Label2" type="Label" parent="page 4" unique_id=799544600]
+offset_left = 25.0
+offset_top = 72.0
+offset_right = 1107.0
+offset_bottom = 193.0
+theme_override_fonts/font = ExtResource("1_66h5d")
+theme_override_font_sizes/font_size = 30
+text = "Playing a star card allows you to see your 
+opponents cards for a moment!"
+
+[node name="card8" parent="page 4" unique_id=350742230 instance=ExtResource("2_1m7fe")]
+position = Vector2(992, 334)
+scale = Vector2(0.8, 0.8)
+color = Color(0.3372549, 0.6, 0.43137255, 1)
+text = "THEIF!"
+
+[node name="Label4" type="Label" parent="page 4" unique_id=1140140281]
+offset_left = 483.0
+offset_top = 501.0
+offset_right = 1565.0
+offset_bottom = 993.0
+theme_override_fonts/font = ExtResource("1_66h5d")
+theme_override_font_sizes/font_size = 30
+text = "Playing a theif card allows you to switch 
+one of your cards for an opponents card!"
+
+[node name="page 5" type="Node2D" parent="." unique_id=27461761]
+visible = false
+
+[node name="Label" type="Label" parent="page 5" unique_id=936306163]
+offset_left = 12.0
+offset_top = 86.0
+offset_right = 753.0
+offset_bottom = 515.0
+theme_override_font_sizes/font_size = 29
+text = "
+
+
+SUPERNOVA: All stars                                                     + 14
+MASTER THEIF: All theifs                                                 +12
+CRAZY SEVENS: All 7s of the same color                       +10
+STAR SANDWICH: anything,7,star,7,anything              +9
+LUCKY SEVENS: All sevens                                              +7
+FLUSH: 4 of the same color                                            +5
+4 OF A KIND: 4 of the same number                             +5
+3 OF A KIND: 2 of the same number                             +4
+PAIR: 2 of the same number                                          +2
+HIGH CARD: a STAR/THEIF card                                     +1
+"
+
+[node name="Label3" type="Label" parent="page 5" unique_id=1593862257]
+offset_left = 973.0
+offset_top = 18.0
+offset_right = 2055.0
+offset_bottom = 75.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("1_66h5d")
+theme_override_font_sizes/font_size = 30
+text = "End Game."
+
+[node name="card8" parent="page 5" unique_id=369160399 instance=ExtResource("2_1m7fe")]
+position = Vector2(956, 322.99994)
+rotation = -0.31764993
+scale = Vector2(0.5, 0.5)
+color = Color(0.3372549, 0.6, 0.43137255, 1)
+text = "THEIF!"
+
+[node name="Label2" type="Label" parent="page 5" unique_id=493618737]
+offset_left = 13.0
+offset_top = 12.0
+offset_right = 1162.0
+offset_bottom = 229.0
+theme_override_fonts/font = ExtResource("1_66h5d")
+theme_override_font_sizes/font_size = 25
+text = "After 20 turns ( both people played = 1 turn) the game ends.
+
+Additional points are given based on the deck you have at the end.
+You will ONLY get the points for the highest point combination you can get"
+
+[node name="card7" parent="page 5" unique_id=1424393247 instance=ExtResource("2_1m7fe")]
+position = Vector2(1040.0001, 513)
+rotation = 0.24958208
+scale = Vector2(0.47, 0.47)
+color = Color(0.90588236, 0.74509805, 0.72156864, 1)
+text = "STAR"
+
+[node name="page 6" type="Node2D" parent="." unique_id=749196496]
+visible = false
+
+[node name="Label2" type="Label" parent="page 6" unique_id=1816039038]
+offset_left = 450.0
+offset_top = 228.0
+offset_right = 1599.0
+offset_bottom = 445.0
+theme_override_fonts/font = ExtResource("1_66h5d")
+theme_override_font_sizes/font_size = 25
+text = "Thats all! 
+
+
+Have fun playing!"
+
+[node name="Button" type="Button" parent="." unique_id=1456775515]
 offset_left = -29.0
 offset_top = -25.0
 offset_right = 1172.0
@@ -100,66 +356,13 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_cqrfi")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_cqrfi")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_cqrfi")
 
-[node name="page 2" type="Node2D" parent="." unique_id=579226729]
-
-[node name="Label" type="Label" parent="page 2" unique_id=68964972]
-offset_left = 183.0
-offset_top = 30.0
-offset_right = 372.0
-offset_bottom = 75.0
-text = "PAGE TWO!"
-
-[node name="card5" parent="page 2" unique_id=1180612790 instance=ExtResource("2_1m7fe")]
-position = Vector2(590, 299)
-scale = Vector2(0.5, 0.5)
-color = Color(0.39607844, 0.5294118, 0.7764706, 1)
-text = "7"
-
-[node name="Label2" type="Label" parent="page 2" unique_id=113381251]
-offset_left = 422.0
-offset_top = 251.0
-offset_right = 1504.0
-offset_bottom = 743.0
+[node name="Label" type="Label" parent="." unique_id=201153063]
+offset_left = 825.0
+offset_top = 614.0
+offset_right = 1318.0
+offset_bottom = 791.0
 theme_override_fonts/font = ExtResource("1_66h5d")
-theme_override_font_sizes/font_size = 30
-text = "This is what the game interface looks like."
+theme_override_font_sizes/font_size = 22
+text = "(Click anywhere to continue )"
 
-[node name="page 3" type="Node2D" parent="." unique_id=93331656]
-visible = false
-
-[node name="Label" type="Label" parent="page 3" unique_id=705827577]
-offset_left = 540.0
-offset_top = 302.0
-offset_right = 643.0
-offset_bottom = 347.0
-text = "PAGE THREE!"
-
-[node name="page 4" type="Node2D" parent="." unique_id=1311825946]
-visible = false
-
-[node name="Label" type="Label" parent="page 4" unique_id=832968149]
-offset_left = 540.0
-offset_top = 302.0
-offset_right = 643.0
-offset_bottom = 347.0
-text = "PAGE FOUR!"
-
-[node name="page 5" type="Node2D" parent="." unique_id=27461761]
-visible = false
-
-[node name="Label" type="Label" parent="page 5" unique_id=936306163]
-offset_left = 540.0
-offset_top = 302.0
-offset_right = 643.0
-offset_bottom = 347.0
-text = "PAGE FIVE!"
-
-[node name="page 6" type="Node2D" parent="." unique_id=749196496]
-visible = false
-
-[node name="Label" type="Label" parent="page 6" unique_id=368480206]
-offset_left = 540.0
-offset_top = 302.0
-offset_right = 643.0
-offset_bottom = 347.0
-text = "PAGE SIX!"
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

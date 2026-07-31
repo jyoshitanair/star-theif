@@ -1,25 +1,37 @@
 [gd_scene format=3 uid="uid://xhx4p6kd57tw"]
 
+[ext_resource type="Texture2D" uid="uid://d1w2ehd1up74n" path="res://assets/images/Illustration 20260731 2_2.PNG" id="1_101rs"]
 [ext_resource type="FontFile" uid="uid://dlp4mqlqcwqri" path="res://addons/Cat_font-Regular.ttf" id="1_dhqfv"]
-[ext_resource type="Script" uid="uid://dqh52prjnn4sc" path="res://scripts/play-button.gd" id="1_ir5ef"]
+[ext_resource type="Script" uid="uid://cmh4v3rcd8wcg" path="res://scripts/loading.gd" id="1_yt702"]
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_101rs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhqfv"]
 
-[node name="Loading" type="Node2D" unique_id=660497390]
+[sub_resource type="GDScript" id="GDScript_2ytni"]
+script/source = "extends Button
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1662624341]
-offset_left = -36.0
-offset_top = -32.0
-offset_right = 1172.0
-offset_bottom = 682.0
-color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/multiplayer.tscn\")
+"
+
+[node name="Loading" type="Node2D" unique_id=660497390]
+script = ExtResource("1_yt702")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=242298338]
+position = Vector2(562, 311)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_101rs")
 
 [node name="Button" type="Button" parent="." unique_id=1843265971]
-offset_left = 1.0
-offset_top = 2.0
-offset_right = 1153.0
-offset_bottom = 647.0
+offset_left = -213.0
+offset_top = -36.0
+offset_right = 939.0
+offset_bottom = 609.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.00091448426, 0.09649738, 0.4615426, 1)
+theme_override_constants/outline_size = 100
+theme_override_constants/h_separation = 1000
+theme_override_constants/line_spacing = 80
 theme_override_fonts/font = ExtResource("1_dhqfv")
 theme_override_font_sizes/font_size = 200
 theme_override_styles/normal = SubResource("StyleBoxEmpty_dhqfv")
@@ -33,8 +45,9 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dhqfv"
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_dhqfv")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_dhqfv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dhqfv")
-text = "Star Theif"
-script = ExtResource("1_ir5ef")
+text = "Star 
+Theif"
+script = SubResource("GDScript_2ytni")
 
 [node name="Label" type="Label" parent="." unique_id=330505116]
 offset_left = 772.0
@@ -45,4 +58,4 @@ theme_override_fonts/font = ExtResource("3_101rs")
 theme_override_font_sizes/font_size = 28
 text = "(Click anywhere to begin )"
 
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_pressed"]
