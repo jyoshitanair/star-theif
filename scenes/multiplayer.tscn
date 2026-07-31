@@ -1,38 +1,225 @@
 [gd_scene format=3 uid="uid://dnimysf3ss5o6"]
 
 [ext_resource type="Script" uid="uid://1bqvstp7imlq" path="res://scripts/multiplayer.gd" id="1_b0l6s"]
+[ext_resource type="Texture2D" uid="uid://cdrnbhu3albvk" path="res://assets/images/Illustration 20260731 2_1.PNG" id="2_pjkx2"]
+[ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_4vwpp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqrfi"]
+bg_color = Color(0.12941177, 0.2901961, 0.5372549, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36d77"]
+bg_color = Color(0.036936596, 0.1194387, 0.24610803, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvo4r"]
+bg_color = Color(0.36783135, 0.5703694, 0.88906807, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6lh4"]
+bg_color = Color(0.5242822, 0.051290713, 0.35597828, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpc4n"]
+bg_color = Color(0.40846583, 0.60510397, 0.90987074, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3wt4"]
+bg_color = Color(0.50037754, 0.16944987, 0.17636287, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrdfo"]
+bg_color = Color(0.37219253, 0.1152296, 0.12156575, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_um13p"]
+bg_color = Color(0.7714108, 0.3013863, 0.30747166, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc2tn"]
+bg_color = Color(0.5242822, 0.051290713, 0.35597828, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dtvy1"]
+bg_color = Color(0.74129796, 0.28275788, 0.289814, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05036"]
+bg_color = Color(0.14640903, 0.34281072, 0.23078585, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mtek"]
+bg_color = Color(0.05459723, 0.1630131, 0.10238429, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ue6mp"]
+bg_color = Color(0.27806, 0.5905226, 0.4144356, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1wk1"]
+bg_color = Color(0.5242822, 0.051290713, 0.35597828, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxhos"]
+bg_color = Color(0.27806, 0.5905226, 0.4144356, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="Multiplayer" type="Node2D" unique_id=863226930]
 script = ExtResource("1_b0l6s")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1100080448]
-offset_left = -36.0
-offset_top = -32.0
-offset_right = 1172.0
-offset_bottom = 682.0
-color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=901719081]
+position = Vector2(566, 323.5)
+scale = Vector2(0.5, 0.41906476)
+texture = ExtResource("2_pjkx2")
 
 [node name="Button3" type="Button" parent="." unique_id=589646938]
-offset_left = 114.0
+offset_left = 74.0
 offset_top = 407.0
-offset_right = 306.0
-offset_bottom = 601.0
-text = "new room"
+offset_right = 288.0
+offset_bottom = 617.0
+theme_override_fonts/font = ExtResource("3_4vwpp")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_cqrfi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_36d77")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uvo4r")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_a6lh4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_gpc4n")
+text = "new 
+room"
 
 [node name="Button" type="Button" parent="." unique_id=1318884176]
-offset_left = 279.0
-offset_top = 74.0
-offset_right = 708.0
-offset_bottom = 283.0
+offset_left = 277.0
+offset_top = 39.0
+offset_right = 706.0
+offset_bottom = 248.0
+theme_override_fonts/font = ExtResource("3_4vwpp")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_r3wt4")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nrdfo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_um13p")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_rc2tn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_dtvy1")
 text = "join room
 "
 
 [node name="Button2" type="Button" parent="." unique_id=1613149147]
-offset_left = 765.0
-offset_top = 381.0
-offset_right = 1081.0
-offset_bottom = 549.0
-text = "how to play?"
+offset_left = 761.0
+offset_top = 365.0
+offset_right = 1099.0
+offset_bottom = 533.0
+theme_override_fonts/font = ExtResource("3_4vwpp")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_05036")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6mtek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ue6mp")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n1wk1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_lxhos")
+text = "How to play?"
 
 [connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

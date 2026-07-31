@@ -3,6 +3,8 @@ extends Node2D
 @onready var your_cards: Node2D = $"your cards"
 @onready var play_yours: Panel = $play_yours
 @onready var play_theirs: Panel = $play_theirs
+@onready var spriteblue: Sprite2D = $Sprite2D2
+@onready var spriteyellow: Sprite2D = $Sprite2D
 var player = 1
 var player_set
 var other_player_set = 2
@@ -27,6 +29,12 @@ var their_done_processing = false
 var result_calced = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if Network.is_host: 
+		spriteblue.visible = true
+		spriteyellow.visible = false
+	else:
+		spriteyellow.visible = true
+		spriteblue.visible = false
 	button.disabled = true
 	player = 1 if Network.is_host else 2
 	text = Manager.player1points  if player == 1 else Manager.player2points

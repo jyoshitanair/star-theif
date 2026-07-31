@@ -9,6 +9,8 @@ var connected_players = []
 @onready var checkmark: Sprite2D = $checkmark
 @onready var panel: Panel = $Panel
 @onready var label_4: Label = $Label4
+@onready var spriteblue: Sprite2D = $Sprite2D2
+@onready var spriteyellow: Sprite2D = $Sprite2D
 var canclick = true
 var maincard_loaded = false
 var maincard = preload("res://scenes/curcard.tscn")
@@ -32,7 +34,7 @@ func _process(delta: float) -> void:
 		label_2.text = "Player 1" 
 	else:
 		label_2.text = "Player 2"
-	label_4.text = "Total Turns: %d/20"%[floori(Manager.total_turns/2)]
+	label_4.text = "Total Turns: %d/10"%[floori(Manager.total_turns/2)]
 	label_3.text = "Current Player Turn:  Player 1" if Manager.p1turn else "Current Player Turn:  Player 2"
 func spawn(id:int):
 	print("adding")
@@ -69,6 +71,13 @@ func spawn(id:int):
 		add_child(maincard)
 		maincard.z_index = 1
 		maincard_loaded = true
+	if Network.is_host: 
+		spriteblue.visible = true
+		spriteyellow.visible = false
+	else:
+		spriteyellow.visible = true
+		spriteblue.visible = false
+		
 func remove(id:int): 
 	var player = player_spawn.get_node_or_null(str(id))
 	if player:

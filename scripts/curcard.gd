@@ -12,8 +12,17 @@ var texture: Texture2D = preload("res://icon.svg")
 var possible_colors = ["b657d3ff","9a8550ff","6587c6ff","d94d84ff"]
 
 #7 norms,  2 special!
-var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
-var cardType = ["1","res://icon.svg", "3840b9ff"]
+var arraytocard = [
+["1","res://assets/images/Illustration 20260731 3_8.PNG"],
+["2","res://assets/images/Illustration 20260731 3_3.PNG"],
+["3","res://assets/images/Illustration 20260731 3_9.PNG"],
+["4","res://assets/images/Illustration 20260731 3_7.PNG"],
+["5","res://assets/images/Illustration 20260731 3_5.PNG"],
+["6","res://assets/images/Illustration 20260731 3_4.PNG"],
+["7","res://assets/images/Illustration 20260731 3_10.PNG"],
+["THEIF!","res://assets/images/Illustration 20260731 3_2.PNG"], 
+["STAR","res://assets/images/Illustration 20260731 3_6.PNG"]]
+var cardType = ["1","res://assets/images/Illustration 20260731 3_8.PNG", "3840b9ff"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

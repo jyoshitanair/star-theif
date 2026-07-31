@@ -25,7 +25,16 @@ var p1
 var p2
 var random_card
 var possible_colors = ["b657d3ff","9a8550ff","6587c6ff","d94d84ff"]
-var arraytocard = [["1","res://icon.svg"],["2","res://icon.svg"],["3","res://icon.svg"],["4","res://icon.svg"],["5","res://icon.svg"],["6","res://icon.svg"],["7","res://icon.svg"],["THEIF!","res://icon.svg"], ["STAR","res://icon.svg"]]
+var arraytocard = [
+["1","res://assets/images/Illustration 20260731 3_8.PNG"],
+["2","res://assets/images/Illustration 20260731 3_3.PNG"],
+["3","res://assets/images/Illustration 20260731 3_9.PNG"],
+["4","res://assets/images/Illustration 20260731 3_7.PNG"],
+["5","res://assets/images/Illustration 20260731 3_5.PNG"],
+["6","res://assets/images/Illustration 20260731 3_4.PNG"],
+["7","res://assets/images/Illustration 20260731 3_10.PNG"],
+["THEIF!","res://assets/images/Illustration 20260731 3_2.PNG"], 
+["STAR","res://assets/images/Illustration 20260731 3_6.PNG"]]
 var card_clicked
 var color
 # Called when the node enters the scene tree for the first time.
@@ -40,7 +49,7 @@ func js_toggle_turn() -> void:
 	total_turns += 1
 	print(p1turn)
 	clicked_before = false
-	if total_turns == 1:
+	if total_turns == 20:
 		#ITS BEEN TEN MOVES!
 		changing_scenes = true
 		var node_show = get_tree().get_first_node_in_group("fightbar")

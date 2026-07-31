@@ -2,84 +2,152 @@
 
 [ext_resource type="Script" uid="uid://rotynsvdnwny" path="res://scripts/join.gd" id="1_h8iy3"]
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="2_5tfeo"]
+[ext_resource type="Texture2D" uid="uid://btkal55vi7mfg" path="res://assets/images/Illustration 20260731 2.PNG" id="2_dokxw"]
 [ext_resource type="FontFile" uid="uid://dlp4mqlqcwqri" path="res://addons/Cat_font-Regular.ttf" id="3_dokxw"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nhi6x"]
-bg_color = Color(0.86407053, 0.3225645, 0.6213896, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pom5n"]
+bg_color = Color(0.9395916, 0.5804335, 0.42546558, 0.81960785)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32rw3"]
+bg_color = Color(0.4827441, 0.19719055, 0.11762767, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpqt5"]
+bg_color = Color(0.2484481, 0.08605742, 0.041534133, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kux8f"]
+bg_color = Color(0.71044064, 0.31227383, 0.20352146, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixcef"]
+bg_color = Color(0.5242822, 0.051290713, 0.35597828, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7vdr"]
+bg_color = Color(0.82759476, 0.39027056, 0.27119225, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="Join" type="Node2D" unique_id=152130232]
 script = ExtResource("1_h8iy3")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=476045440]
-offset_left = -36.0
-offset_top = -32.0
-offset_right = 1172.0
-offset_bottom = 682.0
-color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=797622105]
+position = Vector2(566, 323.5)
+scale = Vector2(0.5, 0.41906476)
+texture = ExtResource("2_dokxw")
 
 [node name="TextEdit" type="TextEdit" parent="." unique_id=1612736675]
-offset_left = 49.0
-offset_top = 309.0
-offset_right = 662.0
-offset_bottom = 394.0
+offset_left = 50.0
+offset_top = 339.0
+offset_right = 742.0
+offset_bottom = 424.0
+theme_override_colors/caret_color = Color(0.2020942, 0.0895564, 0.06365717, 1)
+theme_override_colors/font_color = Color(0.19607843, 0.05490196, 0.015686275, 0.6)
+theme_override_colors/font_placeholder_color = Color(0.19575396, 0.053479813, 0.016725393, 0.6)
 theme_override_fonts/font = ExtResource("2_5tfeo")
 theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxFlat_pom5n")
 placeholder_text = "Enter Generated Code. . ."
 
 [node name="Button" type="Button" parent="." unique_id=914862789]
-offset_left = 764.0
-offset_top = 304.0
-offset_right = 990.0
-offset_bottom = 389.0
+offset_left = 773.0
+offset_top = 338.0
+offset_right = 999.0
+offset_bottom = 425.0
 theme_override_fonts/font = ExtResource("2_5tfeo")
 theme_override_font_sizes/font_size = 44
-theme_override_styles/disabled = SubResource("StyleBoxFlat_nhi6x")
+theme_override_styles/normal = SubResource("StyleBoxFlat_32rw3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_cpqt5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kux8f")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ixcef")
+theme_override_styles/focus = SubResource("StyleBoxFlat_n7vdr")
 text = "join~"
 
-[node name="Label2" type="Label" parent="." unique_id=1121243991]
-offset_left = 50.0
-offset_top = 220.0
-offset_right = 1206.0
-offset_bottom = 290.0
-theme_override_fonts/font = ExtResource("2_5tfeo")
-theme_override_font_sizes/font_size = 31
-text = "e"
-
 [node name="Label" type="Label" parent="." unique_id=117763819]
-offset_left = 53.0
-offset_top = 429.0
-offset_right = 954.0
-offset_bottom = 499.0
+offset_left = 55.0
+offset_top = 483.0
+offset_right = 956.0
+offset_bottom = 553.0
 theme_override_fonts/font = ExtResource("2_5tfeo")
 theme_override_font_sizes/font_size = 40
 text = "noot noot"
 
-[node name="Label3" type="Label" parent="." unique_id=402388911]
-offset_left = 50.0
-offset_top = 14.0
-offset_right = 1208.0
-offset_bottom = 227.0
-theme_override_colors/font_color = Color(0.79094994, 0.6488339, 0.45856404, 1)
-theme_override_fonts/font = ExtResource("3_dokxw")
-theme_override_font_sizes/font_size = 174
-text = "Join A Game"
-
 [node name="Button2" type="Button" parent="." unique_id=840542259]
-offset_left = 613.0
-offset_top = 499.0
-offset_right = 812.0
-offset_bottom = 613.0
+offset_left = 627.0
+offset_top = 518.0
+offset_right = 826.0
+offset_bottom = 632.0
 theme_override_fonts/font = ExtResource("2_5tfeo")
 theme_override_font_sizes/font_size = 22
 text = "Return to Menu"
 
 [node name="Button3" type="Button" parent="." unique_id=1561060154]
-offset_left = 851.0
-offset_top = 499.0
-offset_right = 1114.0
-offset_bottom = 614.0
+offset_left = 865.0
+offset_top = 518.0
+offset_right = 1128.0
+offset_bottom = 633.0
 theme_override_fonts/font = ExtResource("2_5tfeo")
 theme_override_font_sizes/font_size = 22
 text = "Host a game instead!"
+
+[node name="Label3" type="Label" parent="." unique_id=1522090339]
+offset_left = 18.0
+offset_top = 144.0
+offset_right = 1189.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(0.2499758, 0.06665848, 0.057912976, 1)
+theme_override_colors/font_outline_color = Color(0.9789471, 0.8802597, 0.8651793, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("3_dokxw")
+theme_override_font_sizes/font_size = 160
+text = "  Join a Game"
+
+[node name="Label2" type="Label" parent="." unique_id=236786444]
+offset_left = 27.0
+offset_top = 11.0
+offset_right = 1183.0
+offset_bottom = 133.0
+theme_override_fonts/font = ExtResource("2_5tfeo")
+theme_override_font_sizes/font_size = 70
+text = "hellooo ~"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

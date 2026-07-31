@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dubgistxl2rpq"]
 
 [ext_resource type="Script" uid="uid://d0jyk8hsq4ms1" path="res://scripts/othercard.gd" id="1_a50of"]
-[ext_resource type="Texture2D" uid="uid://bdp5yi60dfikk" path="res://icon.svg" id="2_0jjqk"]
+[ext_resource type="Texture2D" uid="uid://butluupmketcx" path="res://assets/images/Illustration 20260731 3_1.PNG" id="2_0jjqk"]
+[ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_fyr7y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fyr7y"]
 bg_color = Color(1, 1, 1, 1)
@@ -56,19 +57,21 @@ offset_bottom = 160.00002
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_h7vei")
 
-[node name="Sprite2D" type="Sprite2D" parent="visual" unique_id=1478412663]
-position = Vector2(-1, -68.57143)
-scale = Vector2(0.99999994, 0.99999994)
+[node name="Sprite2D" type="Sprite2D" parent="visual" unique_id=326771661]
+position = Vector2(-1.0000064, -36.904793)
+scale = Vector2(0.09999999, 0.09999999)
 texture = ExtResource("2_0jjqk")
 
-[node name="Label" type="Label" parent="visual" unique_id=1820484059]
-offset_left = -34.28572
-offset_top = 64.28571
-offset_right = 103.71428
-offset_bottom = 203.2857
+[node name="Label" type="Label" parent="visual" unique_id=2131895754]
+offset_left = -86.66665
+offset_top = 73.33332
+offset_right = 120.00001
+offset_bottom = 212.33331
 mouse_filter = 1
-theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
-text = "meow "
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_fyr7y")
+theme_override_font_sizes/font_size = 43
+text = "LOADING..."
 autowrap_mode = 3
 
 [node name="Area2D" type="Area2D" parent="." unique_id=406021652]

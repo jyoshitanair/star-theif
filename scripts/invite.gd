@@ -1,5 +1,5 @@
 extends Node2D
-@onready var label: Label = $Label
+@onready var label: Label = $Panel/Label
 var connected = false
 @onready var button: Button = $Button
 var connected_once = false

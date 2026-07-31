@@ -1,33 +1,142 @@
 [gd_scene format=3 uid="uid://s43sg8tmqx6j"]
 
 [ext_resource type="Script" uid="uid://dx1ubb3sfudwn" path="res://scripts/invite.gd" id="1_i2ja4"]
+[ext_resource type="Texture2D" uid="uid://cdrnbhu3albvk" path="res://assets/images/Illustration 20260731 2_1.PNG" id="2_lv73m"]
+[ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_n8fyl"]
+[ext_resource type="FontFile" uid="uid://dlp4mqlqcwqri" path="res://addons/Cat_font-Regular.ttf" id="4_7bsjk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rid7q"]
+bg_color = Color(0.3254902, 0.61960787, 0.8980392, 0.6862745)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ahnii"]
+bg_color = Color(0.33235648, 0.36781022, 0.7376483, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.05228737, 0.15387148, 0.20048937, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_csw3n"]
+bg_color = Color(0.11064773, 0.123612724, 0.30820346, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.05228737, 0.15387148, 0.20048937, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_miclg"]
+bg_color = Color(0.47998577, 0.5285, 0.8669336, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.05228737, 0.15387148, 0.20048937, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vv6tu"]
+bg_color = Color(0.5242822, 0.051290713, 0.35597828, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_heeq0"]
+bg_color = Color(0.5082087, 0.5573497, 0.8808604, 0.9372549)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.05228737, 0.15387148, 0.20048937, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [node name="Invite" type="Node2D" unique_id=504020460]
 script = ExtResource("1_i2ja4")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=68351217]
-offset_left = -36.0
-offset_top = -32.0
-offset_right = 1172.0
-offset_bottom = 682.0
-color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1457823306]
+position = Vector2(566, 323.5)
+scale = Vector2(0.5, 0.41906476)
+texture = ExtResource("2_lv73m")
 
-[node name="Label" type="Label" parent="." unique_id=650738817]
-offset_left = 188.0
-offset_top = 105.0
-offset_right = 856.0
-offset_bottom = 414.0
+[node name="Panel" type="Panel" parent="." unique_id=566177789]
+offset_left = 671.0
+offset_top = 427.0
+offset_right = 967.0
+offset_bottom = 566.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rid7q")
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Panel" unique_id=650738817]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.0
+offset_top = -60.5
+offset_right = 128.0
+offset_bottom = 61.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_n8fyl")
+theme_override_font_sizes/font_size = 70
+text = "   :3"
 
 [node name="Button" type="Button" parent="." unique_id=1334472448]
-offset_left = 491.0
-offset_top = 100.0
-offset_right = 613.0
-offset_bottom = 131.0
+offset_left = 202.0
+offset_top = 434.0
+offset_right = 609.0
+offset_bottom = 555.0
+theme_override_fonts/font = ExtResource("3_n8fyl")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_ahnii")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_csw3n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_miclg")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vv6tu")
+theme_override_styles/focus = SubResource("StyleBoxFlat_heeq0")
 text = "Generate code"
 
 [node name="Label2" type="Label" parent="." unique_id=1327924249]
-offset_top = -2.0
-offset_right = 1156.0
-offset_bottom = 135.0
+offset_left = 17.0
+offset_top = 7.0
+offset_right = 1173.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("3_n8fyl")
+theme_override_font_sizes/font_size = 70
+text = "hellooo ~"
+
+[node name="Label3" type="Label" parent="." unique_id=1296245527]
+offset_left = 30.0
+offset_top = 191.0
+offset_right = 1201.0
+offset_bottom = 404.0
+theme_override_colors/font_color = Color(0.092109926, 0.105766185, 0.31366736, 1)
+theme_override_colors/font_outline_color = Color(0.82633203, 0.88389546, 0.9627065, 1)
+theme_override_constants/outline_size = 50
+theme_override_fonts/font = ExtResource("4_7bsjk")
+theme_override_font_sizes/font_size = 160
+text = "Create a Game"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

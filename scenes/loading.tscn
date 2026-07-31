@@ -25,8 +25,8 @@ texture = ExtResource("1_101rs")
 [node name="Button" type="Button" parent="." unique_id=1843265971]
 offset_left = -213.0
 offset_top = -36.0
-offset_right = 939.0
-offset_bottom = 609.0
+offset_right = 1209.0
+offset_bottom = 681.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.00091448426, 0.09649738, 0.4615426, 1)
 theme_override_constants/outline_size = 100
@@ -45,8 +45,6 @@ theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dhqfv"
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_dhqfv")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_dhqfv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dhqfv")
-text = "Star 
-Theif"
 script = SubResource("GDScript_2ytni")
 
 [node name="Label" type="Label" parent="." unique_id=330505116]
@@ -57,5 +55,20 @@ offset_bottom = 774.0
 theme_override_fonts/font = ExtResource("3_101rs")
 theme_override_font_sizes/font_size = 28
 text = "(Click anywhere to begin )"
+
+[node name="Label2" type="Label" parent="." unique_id=552352242]
+offset_left = 114.0
+offset_top = 56.0
+offset_right = 683.0
+offset_bottom = 546.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.60210186, 0.7380579, 0.9780386, 1)
+theme_override_colors/font_outline_color = Color(0.037666824, 0.13869506, 0.3288265, 1)
+theme_override_constants/line_spacing = 70
+theme_override_constants/outline_size = 80
+theme_override_fonts/font = ExtResource("1_dhqfv")
+theme_override_font_sizes/font_size = 225
+text = "Star 
+Theif"
 
 [connection signal="pressed" from="Button" to="." method="_on_pressed"]

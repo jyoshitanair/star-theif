@@ -115,4 +115,4 @@ func show_card() -> void:
 	await get_tree().create_timer(amount).timeout
 	for i in range(0,5):
 		var card_node = cards[i]
-		card_node.update("star theif!",Color("5b76b4ff"),"res://icon.svg")
+		card_node.update("star theif!",Color("5b76b4ff"),"res://assets/images/Illustration 20260731 3_1.PNG")

@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bmp4y85vcobvo" path="res://scripts/end.gd" id="1_s4tl2"]
 [ext_resource type="FontFile" uid="uid://dlp4mqlqcwqri" path="res://addons/Cat_font-Regular.ttf" id="2_8hmjt"]
+[ext_resource type="Texture2D" uid="uid://cdrnbhu3albvk" path="res://assets/images/Illustration 20260731 2_1.PNG" id="2_o5lv4"]
+[ext_resource type="Texture2D" uid="uid://btkal55vi7mfg" path="res://assets/images/Illustration 20260731 2.PNG" id="3_ee763"]
 [ext_resource type="PackedScene" uid="uid://djob6sk2ll2ge" path="res://scenes/end_card.tscn" id="3_o5lv4"]
 [ext_resource type="Script" uid="uid://lmai1r1io4wy" path="res://scripts/slide_in.gd" id="3_s4tl2"]
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="5_nl5ow"]
@@ -49,37 +51,67 @@ shadow_size = 11
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rid7q"]
 bg_color = Color(0.41070396, 0.6648273, 0.529356, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pom5n"]
 bg_color = Color(0.085649975, 0.21635956, 0.115888156, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5lv4"]
 bg_color = Color(0.04700058, 0.14055541, 0.069690704, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee763"]
 bg_color = Color(0.23377305, 0.49458545, 0.2966873, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nl5ow"]
 bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njoby"]
 bg_color = Color(0.2798887, 0.5791349, 0.35180354, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="End" type="Node2D" unique_id=1365695246]
 script = ExtResource("1_s4tl2")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1149021609]
-offset_left = -36.0
-offset_top = -32.0
-offset_right = 1172.0
-offset_bottom = 682.0
-color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=968023884]
+position = Vector2(566, 323.5)
+scale = Vector2(0.5, 0.41906476)
+texture = ExtResource("2_o5lv4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=481674003]
+position = Vector2(566, 323.5)
+scale = Vector2(0.5, 0.41906476)
+texture = ExtResource("3_ee763")
 
 [node name="Label" type="Label" parent="." unique_id=1993264796]
 offset_left = 223.0
 offset_top = 267.0
 offset_right = 925.0
 offset_bottom = 380.0
+theme_override_colors/font_color = Color(0.31595346, 0.5744307, 0.3352284, 1)
+theme_override_colors/font_outline_color = Color(0.72595215, 0.83217174, 0.60954165, 1)
+theme_override_constants/outline_size = 50
 theme_override_fonts/font = ExtResource("2_8hmjt")
 theme_override_font_sizes/font_size = 120
 text = "GAME OVER!"
@@ -248,7 +280,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="winner" type="Panel" parent="." unique_id=164220061]
-visible = false
 offset_left = 11.0
 offset_top = 239.0
 offset_right = 1134.0
@@ -270,10 +301,10 @@ vertical_alignment = 1
 
 [node name="Button" type="Button" parent="winner" unique_id=1445934114]
 layout_mode = 0
-offset_left = 926.0
-offset_top = 87.0
-offset_right = 1110.0
-offset_bottom = 136.0
+offset_left = 902.0
+offset_top = 86.0
+offset_right = 1086.0
+offset_bottom = 135.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_pom5n")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_o5lv4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ee763")

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bkdgwpiv7ijcb"]
 
 [ext_resource type="Script" uid="uid://drg8mb76vhiaf" path="res://scripts/multiplayertest.gd" id="1_mnkun"]
+[ext_resource type="Texture2D" uid="uid://cdrnbhu3albvk" path="res://assets/images/Illustration 20260731 2_1.PNG" id="2_mr4xs"]
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_r2pta"]
-[ext_resource type="Texture2D" uid="uid://dt65c2s6y1ony" path="res://exports/index.png" id="4_at2ej"]
+[ext_resource type="Texture2D" uid="uid://btkal55vi7mfg" path="res://assets/images/Illustration 20260731 2.PNG" id="3_rgsu4"]
+[ext_resource type="Texture2D" uid="uid://dd21u4w3vdoqd" path="res://assets/images/Illustration 20260731 3.PNG" id="5_deqal"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cqrfi"]
 
@@ -16,50 +18,67 @@ corner_radius_bottom_left = 100
 [node name="Multiplayertest" type="Node2D" unique_id=861008214]
 script = ExtResource("1_mnkun")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=314237506]
-offset_left = -36.0
-offset_top = -32.0
-offset_right = 1172.0
-offset_bottom = 682.0
-color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1226203139]
+position = Vector2(566, 323.5)
+scale = Vector2(0.5, 0.41906476)
+texture = ExtResource("2_mr4xs")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1149113701]
+position = Vector2(566, 323.5)
+scale = Vector2(0.5, 0.41906476)
+texture = ExtResource("3_rgsu4")
 
 [node name="player spawn" type="Node2D" parent="." unique_id=53855626]
 
 [node name="Label" type="Label" parent="." unique_id=314425771]
 offset_left = 11.0
 offset_top = 45.0
-offset_right = 578.0
+offset_right = 264.0
 offset_bottom = 139.0
+theme_override_colors/font_color = Color(0.029506557, 0.029506557, 0.029506557, 1)
+theme_override_fonts/font = ExtResource("3_r2pta")
+theme_override_font_sizes/font_size = 20
 text = "Room Code: WWWWWW"
 
-[node name="Label2" type="Label" parent="." unique_id=360477598]
-offset_left = 13.0
-offset_top = 74.0
-offset_right = 407.0
-offset_bottom = 192.0
-text = "wwww"
+[node name="Label2" type="Label" parent="." unique_id=1584600212]
+offset_left = 9.0
+offset_top = 78.0
+offset_right = 330.0
+offset_bottom = 151.0
+theme_override_colors/font_color = Color(0.029506557, 0.029506557, 0.029506557, 1)
+theme_override_fonts/font = ExtResource("3_r2pta")
+theme_override_font_sizes/font_size = 20
+text = "www
+"
 
-[node name="Label3" type="Label" parent="." unique_id=360200999]
-offset_left = 10.0
-offset_top = 15.0
-offset_right = 113.0
-offset_bottom = 62.0
+[node name="Label3" type="Label" parent="." unique_id=658270302]
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 238.0
+offset_bottom = 102.0
+theme_override_colors/font_color = Color(0.029506557, 0.029506557, 0.029506557, 1)
+theme_override_fonts/font = ExtResource("3_r2pta")
+theme_override_font_sizes/font_size = 20
 text = "TURN:"
-metadata/_edit_use_anchors_ = true
 
-[node name="Label4" type="Label" parent="." unique_id=705130969]
-offset_left = 13.0
-offset_top = 101.0
-offset_right = 90.0
-offset_bottom = 124.0
+[node name="Label4" type="Label" parent="." unique_id=46263120]
+offset_left = 7.0
+offset_top = 113.0
+offset_right = 574.0
+offset_bottom = 207.0
+theme_override_colors/font_color = Color(0.029506557, 0.029506557, 0.029506557, 1)
+theme_override_fonts/font = ExtResource("3_r2pta")
+theme_override_font_sizes/font_size = 20
 text = "noot noot"
 
 [node name="Button" type="Button" parent="." unique_id=1855480497]
-offset_left = 9.0
-offset_top = 41.0
-offset_right = 326.0
-offset_bottom = 77.0
+offset_left = 5.0
+offset_top = 44.0
+offset_right = 398.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.9301126, 0.3307262, 0.65033865, 1)
 theme_override_fonts/font = ExtResource("3_r2pta")
+theme_override_font_sizes/font_size = 23
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cqrfi")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_cqrfi")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_cqrfi")
@@ -76,9 +95,9 @@ alignment = 2
 text_direction = 2
 
 [node name="checkmark" type="Sprite2D" parent="." unique_id=1258095904]
-position = Vector2(361, 61)
-scale = Vector2(0.13593753, 0.14083336)
-texture = ExtResource("4_at2ej")
+position = Vector2(434.00003, 61.000004)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("5_deqal")
 
 [node name="Panel" type="Panel" parent="." unique_id=392434104]
 visible = false

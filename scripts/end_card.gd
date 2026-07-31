@@ -7,7 +7,7 @@ extends Node2D
 @onready var panel_2: Panel = $Panel2
 
 @export var color = Color("ff0000ff")
-@export var texture = "res://icon.svg"
+@export var texture = "res://assets/images/Illustration 20260731 3_1.PNG"
 @export var text = "LOADING..."
 
 # Called when the node enters the scene tree for the first time.

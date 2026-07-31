@@ -1,7 +1,7 @@
 extends Node2D
 @export var color:Color = Color("5b76b4ff")
 @export var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
-@export var texture = "res://icon.svg"
+@export var texture = "res://assets/images/Illustration 20260731 3_1.PNG"
 var index = 0 
 @onready var panel: Panel = $visual/Panel
 @onready var color_rect: Panel = $visual/ColorRect

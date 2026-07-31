@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cs6b37rus1e3u"]
 
 [ext_resource type="Script" uid="uid://c0f1mew0kppbm" path="res://scripts/curcard.gd" id="1_fc11w"]
-[ext_resource type="Texture2D" uid="uid://bdp5yi60dfikk" path="res://icon.svg" id="2_sgo3p"]
+[ext_resource type="Texture2D" uid="uid://butluupmketcx" path="res://assets/images/Illustration 20260731 3_1.PNG" id="2_sgo3p"]
+[ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_janb2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_janb2"]
 bg_color = Color(1, 1, 1, 1)
@@ -55,17 +56,19 @@ offset_bottom = 160.00002
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_fayqi")
 
-[node name="Sprite2D" type="Sprite2D" parent="curcard" unique_id=542930044]
-position = Vector2(-1, -68.57143)
-scale = Vector2(0.99999994, 0.99999994)
+[node name="Sprite2D" type="Sprite2D" parent="curcard" unique_id=817612723]
+position = Vector2(-1.0000064, -36.904793)
+scale = Vector2(0.09999999, 0.09999999)
 texture = ExtResource("2_sgo3p")
 
-[node name="Label" type="Label" parent="curcard" unique_id=403837620]
-offset_left = -34.28572
-offset_top = 64.28571
-offset_right = 103.71428
-offset_bottom = 203.2857
+[node name="Label" type="Label" parent="curcard" unique_id=1663975313]
+offset_left = -86.66665
+offset_top = 73.33332
+offset_right = 120.00001
+offset_bottom = 212.33331
 mouse_filter = 1
-theme_override_colors/font_color = Color(0.093160845, 0.093160845, 0.09316083, 1)
-text = "meow "
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_janb2")
+theme_override_font_sizes/font_size = 43
+text = "LOADING..."
 autowrap_mode = 3

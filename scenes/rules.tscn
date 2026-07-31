@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="1_66h5d"]
 [ext_resource type="Script" uid="uid://b86qr6ym4yuhl" path="res://scripts/rules.gd" id="1_kpkwe"]
 [ext_resource type="PackedScene" uid="uid://djob6sk2ll2ge" path="res://scenes/end_card.tscn" id="2_1m7fe"]
+[ext_resource type="Texture2D" uid="uid://btkal55vi7mfg" path="res://assets/images/Illustration 20260731 2.PNG" id="2_gro0m"]
 [ext_resource type="Texture2D" uid="uid://chkuqijif5ym3" path="res://assets/images/game-interface.png" id="4_gro0m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqrfi"]
@@ -18,12 +19,10 @@ border_color = Color(0.8901961, 0.20392157, 0, 1)
 [node name="Rules" type="Node2D" unique_id=1459682441]
 script = ExtResource("1_kpkwe")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=415045154]
-offset_left = -36.0
-offset_top = -32.0
-offset_right = 1172.0
-offset_bottom = 682.0
-color = Color(0.14911404, 0.14911404, 0.14911404, 1)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1118662552]
+position = Vector2(566, 323.5)
+scale = Vector2(0.5, 0.41906476)
+texture = ExtResource("2_gro0m")
 
 [node name="page 1" type="Node2D" parent="." unique_id=532095466]
 
@@ -48,24 +47,28 @@ a special card (THEIF!/STAR)
 position = Vector2(188, 290)
 scale = Vector2(0.5, 0.5)
 color = Color(0.7137255, 0.34117648, 0.827451, 1)
+texture = "res://assets/images/Illustration 20260731 3_8.PNG"
 text = "1"
 
 [node name="card4" parent="page 1" unique_id=2081975234 instance=ExtResource("2_1m7fe")]
 position = Vector2(356, 292)
 scale = Vector2(0.5, 0.5)
 color = Color(0.6039216, 0.52156866, 0.3137255, 1)
+texture = "res://assets/images/Illustration 20260731 3_9.PNG"
 text = "3"
 
 [node name="card5" parent="page 1" unique_id=674828571 instance=ExtResource("2_1m7fe")]
 position = Vector2(520, 291)
 scale = Vector2(0.5, 0.5)
 color = Color(0.39607844, 0.5294118, 0.7764706, 1)
+texture = "res://assets/images/Illustration 20260731 3_5.PNG"
 text = "5"
 
 [node name="card6" parent="page 1" unique_id=2147255058 instance=ExtResource("2_1m7fe")]
 position = Vector2(686, 288)
 scale = Vector2(0.5, 0.5)
 color = Color(0.8509804, 0.3019608, 0.5176471, 1)
+texture = "res://assets/images/Illustration 20260731 3_10.PNG"
 text = "7"
 
 [node name="card7" parent="page 1" unique_id=645371942 instance=ExtResource("2_1m7fe")]
@@ -73,6 +76,7 @@ position = Vector2(630.00006, 551)
 rotation = 0.429351
 scale = Vector2(0.5, 0.5)
 color = Color(0.90588236, 0.74509805, 0.72156864, 1)
+texture = "res://assets/images/Illustration 20260731 3_6.PNG"
 text = "STAR"
 
 [node name="card8" parent="page 1" unique_id=1914296534 instance=ExtResource("2_1m7fe")]
@@ -80,6 +84,7 @@ position = Vector2(509, 534)
 rotation = -0.36826447
 scale = Vector2(0.5, 0.5)
 color = Color(0.3372549, 0.6, 0.43137255, 1)
+texture = "res://assets/images/Illustration 20260731 3_2.PNG"
 text = "THEIF!"
 
 [node name="Label2" type="Label" parent="page 1" unique_id=1885794196]
@@ -241,6 +246,7 @@ text = "Special Cards!"
 position = Vector2(135.00003, 326)
 scale = Vector2(0.8, 0.8)
 color = Color(0.90588236, 0.74509805, 0.72156864, 1)
+texture = "res://assets/images/Illustration 20260731 3_6.PNG"
 text = "STAR"
 
 [node name="Label2" type="Label" parent="page 4" unique_id=799544600]
@@ -257,6 +263,7 @@ opponents cards for a moment!"
 position = Vector2(992, 334)
 scale = Vector2(0.8, 0.8)
 color = Color(0.3372549, 0.6, 0.43137255, 1)
+texture = "res://assets/images/Illustration 20260731 3_2.PNG"
 text = "THEIF!"
 
 [node name="Label4" type="Label" parent="page 4" unique_id=1140140281]
@@ -309,6 +316,7 @@ position = Vector2(956, 322.99994)
 rotation = -0.31764993
 scale = Vector2(0.5, 0.5)
 color = Color(0.3372549, 0.6, 0.43137255, 1)
+texture = "res://assets/images/Illustration 20260731 3_2.PNG"
 text = "THEIF!"
 
 [node name="Label2" type="Label" parent="page 5" unique_id=493618737]
@@ -328,20 +336,20 @@ position = Vector2(1040.0001, 513)
 rotation = 0.24958208
 scale = Vector2(0.47, 0.47)
 color = Color(0.90588236, 0.74509805, 0.72156864, 1)
+texture = "res://assets/images/Illustration 20260731 3_6.PNG"
 text = "STAR"
 
 [node name="page 6" type="Node2D" parent="." unique_id=749196496]
 visible = false
 
 [node name="Label2" type="Label" parent="page 6" unique_id=1816039038]
-offset_left = 450.0
-offset_top = 228.0
-offset_right = 1599.0
-offset_bottom = 445.0
+offset_left = 240.0
+offset_top = 117.0
+offset_right = 1389.0
+offset_bottom = 614.0
 theme_override_fonts/font = ExtResource("1_66h5d")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 70
 text = "Thats all! 
-
 
 Have fun playing!"
 
