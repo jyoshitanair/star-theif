@@ -1,4 +1,5 @@
 extends Node
+var mayclick = false
 var finished_players = []
 var changing_scenes = false
 var total_turns = 0 
@@ -192,7 +193,9 @@ func reset() -> void:
 	ready_players.clear()
 	done = false
 	clicked_before = false
-func is_possible(card) -> bool: 
+func is_possible(index, player) -> bool: 
+	var card_set = Manager.player1cards if player == 1 else Manager.player2cards
+	var card = card_set[index]
 	if changing_scenes:
 		return false
 	var my_term = card[0]
@@ -204,7 +207,7 @@ func is_possible(card) -> bool:
 	elif my_term == needed_term:
 		return true
 	elif my_term == "THEIF!" || needed_term == "THEIF!":
-		theif = true 
+		#theif = true 
 		return true
 	elif my_term == "STAR" || needed_term == "STAR" :
 		return true

@@ -4,6 +4,8 @@ var connected = false
 @onready var button: Button = $Button
 var connected_once = false
 @onready var label_2: Label = $Label2
+@onready var button_2: Button = $Button2
+@onready var button_3: Button = $Button3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,7 +24,8 @@ func _on_button_pressed() -> void:
 	label.text = code
 	connected_once = true
 	button.disabled = true
-
+	button_2.disabled = true
+	button_3.disabled = true
 
 func _on_button_2_pressed() -> void:
 	#menu

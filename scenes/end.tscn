@@ -280,6 +280,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="winner" type="Panel" parent="." unique_id=164220061]
+visible = false
 offset_left = 11.0
 offset_top = 239.0
 offset_right = 1134.0

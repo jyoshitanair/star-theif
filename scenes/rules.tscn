@@ -72,7 +72,7 @@ texture = "res://assets/images/Illustration 20260731 3_10.PNG"
 text = "7"
 
 [node name="card7" parent="page 1" unique_id=645371942 instance=ExtResource("2_1m7fe")]
-position = Vector2(630.00006, 551)
+position = Vector2(641.00006, 555)
 rotation = 0.429351
 scale = Vector2(0.5, 0.5)
 color = Color(0.90588236, 0.74509805, 0.72156864, 1)
@@ -80,7 +80,7 @@ texture = "res://assets/images/Illustration 20260731 3_6.PNG"
 text = "STAR"
 
 [node name="card8" parent="page 1" unique_id=1914296534 instance=ExtResource("2_1m7fe")]
-position = Vector2(509, 534)
+position = Vector2(521, 516)
 rotation = -0.36826447
 scale = Vector2(0.5, 0.5)
 color = Color(0.3372549, 0.6, 0.43137255, 1)
@@ -88,18 +88,18 @@ texture = "res://assets/images/Illustration 20260731 3_2.PNG"
 text = "THEIF!"
 
 [node name="Label2" type="Label" parent="page 1" unique_id=1885794196]
-offset_left = 828.0
-offset_top = 261.0
-offset_right = 1037.0
-offset_bottom = 323.0
+offset_left = 816.0
+offset_top = 257.0
+offset_right = 1025.0
+offset_bottom = 319.0
 text = "Number cards get one of
 these four unique colors!"
 
 [node name="Label3" type="Label" parent="page 1" unique_id=375183526]
-offset_left = 207.0
-offset_top = 542.0
-offset_right = 416.0
-offset_bottom = 604.0
+offset_left = 204.0
+offset_top = 537.0
+offset_right = 413.0
+offset_bottom = 599.0
 text = "STAR/THEIF! Cards have
 unique colors too!"
 
@@ -112,14 +112,15 @@ scale = Vector2(1.0140351, 1.028125)
 texture = ExtResource("4_gro0m")
 
 [node name="Label" type="Label" parent="page 2" unique_id=68964972]
-offset_left = 7.0
-offset_top = 156.0
-offset_right = 233.0
-offset_bottom = 205.0
-theme_override_colors/font_color = Color(0.8901961, 0.20392157, 0, 1)
-theme_override_colors/font_outline_color = Color(0.26839146, 0.03381858, 0, 1)
-theme_override_constants/outline_size = 5
-text = "Informatino on current game"
+offset_left = 17.0
+offset_top = 174.0
+offset_right = 383.0
+offset_bottom = 223.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 26
+text = "Information on current game"
 
 [node name="Label2" type="Label" parent="page 2" unique_id=113381251]
 offset_left = 448.0
@@ -134,8 +135,8 @@ text = "This is what the game interface looks like."
 
 [node name="Panel" type="Panel" parent="page 2" unique_id=24655769]
 offset_left = -4.0
-offset_right = 347.0
-offset_bottom = 142.0
+offset_right = 425.0
+offset_bottom = 157.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 
 [node name="Panel" type="Panel" parent="page 2/Panel" unique_id=1397926934]
@@ -147,14 +148,14 @@ offset_bottom = 439.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 
 [node name="Label3" type="Label" parent="page 2" unique_id=2052498698]
-offset_left = 695.0
-offset_top = 180.0
-offset_right = 1098.0
-offset_bottom = 376.0
-theme_override_colors/font_color = Color(0.8901961, 0.20392157, 0, 1)
-theme_override_colors/font_outline_color = Color(0.26839146, 0.03381858, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 17
+offset_left = 670.0
+offset_top = 209.0
+offset_right = 1145.0
+offset_bottom = 423.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.41368303, 0.4136831, 0.41368303, 1)
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 20
 text = "The current card. 
 
 When it's your turn play a card of the same color 
@@ -176,17 +177,17 @@ offset_left = 31.0
 offset_top = 459.0
 offset_right = 734.0
 offset_bottom = 508.0
-theme_override_colors/font_color = Color(0.8901961, 0.20392157, 0, 1)
-theme_override_colors/font_outline_color = Color(0.26839146, 0.03381858, 0, 1)
-theme_override_constants/outline_size = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 11
 theme_override_font_sizes/font_size = 25
 text = "If it's possible you may click one of these cards to place ontop. This gives you +1 base point!"
 
 [node name="Label3" type="Label" parent="page 3" unique_id=298585785]
-offset_left = 414.0
-offset_top = 45.0
-offset_right = 1496.0
-offset_bottom = 102.0
+offset_left = 804.0
+offset_top = 16.0
+offset_right = 1886.0
+offset_bottom = 73.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("1_66h5d")
@@ -208,15 +209,16 @@ offset_bottom = 437.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 
 [node name="Label4" type="Label" parent="page 3" unique_id=721183215]
-offset_left = 683.0
-offset_top = 286.0
-offset_right = 1086.0
-offset_bottom = 349.0
-theme_override_colors/font_color = Color(0.8901961, 0.20392157, 0, 1)
-theme_override_colors/font_outline_color = Color(0.26839146, 0.03381858, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 17
-text = "Or, click this button and a card to switch. 
+offset_left = 645.0
+offset_top = 253.0
+offset_right = 1132.0
+offset_bottom = 361.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 23
+text = "Or, click this button and a card to switch it
+and forfeit your turn! 
 This gives you + 0 base points."
 horizontal_alignment = 2
 
@@ -284,6 +286,9 @@ offset_left = 12.0
 offset_top = 86.0
 offset_right = 753.0
 offset_bottom = 515.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 18
 theme_override_font_sizes/font_size = 29
 text = "
 
@@ -324,6 +329,9 @@ offset_left = 13.0
 offset_top = 12.0
 offset_right = 1162.0
 offset_bottom = 229.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("1_66h5d")
 theme_override_font_sizes/font_size = 25
 text = "After 20 turns ( both people played = 1 turn) the game ends.

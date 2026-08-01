@@ -1,4 +1,7 @@
 extends Node2D
+var locked = false
+@onready var collision: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var area_2d: Area2D = $Area2D
 @export var color:Color = Color("e7beb8ff")
 @export var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
 @export var texture: Texture2D = preload("res://icon.svg")
@@ -54,7 +57,7 @@ func _process(delta: float) -> void:
 	if lerper: 
 		position.y = lerp(position.y,lerpTarg, delta*13)
 		if is_equal_approx(position.y, lerpTarg):
-			if cardType[0] == "STAR":
+			if cardType[0]== "STAR":
 				#star stuff 
 				var other = get_tree().get_first_node_in_group("p2")
 				busy = true 
@@ -75,9 +78,9 @@ func _process(delta: float) -> void:
 			lerper2 = true
 			panel_2.show()
 			panel.hide()
-			if cardType[0] != "THEIF!":
-				Manager.change_cur_card.rpc(cardType)
-			else: 
+			#if cardType[0] != "THEIF!":
+			Manager.change_cur_card.rpc(cardType)
+			if cardType[0] == "THEIF!": 
 				#theif stuff
 				var other = get_tree().get_first_node_in_group("fightbar")
 				if other and "button" in other:
@@ -90,15 +93,18 @@ func _process(delta: float) -> void:
 			var old_card = cardType[0]
 			var played_theif = (old_card == "THEIF!")
 			new_randi_card()
-			if Network.is_host:
-				Manager.update_set.rpc(1,cardType, index)
-			else:
-				Manager.update_set.rpc(2,cardType, index)
+			#if Network.is_host:
+				#Manager.update_set.rpc(1,cardType, index)
+			#else:
+				#Manager.update_set.rpc(2,cardType, index)
 			if not played_theif:
 				print("GOING TO TOGGLEE")
 				Manager.js_toggle_turn.rpc()
 			lerper2 = false
 			Manager.local_click = false
+			locked = false
+			var player = 1 if Network.is_host else 2
+			Manager.updatepoints.rpc(player)
 	good = false
 	if Manager.p1 != null && Manager.p2 != null:
 		if multiplayer.get_unique_id() == Manager.p1:
@@ -109,11 +115,12 @@ func _process(delta: float) -> void:
 			#am p2
 			if !Manager.p1turn:
 				good = true
-	if good && Manager.done && bar.done && ! Manager.clicked_before:
+	if good && Manager.done && bar.done && ! Manager.clicked_before and !locked:
 		if current:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
+				locked = true
 				Manager.local_click = true
 				bar.button.disabled = true
 				if Manager.theif_mode:
@@ -123,12 +130,17 @@ func _process(delta: float) -> void:
 					Manager.clicked_before = true
 					Manager.local_click = false
 					Manager.theif_mode = false
+					current = false
+					old_current = false
+					visual.position = down
+					panel_2.show()
+					panel.hide()
 					return
 					#old_card = cardType
-				if bar.switch_mode == true: 
+				if bar.switch_mode == true and bar.loaded: 
 					var p1orp2 = 1 if Network.is_host else 2
 					new_randi_card()
-					Manager.update_set.rpc(p1orp2, cardType,index)	
+					#Manager.update_set.rpc(p1orp2, cardType,index)	
 					Manager.js_toggle_turn.rpc()
 					bar.switch_mode = false
 					bar.panel_3.visible = false
@@ -138,14 +150,16 @@ func _process(delta: float) -> void:
 					panel_2.show()
 					panel.hide()
 					Manager.local_click = false
+					bar.loaded = false
 					return
 				####
-				if Manager.is_possible(cardType) == false:
+				var p1orp2 = 1 if Network.is_host else 2
+				if Manager.is_possible(index, p1orp2) == false:
 					bar.invalid_card()
 					Manager.local_click = false
 					bar.button.disabled = false
-					return
-				Manager.clicked_before = true	
+					locked = false
+					return	
 				if cardType[0] == "THEIF!":
 					Manager.theif_mode = true
 					emit_signal("clicked")
@@ -156,6 +170,7 @@ func _process(delta: float) -> void:
 					visual.position = down
 					return
 				else:
+					Manager.clicked_before = true
 					Manager.card_clicked = cardType
 					emit_signal("clicked")
 					lerper = true
@@ -163,8 +178,6 @@ func _process(delta: float) -> void:
 					current = false
 					old_current = false
 					visual.position = down
-					var player = 1 if Network.is_host else 2
-					Manager.updatepoints.rpc(player)
 					return
 		else:
 			panel_2.show()
@@ -225,6 +238,11 @@ func new_randi_card()-> void :
 	var style3 = color_rect_2.get_theme_stylebox("panel").duplicate()
 	style3.bg_color = color
 	color_rect_2.add_theme_stylebox_override("panel", style3)
+	
+	##ALWAYS ALWAYS UPDATE!!
+	if index != null:
+		var p1orp2 = 1 if Network.is_host else 2
+		Manager.update_set.rpc(p1orp2, cardType, index)
 func update_ui(card) -> void:
 	if Manager.changing_scenes:
 		return
@@ -235,6 +253,7 @@ func update_ui(card) -> void:
 	_apply_panel_color(color_rect, color.darkened(0.4))
 	_apply_panel_color(panel, color.lightened(0.4))
 	_apply_panel_color(color_rect_2, color)
+	locked = false
 func _apply_panel_color(targetNode, color) -> void: 
 		if Manager.changing_scenes:
 			return

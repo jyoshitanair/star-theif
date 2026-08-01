@@ -1,8 +1,12 @@
 extends Node2D
 @onready var label: Label = $Label
+@onready var button: Button = $Button
+@onready var rules: Node2D = $"page 5"
 var player = preload("res://scenes/fight.tscn")
 var player2 = preload("res://scenes/otherfight.tscn")
 var connected_players = []
+@onready var start_but: Button = $Button2
+@onready var fatty_but: Button = $"page 5/Button"
 @onready var player_spawn: Node2D = $"player spawn"
 @onready var label_2: Label = $Label2
 @onready var label_3: Label = $Label3
@@ -16,6 +20,7 @@ var maincard_loaded = false
 var maincard = preload("res://scenes/curcard.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	rules.z_index = 100
 	checkmark.modulate.a = 0.0
 	spawn.call_deferred(multiplayer.get_unique_id())
 	multiplayer.peer_connected.connect(spawn)
@@ -100,3 +105,14 @@ func tweener(end) -> void:
 	await tween.finished
 	tween.kill()
 	
+func _on_button_2_pressed() -> void:
+	if rules.visible == true:
+		rules.visible = false
+		fatty_but.disabled = true
+		start_but.disabled = false
+		button.disabled = false
+	else:
+		rules.visible = true
+		start_but.disabled = true
+		fatty_but.disabled = false
+		button.disabled = true

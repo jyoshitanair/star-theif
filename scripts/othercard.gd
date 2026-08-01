@@ -10,7 +10,6 @@ var index = 0
 @onready var color_rect_2: Panel = $visual/ColorRect2
 @onready var sprite_2d: Sprite2D = $visual/Sprite2D
 @onready var label: Label = $visual/Label
-var mayclick = false
 var current = false
 var old_card
 var bar
@@ -48,7 +47,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Manager.changing_scenes:
 		return
-	if current and mayclick:
+	if current and Manager.mayclick:
 		print("PERMISSION")
 		panel.show()
 		panel_2.hide()
@@ -58,8 +57,8 @@ func _process(delta: float) -> void:
 		panel_2.show()
 		visual.position.y = down
 	if Input.is_action_just_pressed("clicked"):
-		if mayclick and current: 
-			mayclick = false
+		if Manager.mayclick and current: 
+			Manager.mayclick = false
 			print("IVE BEEN CLICKED ",old_card )
 			var temp_index = 4 - index
 				##cards are stored 0,1,2,3,4. displayed 4,3,2,1,0.
@@ -78,7 +77,7 @@ func _process(delta: float) -> void:
 func _ask_to_switch(theirindex) -> void:
 	if Manager.changing_scenes:
 		return 
-	mayclick = true 
+	Manager.mayclick = true 
 	old_card = theirindex
 	get_tree().get_first_node_in_group("fightbar").show_other_card()
 func _on_area_2d_mouse_entered() -> void:
