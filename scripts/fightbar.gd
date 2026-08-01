@@ -71,7 +71,7 @@ func _process(delta: float) -> void:
 			if !Manager.p1turn:
 				good = true
 				
-	if !good || switch_mode || Manager.local_click || !Manager.done: 
+	if !good || switch_mode || Manager.local_click || !Manager.done || Manager.theif_mode: 
 		button.disabled = true
 	else: 
 		button.disabled = false

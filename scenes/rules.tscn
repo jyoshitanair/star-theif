@@ -436,7 +436,6 @@ text = "Thats all!
 Have fun playing!"
 
 [node name="Button" type="Button" parent="." unique_id=1456775515]
-visible = false
 offset_left = -29.0
 offset_top = -25.0
 offset_right = 1172.0

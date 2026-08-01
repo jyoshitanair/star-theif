@@ -156,6 +156,7 @@ text = "meow "
 autowrap_mode = 3
 
 [node name="Button" type="Button" parent="." unique_id=540692585]
+z_index = -1
 offset_left = 913.0
 offset_top = 354.0
 offset_right = 1106.0

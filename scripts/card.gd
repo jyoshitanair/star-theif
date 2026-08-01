@@ -1,5 +1,6 @@
 extends Node2D
 var locked = false
+signal finished 
 @onready var collision: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var area_2d: Area2D = $Area2D
 @export var color:Color = Color("e7beb8ff")
@@ -50,9 +51,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Manager.changing_scenes:
-		var player = 1 if Network.is_host else 2
-		print("UPDATE MADE IT")
-		Manager.updatepoints.rpc(player)
 		return
 	if busy: 
 		return 
@@ -89,9 +87,6 @@ func _process(delta: float) -> void:
 					other.button.disabled = true 
 				bar.show_theif_card()
 				Manager.clicked_before = false
-				var player = 1 if Network.is_host else 2
-				print("UPDATE MADE IT")
-				Manager.updatepoints.rpc(player)
 	if lerper2:
 		position.y = lerp(position.y,lerp2Targ, delta*13)
 		if is_equal_approx(position.y, lerp2Targ):
@@ -108,6 +103,10 @@ func _process(delta: float) -> void:
 			lerper2 = false
 			Manager.local_click = false
 			locked = false
+			var player = 1 if Network.is_host else 2
+			print("UPDATE MADE IT")
+			Manager.updatepoints.rpc(player)
+			emit_signal("finished")
 	good = false
 	if Manager.p1 != null && Manager.p2 != null:
 		if multiplayer.get_unique_id() == Manager.p1:

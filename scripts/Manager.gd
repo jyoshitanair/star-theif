@@ -64,6 +64,12 @@ func js_toggle_turn() -> void:
 	clicked_before = false
 	if total_turns == 20:
 		#ITS BEEN TEN MOVES!
+		var fightbar = get_tree().get_first_node_in_group("fightbar")
+		if fightbar:
+			for c in fightbar.cards:
+				if c and (c.lerper or c.lerper2):
+					await c.finished
+					break
 		changing_scenes = true
 		var node_show = get_tree().get_first_node_in_group("fightbar")
 		node_show.show_wait()
