@@ -253,6 +253,12 @@ func _player_joined(id: int) -> void:
 
 func _player_left(id: int) -> void:
 	print("[MULTIPLAYER] Peer left. Peer ID: ", id)
+	
+	# Promote remaining player to Host status locally
+	is_host = true
+	
+	if peer.has_peer(id):
+		peer.remove_peer(id)
 
 # --- HELPER CODE GENERATOR ---
 

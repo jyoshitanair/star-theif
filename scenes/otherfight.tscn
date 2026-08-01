@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dubgistxl2rpq" path="res://scenes/othercard.tscn" id="2_0y6ex"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4i2l"]
-bg_color = Color(0.60784316, 0.5882353, 0.64705884, 0.75686276)
+bg_color = Color(0.84756565, 0.48818004, 0.3848755, 0.75686276)
 corner_radius_top_left = 60
 corner_radius_top_right = 60
 corner_radius_bottom_right = 60

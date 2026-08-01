@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bdp5yi60dfikk" path="res://icon.svg" id="5_57w1i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqrfi"]
-bg_color = Color(0.60784316, 0.5882353, 0.64705884, 0.75686276)
+bg_color = Color(0.52349514, 0.5717926, 0.8826698, 0.75686276)
 corner_radius_top_left = 60
 corner_radius_top_right = 60
 corner_radius_bottom_right = 60

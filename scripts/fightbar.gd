@@ -3,7 +3,6 @@ extends Node2D
 @onready var panel_3: Panel = $Panel3
 @onready var button: Button = $Button
 @onready var panel_4: Panel = $Panel4
-var loaded = false
 var done = false
 var card = preload("res://scenes/card.tscn")
 var first1 = true
@@ -122,6 +121,7 @@ func _on_button_pressed() -> void:
 	if Manager.changing_scenes:
 		return
 	if Manager.done:
+		panel_3.get_node("Label").text = "Choose your card to swap"
 		switch_mode = true
 		panel_3.visible = true
 		button.disabled = true 

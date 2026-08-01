@@ -234,9 +234,18 @@ func clean_up(id) -> void:
 		return
 	# Unassign player slots
 	if p1 == id:
-		p1 = null
+		##IF PLAYER 1 LEAVES MAKE P2 THE NEW P1
+		p1 = p2
+		p2 = null
 	elif p2 == id:
 		p2 = null
+	## REASSING HOST
+	if multiplayer.get_unique_id() == p1:
+		Network.is_host = true
+	else:
+		Network.is_host = false
+		
+	##VARS
 	done = false
 	p1turn = true
 	clicked_before = false
@@ -249,6 +258,8 @@ func clean_up(id) -> void:
 	random_card = []
 	player1points = 0
 	player2points = 0
+	if Network.is_host:
+		newrandomcard()
 @rpc("any_peer", "call_local")
 func play_again(id) -> void: 
 	if !finished_players.has(id):

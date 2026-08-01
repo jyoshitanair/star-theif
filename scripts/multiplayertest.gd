@@ -2,11 +2,11 @@ extends Node2D
 @onready var label: Label = $Label
 @onready var button: Button = $Button
 @onready var rules: Node2D = $"page 5"
+@onready var fatty_but: Button = $"page 5/Button3"
 var player = preload("res://scenes/fight.tscn")
 var player2 = preload("res://scenes/otherfight.tscn")
 var connected_players = []
 @onready var start_but: Button = $Button2
-@onready var fatty_but: Button = $"page 5/Button"
 @onready var player_spawn: Node2D = $"player spawn"
 @onready var label_2: Label = $Label2
 @onready var label_3: Label = $Label3
@@ -20,6 +20,8 @@ var maincard_loaded = false
 var maincard = preload("res://scenes/curcard.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	start_but.disabled = false
+	fatty_but.disabled = true
 	rules.z_index = 100
 	checkmark.modulate.a = 0.0
 	spawn.call_deferred(multiplayer.get_unique_id())
@@ -108,8 +110,20 @@ func tweener(end) -> void:
 func _on_button_2_pressed() -> void:
 	if rules.visible == true:
 		rules.visible = false
-		fatty_but.disabled = true
 		start_but.disabled = false
+		fatty_but.disabled = true
+		button.disabled = false
+	else:
+		rules.visible = true
+		start_but.disabled = true
+		fatty_but.disabled = false
+		button.disabled = true
+
+func _on_button_3_pressed() -> void:
+	if rules.visible == true:
+		rules.visible = false
+		start_but.disabled = false
+		fatty_but.disabled = true
 		button.disabled = false
 	else:
 		rules.visible = true

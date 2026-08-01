@@ -137,7 +137,8 @@ func _process(delta: float) -> void:
 					panel.hide()
 					return
 					#old_card = cardType
-				if bar.switch_mode == true and bar.loaded: 
+				if bar.switch_mode == true and bar.done: 
+					print("IM SWITCHING")
 					var p1orp2 = 1 if Network.is_host else 2
 					new_randi_card()
 					#Manager.update_set.rpc(p1orp2, cardType,index)	
@@ -150,7 +151,6 @@ func _process(delta: float) -> void:
 					panel_2.show()
 					panel.hide()
 					Manager.local_click = false
-					bar.loaded = false
 					return
 				####
 				var p1orp2 = 1 if Network.is_host else 2
