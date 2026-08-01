@@ -1,4 +1,8 @@
 extends Node
+## AUDIO 
+var audio
+var music_path = preload("res://assets/music/purrplecat-cat-nap-lofi-hiphop-beats-199252.mp3")
+###
 var mayclick = false
 var finished_players = []
 var changing_scenes = false
@@ -40,15 +44,23 @@ var card_clicked
 var color
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	audio = AudioStreamPlayer.new()
+	add_child(audio)
+	audio.stream = music_path
+	audio.volume_db = -5
+	play_song()
 	multiplayer.peer_connected.connect(give)
+func play_song() -> void: 
+	if audio and not audio.playing:
+		audio.play()
+func _process(delta: float) -> void:
+	play_song()
 @rpc("any_peer", "call_local")
 func js_toggle_turn() -> void: 
 	if changing_scenes:
 		return
-	print("CALLED BY ", multiplayer.get_unique_id())
 	p1turn = !p1turn
 	total_turns += 1
-	print(p1turn)
 	clicked_before = false
 	if total_turns == 20:
 		#ITS BEEN TEN MOVES!
@@ -74,7 +86,7 @@ func switcheroo(p1_index, p2_index) -> void:
 	if changing_scenes:
 		return
 	if p1_index >= player1cards.size() or  p2_index >= player2cards.size():
-		print("WTF ARE WE DOING???!")
+		return
 	var temp = player1cards[p1_index]
 	var temp2 = player2cards[p2_index]
 	player1cards[p1_index] = temp2
@@ -90,10 +102,8 @@ func switcheroo(p1_index, p2_index) -> void:
 	for card in fightbar.cards:
 		if card.index == p1_index && p1calling:
 			##this is the node that started it!!
-			print("PLayer 1~ ", player1cards[p1_index])
 			card.update_ui(player1cards[p1_index])
 		if card.index == p2_index && !p1calling:
-			print("PLayer 2~ ", player2cards[p2_index])
 			card.update_ui(player2cards[p2_index])
 	##UPDATE OTHER PLAYER UI!!
 	
@@ -114,10 +124,6 @@ func updatepoints(p1o2p2)-> void:
 func setcards(pe, sender)->void: 
 	if changing_scenes:
 		return
-	print("SET CARDS CALLED??")
-	print("p1 = ",p1)
-	print("p2 = ",p2)
-	print("sender = ",sender)
 	if sender == p1:
 		player1cards = pe.duplicate(true)
 	if sender == p2:
@@ -146,7 +152,6 @@ func test_ready(it) -> void:
 #sending data over the internet cause yeah :/
 @rpc("any_peer", "call_remote")
 func handle_click(index) -> void:
-	print("HANDLE CLICK ", index) 
 	if changing_scenes:
 		return 
 	pass_index.emit(index)
@@ -164,7 +169,6 @@ func newrandomcard() -> void:
 	#set up random card in the middle at the start
 	#only host
 	if p1 == multiplayer.get_unique_id():
-		print("MANAGER")
 		randomize()
 		color = Color(possible_colors[randi_range(0,3)])
 		var temp = arraytocard[randi_range(0,8)]
@@ -173,14 +177,12 @@ func newrandomcard() -> void:
 		if temp[0] == "STAR":
 			color = Color("e7beb8ff")
 		random_card = [temp[0], temp[1], color.to_html()]
-		print("random:, ", random_card)
 		change_cur_card.rpc(random_card)
 @rpc("any_peer", "call_local")
 func change_cur_card(random_card2) -> void: 
 	if changing_scenes:
 		return
 	random_card = random_card2
-	print("anything?? ", random_card)
 	for curcard in get_tree().get_nodes_in_group("main_card"):
 		curcard.update_ui()
 ##updating local var 
@@ -212,10 +214,6 @@ func is_possible(index, player) -> bool:
 	elif my_term == "STAR" || needed_term == "STAR" :
 		return true
 	else:
-		print("my color ",my_color)
-		print("my term ",my_term)
-		print("the color ",needed_color)
-		print("the term ",needed_term)
 		return false
 @rpc("any_peer", "call_local")
 func update_set(p1orp2, cardType,index) -> void:
@@ -223,7 +221,6 @@ func update_set(p1orp2, cardType,index) -> void:
 		return
 	var full 
 	if p1orp2 == 1:
-		print("UPDATING PLAYER 1 CARDS")
 		full = Manager.player1cards
 	if p1orp2 == 2:
 		full = Manager.player2cards

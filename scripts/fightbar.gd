@@ -39,7 +39,6 @@ func _ready() -> void:
 		#set up array of what cars u have
 		all_cards.append(card_node.cardType)
 		if card_node == null:
-			print(card_node)
 			return
 		var card_name ="loaded_card%d"%i
 		var card_name_end ="loaded_card_end%d"%i
@@ -101,7 +100,6 @@ func _on_click(index) -> void:
 	if Manager.changing_scenes:
 		return
 	Manager.handle_click.rpc(index)
-	print("clicked card ", index)	
 	Manager.clicked_before = true	
 func invalid_card() -> void: 
 	if Manager.changing_scenes:
@@ -135,9 +133,7 @@ func show_theif_card() -> void:
 func show_other_card() -> void: 
 	if Manager.changing_scenes:
 		return
-	print('called show other card')
 	if Manager.done:
-		print('inint')
 		panel_3.get_node("Label").text = "Choose their card to swap"
 		panel_3.visible = true
 func show_wait() -> void: 

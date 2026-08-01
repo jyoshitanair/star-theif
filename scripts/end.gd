@@ -87,6 +87,5 @@ func _process(delta: float) -> void:
 			winnerp.get_node("Label").text = winner
 			result_calced = true
 func _on_button_pressed() -> void:
-	print("ONE PLAYER CLICKED IT")
 	button.disabled = true
 	Manager.play_again.rpc(multiplayer.get_unique_id())

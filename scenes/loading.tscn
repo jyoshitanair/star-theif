@@ -4,15 +4,10 @@
 [ext_resource type="FontFile" uid="uid://dlp4mqlqcwqri" path="res://addons/Cat_font-Regular.ttf" id="1_dhqfv"]
 [ext_resource type="Script" uid="uid://cmh4v3rcd8wcg" path="res://scripts/loading.gd" id="1_yt702"]
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_101rs"]
+[ext_resource type="Texture2D" uid="uid://c10hn4egpmccx" path="res://assets/images/Illustration 20260731 3_2.PNG" id="5_2ytni"]
+[ext_resource type="Texture2D" uid="uid://dmjl307w1w1wd" path="res://assets/images/Illustration 20260731 3_6.PNG" id="6_nxo4k"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhqfv"]
-
-[sub_resource type="GDScript" id="GDScript_2ytni"]
-script/source = "extends Button
-
-func _on_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://scenes/multiplayer.tscn\")
-"
 
 [node name="Loading" type="Node2D" unique_id=660497390]
 script = ExtResource("1_yt702")
@@ -21,31 +16,6 @@ script = ExtResource("1_yt702")
 position = Vector2(571.5, 324)
 scale = Vector2(0.4945561, 0.48441246)
 texture = ExtResource("1_101rs")
-
-[node name="Button" type="Button" parent="." unique_id=1843265971]
-offset_left = -213.0
-offset_top = -36.0
-offset_right = 1209.0
-offset_bottom = 681.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0.00091448426, 0.09649738, 0.4615426, 1)
-theme_override_constants/outline_size = 100
-theme_override_constants/h_separation = 1000
-theme_override_constants/line_spacing = 80
-theme_override_fonts/font = ExtResource("1_dhqfv")
-theme_override_font_sizes/font_size = 200
-theme_override_styles/normal = SubResource("StyleBoxEmpty_dhqfv")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_dhqfv")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_dhqfv")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dhqfv")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_dhqfv")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_dhqfv")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_dhqfv")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dhqfv")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_dhqfv")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_dhqfv")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_dhqfv")
-script = SubResource("GDScript_2ytni")
 
 [node name="Label" type="Label" parent="." unique_id=330505116]
 offset_left = 772.0
@@ -70,5 +40,41 @@ theme_override_fonts/font = ExtResource("1_dhqfv")
 theme_override_font_sizes/font_size = 225
 text = "Star 
 Theif"
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1615513784]
+position = Vector2(805.00006, 114.000015)
+rotation = -0.15009832
+scale = Vector2(0.099999994, 0.099999994)
+texture = ExtResource("5_2ytni")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1932189819]
+position = Vector2(984.00006, 475)
+rotation = 0.39793506
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_nxo4k")
+
+[node name="Button" type="Button" parent="." unique_id=1843265971]
+offset_left = -213.0
+offset_top = -36.0
+offset_right = 1209.0
+offset_bottom = 681.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.00091448426, 0.09649738, 0.4615426, 1)
+theme_override_constants/outline_size = 100
+theme_override_constants/h_separation = 1000
+theme_override_constants/line_spacing = 80
+theme_override_fonts/font = ExtResource("1_dhqfv")
+theme_override_font_sizes/font_size = 200
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dhqfv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_dhqfv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dhqfv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dhqfv")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dhqfv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_dhqfv")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_dhqfv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dhqfv")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dhqfv")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_dhqfv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dhqfv")
 
 [connection signal="pressed" from="Button" to="." method="_on_pressed"]

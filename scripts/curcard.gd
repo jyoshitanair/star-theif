@@ -28,7 +28,6 @@ var cardType = ["1","res://assets/images/Illustration 20260731 3_8.PNG", "3840b9
 func _ready() -> void:
 	add_to_group("main_card")
 	get_new_card.call_deferred()
-	print("jhellooo")
 
 func update_card(newcard) -> void:
 	if Manager.changing_scenes:
@@ -37,9 +36,7 @@ func update_card(newcard) -> void:
 func get_new_card() -> void: 
 	if Manager.changing_scenes:
 		return
-	print("Manager p1 ", Manager.p1)
 	if Manager.p1 == multiplayer.get_unique_id():
-		print("HELLOOOO??")
 		Manager.newrandomcard()
 func update_ui() -> void:
 	if Manager.changing_scenes:

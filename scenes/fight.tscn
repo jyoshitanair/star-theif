@@ -156,10 +156,10 @@ text = "meow "
 autowrap_mode = 3
 
 [node name="Button" type="Button" parent="." unique_id=540692585]
-offset_left = 880.0
-offset_top = 370.0
-offset_right = 1073.0
-offset_bottom = 424.0
+offset_left = 913.0
+offset_top = 354.0
+offset_right = 1106.0
+offset_bottom = 408.0
 theme_override_fonts/font = ExtResource("3_osnhv")
 theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_pom5n")

@@ -18,7 +18,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 func update_ui(card) -> void:
-	print("CHANGING, ", self.name, "TO ", card)
 	sprite_2d.texture = load(card[1])
 	label.text = card[0]
 	color = Color(card[2])

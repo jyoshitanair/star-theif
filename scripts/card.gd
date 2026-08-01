@@ -47,7 +47,6 @@ func _ready() -> void:
 	bar = get_parent()
 	up = Vector2(0, - 50)
 	down =Vector2.ZERO
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Manager.changing_scenes:
@@ -120,6 +119,7 @@ func _process(delta: float) -> void:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
+				print("CLICKED")
 				locked = true
 				Manager.local_click = true
 				bar.button.disabled = true
@@ -151,6 +151,7 @@ func _process(delta: float) -> void:
 					panel_2.show()
 					panel.hide()
 					Manager.local_click = false
+					locked = false
 					return
 				####
 				var p1orp2 = 1 if Network.is_host else 2
@@ -188,6 +189,7 @@ func _process(delta: float) -> void:
 
 func _on_area_2d_mouse_entered() -> void:
 	if ! Manager.clicked_before:
+		print("HOOVERING OVER IT!")
 		current = true
 	if Manager.changing_scenes:
 		current = false

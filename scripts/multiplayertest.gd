@@ -44,8 +44,6 @@ func _process(delta: float) -> void:
 	label_4.text = "Total Turns: %d/10"%[floori(Manager.total_turns/2)]
 	label_3.text = "Current Player Turn:  Player 1" if Manager.p1turn else "Current Player Turn:  Player 2"
 func spawn(id:int):
-	print("adding")
-	print(Network.is_host)
 	var player_is_host = false
 	if id == multiplayer.get_unique_id():
 		player_is_host = Network.is_host

@@ -31,15 +31,15 @@
 ## ACCESS
 
 ---
-* **Github Repo:** https://github.com/jyoshitanair/fish-game
+* **Github Repo:** https://github.com/jyoshitanair/star-theif
 
-* **Itch.io:** https://jyoshitanair.itch.io/fish
-(play in browser!)
+* **Itch.io:** RAHHH
+(playable in browser! no downloads!)
 
 	#### Note:
-	If your game is glitching/lagging when the fish moves it might be due to cache! I had the same issues
-	and switching to incognito, hard resetting the tab, or switching browsers might work.
-	For me it only seems to work on Google Chrome, but it might work on Edge/other for you 
+	It takes time to connect to the game and leave the game! Please give it some time to connect
+	the first time and once a player leaves it takes usually 20 seconds to a minute for it to register 
+	that the room is open again! 
 
 	
 ## DESCRIPTION
@@ -48,10 +48,10 @@
 * by: **jyoshitanair** (github)
 
 
-* project name: **Fish** 
+* project name: **STAR THEIF!** 
 
 
-* made in: **Godot** Version 4.6.1 Stable gd script
+* made in: **Godot** Version 4.7 Stable GD script
 
 
 * exported and playable in *itch.io*
@@ -59,206 +59,117 @@
 
 #### Quick Overview
 ---
-This game was super inspired by Genshin Impact and in the future I would love to add more of those cool elements into my game
-such as expressions/gestures for the npc, an attack system, gambling, and puzzles.
+This is a game super inspired by Poker and Uno. It is a 2 player multiplayer card game
+where you take turns placing cards of the same color/number in the center. Every time you play 
+a card you get one point. If you are unable to play a card, you can also switch out one of your
+card for a new card!
 
+There are also two special cards. A STAR card which allows you to see the other players deck and a 
+THEIF! card which allows you to STEAL a card from another players deck! Hence the name STAR THEIF!
 
-You are roleplaying as a fish who was abandoned by their terrible owner and just dumped into the ocean.
-But despite it all, you are determined to find your human again and get back in your fishbowl!
-So you set out on a mission in the huge ocean trying to find the city.
-Along the way you meet many new friends until you eventually make it back.
-But perhaps things may not be as good as you thought...?
+You keep playing for 10 turns and at the end of the game you can also get additional points based on your
+hand of 5 cards - like in poker! There are lots of differnt hands you can play that give you a point
+boost that ranges from 1 - 14 points!
 
 ## HOW TO PLAY
-* follow the hints at the top to know what to do
-* attack with l to create a bubble and launch it. the longer you hold the more damage
-* boost with b
-* move with WASD/Arrow Keys
-* zoom in and out on the map with the keypad/mouse wheel
-* right click on the map once to reset position and twice to reset the zoom
-* when in the mini game click q to make a shell (only one shell at a time)
-* enter to skip dialog
-* you can pause any time other than when in dialogue with p
+* If this is your first time then read the rules!
+* First Create a Room.
+* Then find a friend to play with and have them Join the room.
+* Once both players are in , the host, player 1, will be prompted to start with the first move
+* Keep taking turns playing until eventually 10 turns have passed!
+* From here you can play another game or stop :D
 
 #### HOW TO WIN
 
-* You have to make it back to the city and finish all the tasks at the top
+* You need to accumulate the most points!
 
 #### HOW TO LOSE
 
-* You get a second chance when you die in the minigame
-* The only way you can lose forever is if your health goes under 0 in the main game
-(so only when you die to the sharks)
+* If you have less points than the other player - you will loose :,(
 
 ## FEATURES
 ---
-* **Map:**
-1) Shows the player's current position in the open world
-2) Zoom in and out using the mouse wheel (clamped at 0.1 minimum - 3.0 maximum)
-3) Right click once to reset the position and another to reset the zoom settings
-4) Shows the NPCS and sharks even as they move! 
-5) Clamped to not show extra world :D
-6) Utilizes a subviewport and switching between a player camera and mouse camera to keep accurate positioning
+* **Multiplayer Game!:**
+1) Waoohhh so cool! This was my first time every setting up a multiplayer game
+2) It utilizes render to host it, and godot's built in WebRTC / Peer - Peer.
+3) All of the configuration files ARE fully written by ai :D This means the network file and the JS config file
+4) I did edit them a little bit for readability and had to constantly tweak it whenever I needed changes!
+5) New changes to my file are automatically synced by Render which is connected to this git repo!
 ---
-* **Player:**
-1) Movement using WASD/Arrow Keys
-2) Interact with NPCs using Enter, skip dialog using enter
-3) boost using the B key and there is a cooldown of 3 sec. 
-	- red when you can't boost, green when you can! 
-	- you can not boost when you are not moving. 
-	- you will boost in the direction that you were going (works with diagonal movement too) 
-4) Fire a Bubble using the L key
-	- the bar remains green as long as you can shoot/if there is a bubble in the world otherwise it is grey
-	- when the bubble gets freed a cooldown of 3 secs starts and you can only attack again when it's over
-	- it will move in the last 4 way direction you were going in(up,down.left,right) - not diagonal compatible
-	- if you are attacking and get attacked the attack will stop and you will have to wait for the cooldown to end again
-5) In the minigame use Q to create a shell
-	- You can only have one shell at a time
-6) Attacks deal 'randi_range(10,30)*area.get_parent().boostbar' damage
-	- random int from 10-30 * how long you held the boost bar for (0.1-3.0)
+* **Using RPC!:**
+1) This is a way to send data over the internet so that some variables that both players needed could be synced!
+2) I used this a LOT and its such a cool feature!
 ---
-* **NPCS:**	
-1) 4 unique NPCs - and return back to one
-2) all the same code but different paths to return to at the end/unique dialog situations/variables/sprites
-3) sorted into unique cutscene scenes
-4) enter to skip/fastforward dialog.
-5) can not pause during this time (you will listen to them yap)
-6) Trails to guide you to them!
+* **Player Scenes:**	
+1) A feature I'm pretty proud about is how I managed to sync data between the player secenes.
+2) This was especially hard with race conditions and especially the theif card!
+3) You are allowed to see your cards, but the other player is represented by the back of the cards!
+4) You can also hoover over the cards as a visual indicator of what you are about to choose!
+5) You can also switch your cards if you are unable to place anything!
+6) As you can see there are a LOT of different outcomes that can come based on what card is clicked and it's all handled using states in my card.gd script!
 ---
-* **Shark:**	
-1) Handles movement through 4 states: Normal, Chasing, Attacking and Retreating
-	-	Normal means that they don't see a player in their collision shape range so they just wander picking a 
-	random direction with match. There are also timers to switch directions randomly every once in a while when the shark is in the 
-	normal state! 
-	-	Chasing means that the player is now detected but not close enough to attack yet. the shark will get closer using lerp to 
-	speed up.
-	-	Attacking means that the player is close enough to attack and it will lunge forward again with the beloved lerp
-	and it will deal damage if it hits that's a random in from 5-20 (randi_range(5,20))
-	-	Retreating means that it has just finished attacking and will return back to the position it was at before the attack. 
-	This is to prevent spam attacks that essentially kill you in a few seconds. 
-2) Attacks and swims smoothly using lerp
-	-Has a start Range and an end range
-3) They are also limited by a world boundary collision shape that only affects shark nodes
-and prevents them from leaving the designated shark area!
-	- 	this means that if you swim out far enough they will not be able to chase you again and it makes
-	them really easy to kill! (if you want to take the easy way o|._.|o)
-4) Their death is handled in the start file and on pause they store if they are alive in an array and their position
+* **Join/Invite Menu!:**	
+1) Invite
+	-	Randomly generates a 6 digit code from this allowed set of characters 
+	"A","B","C","D","E","F","G","H","J","K","L","M",
+	"N","P","Q","R","S","T","U","V","W","X","Y","Z",
+	"2","3","4","5","6","7","8","9"
+	This is so that characters that can easily be confused like 1 and I are ommited!
+	-	Joining and creating a room are handled seperatly!
+	-	Utilizes Render!
+	- 	Takes a while to set up if it's the first time it's being used in 15 minutes however.
+2) Join
+	- Utilizes render
+	- Provides feedback from the Network global file such as if it's connecting right now or the reason a code was rejected!
+	- Remember it takes a while to register that a player has left!
 ---
-* **Tiles:**
-- Isometric Design and randomly generated using probability: 
-	- I drew the tiles yaya :D and this was my first time making isometric tiles - SO much guess and check
-	- I used probabilities and collisions and matching corners and sides to create a terrain set!
+* **End:**
+- It utilizes an object to register things like the same max color in a row or number
+- I did use AI to help figure out how to calculate the max color/ number and I've actually never used objects in Godot lol T-T will definetly be using this a lot!
+- Over all it calculates what your best hand is based on the set of cards you had at the end and adds that with the points that you get for placing cards!
 ---
-* **Health Bar:**
-1) displays as a Bar and Number
-2) if you are out of the sharks hitbox then you will begin to progressively
-heal! don't die!
+* **Musicr:**
+- It plays music using an autoload :D
 ---
-* **Attack Bar:**
-1) Displays as a rectangular cool down for your attack ! 
-2)The cool down timer starts once the projectile (i call it a bubble gun!)
-has despawned (which it does automatically after a cooldown period (3 sec) or after it hits the shark)
-3)This is a Texture Progress Bar
-4) Shows up as green if there is a bubblegun in effect or if you can use the bubble gun
-5) Shows up as grey during the cooldown period. 
----
-* **Boost Bar:**
-1)Shows up as red if you can boost and green if you can't! 
-2)A boost makes you lunge forward smoothly and there is a cooldown(3 sec) so you can't abuse it.
-3)You can not boost when staying still.
----
-* **Start Menu:**
-* Its such a beautiful UI I know. UwU
-* It has a super cool fish video on it - slightly lagging due to severe compression
-* If you hover over the buttons they bold
-* If you click start, you start
-* If you click settings, you are redirected to settings(see settings section)
-* If you click rage quit...you just instantly die lol
----
-* **Pause Menu:**
-* This took forever!
-*  If you hover over the buttons they get an outline
-* You can pause as long as you are not inside dialog (including in the mini game!)
-* It records the states of what sharks were alive and their health, the player's position, the current NPC, the shell position, and the players health
-(does NOT save the boost bar, attacks, direction ect though!)
-* Then it pauses the game and when you click to continue you will return to the same position that you were in before
-* If you click continue, you continue
-* If you click settings, you are redirected to settings(see below)
-* If you click rage quit...you just instantly die lol
----
-* **Settings Menu:**
-
-There are three tabs here: 
-1) Return (back to the pause/main menu)
-2) Lore (to learn about the amazing lore behind these little fish goobers :D)
-3) The actual settings
-	- here you can change your name! if not your just the honored one (gasp jjk reference?)
-	- change the volume
-	- change the song
-	- annddd toggle the trail hints on and off (although i will say without the trail hints on it's going to take forever to find anything)
----
-* **Mini Game:**
-1) A very simple minigame that I implemented
-2) Sharks
-	- Same attack/retreat/normal/chasing states. 
-	- Have an additional state of chasing after the shell and will return to states after a cooldown of 5 sec
-3) Player
-	- move with WASD/ARROW
-	- create a shell (max one) and 
-4) The goal is to apply pressure onto the two blue plates (by using yourself, the sharks, or the shell) to escape!
-5) New music for this scene and if you are close to the shells you will hear bubbling!
-
 
 ## AI USAGE: 
+* The contents in the Network.gd file and all the Javascript code is FULLY written by AI and tweaked by me :D. 
 * ChatGPT and Gemini for debugging, for example:
-	- to learn about keyboard ghosting
-	- helping to switch organize the shark attack states
-	- helping to learn about efficently camera switch
-	- helping to learn the scaling algorithm used in the dialog and npc files
-	- and just general debugging (like sometimes copy pasting debug print lines from AI but I deleted it later)!
-* But in the end all code and core concepts are written authentically by me!
-* All the art is done by me (<3 i hope you likee itt) and the music is not Ai generated lol
+	- Figuring out how to calculate max color/ number
+	- Struggling with race conditions
+	- Debugging the theif card state because it greatly deviated from my general flow
+	- Learning how to use RPC and WebRTC :D Wow I learned a lot. 
+	- and just general debugging !
+* But in the end all code and core concepts are written authentically by me (except for what I mentioned)!
+* All the art is done by me (<3 i hope you likee itt) and the music is not AI generated lol
 * And of course this read me is written by the one and only me :D
 
 ## LEARNING:
 	
-#### *After all after literally spending 70+ hours on this I must have learned something right?*
+#### *After all after literally spending 30+ hours on this I must have learned something right?*
 
 
 ### Learned:
 ---
-1) I learned more about formatting md files and honestly this might be my best one yet!
-2) I learned how to switch between music - and I definetly used it a lot in my project!
-3) More about using a Global file - such as the getter and setter functions when trying to find by variables
-4) Adding videos to godot? I didn't know that was possible and its super cool!
-5) Attack states! :D if I ever make more enemies I love how my sharks have four states and it made it sooo much easier to code than checking by distance every time!
-6) Strengthened knowledge on switching scenes, finding nodes, and dynamically deleting and storing information (for the pause menu so that when you return everything is the same)
-7) How to use the Texture Progress Bar! (the attack cooldown at the bottom)
-8) Using a subviewport/subview for the first time! (for the mini-map)
-9) Creating reusable files for things like dialog, npcs, sharks, ect that heavily relied on export vars :D
-10) Making/setting up Isometric tiles (I really want to try true isometric tiles in the future too!)
+1) What I'm most excited about was being able to learn Multiplayer games. I've always found it daunting and I'm so glad I'm a bit more familiar with it! I hope in the future I'll be able to write my own Network autoload and JS config file!
+2) I learned about RPC and how to send data across multiple devices running the same code!
+3) More about using a Global file - such as the getter and setter functions when trying to find by variables.
+4) I learned how to use transitions to make simple animations like the bounce at the start, (and pivot offset the center too!)
+5) And overall I'd say I definetly used a lot more states and Manager variables which I feel way more comforable with!
 
 ### Struggles :
 	
 ---
-1) **The shark.** This took forever and every time something worked the other wouldn't! I really had to get
-organized with this one for it to work. It would spam attack, delete on spawn, or just respawn after pausing! 
-This took days to get right and was a struggle from the start to the end. It was also very difficult to connect the 7 sharks
-to trail :(
-2) **The map.** Switching between cameras was very difficult for me because I needed one on the player and one on the mouse
-but Godot only allows one current camera! I also struggled to get the map to scale the same as in the real world or even actually
-display the npcs/sharks/player! And most of all I struggled to restrict the camera's view so it only showed the world! With two cameras and
-scaled down/up nodes everywhere this was a guess and check process! 
-3) **The Pause Menu** Because why doesn't Godot have a pause scene (not tree) function! I had to manually store the positions, and data
-of the nodes and dynamically connect multiple files (mainly fish,shark,and start) to return to how it was at the start
-4) **The NPCS...** They had a bunch of stuff in common but also so much *not* in common (a paradox...) and multiple unique situations.
-I struggled to have the order working with the trails and returning to bobu at the end! I also struggled to get the nodes to all become the
-same size and the little circle with their sprite in it to show up!
-5) **The Video** So apparently itch.io has a zip file limit of 200 mb. My video was literally 470mb at the start. I had to spend HOURS
-converting, compressing, and reducing file quality to eventually get it down to 13 mb (crazy right!) So if the video looks a bit slow...uh it is.
+1) **The Theif Card.** AAH I literally thought this was going to be super easy because I was able to get the STAR state done in a hour or two. But no. Everytime I tried to fix it something else 
+would break and in the end I had to change the structure of how everything worked. This was also especially hard because it required multiple nodes
+interacting with each other and everything needed to be synced through RPC. This created race conditions, and many many bugs :,(
+2) **The Array of cards.** Because of all the different ways I could be changing a card it was super hard to account for ALL the situations. I also had to make sure that the UI was
+also upadting, the array was upadting, and that the User would not be able to click until it was done. (or if they did it would use the CORRECT card). I really wish I could've been able to write it 
+better but oh well.
+3) **The Multiplayer** Even though I used AI to write it almost entirely it still took me like 5 hours. I was also completely knew to the whole process and didn't feel like watching a 24 hour long tutorial on how to 
+set up Godot Multiplayer. Since I had NO CLUE on how to set it up I spent super long setting up the file! But i'm glad I did because if I ever make another multiplayer game I can just reuse this! 
 
 *...and more but those are the big ones*
-
 
 ## CREDITS
 
@@ -266,35 +177,23 @@ converting, compressing, and reducing file quality to eventually get it down to 
 
 ---
 1) Fonts
-* Untitled Font by luzwick, https://www.fontspace.com/untitled-font-f30368
+* Cat Font by Me (which I created first for TypeSpace)
 * Handwriting Font by princess, https://www.fontspace.com/handwriting-font-f10680
-* Battle Bingo by zeenesia studio, https://www.fontspace.com/battle-bingo-font-f67643
-* Touch of Nature by Unauthorized Type, https://www.fontspace.com/touch-of-nature-font-f9784
 2) Music
-* Underwater - Audiopanther by igorovsyannykov, https://pixabay.com/music/upbeat-underwater-audiopanther-311437/
-* Underwater symphony_1 by bernivoyage, https://pixabay.com/music/pop-underwater-symphony-1-291195/
-* Vocaloid Electroswing Noir -- Creepy Alt-Pop by ChrisDjYogi, https://pixabay.com/music/pop-vocaloid-electroswing-noir-creepy-alt-pop-439236/
-* Water | Afro-pop Music by kontraa, https://pixabay.com/music/afrobeat-water-afro-pop-music-445661/
-*Bubbling by Infernus2(freesound), https://pixabay.com/sound-effects/nature-bubbling-6184/
-*Underwater Cavern by Purrple Cat, https://pixabay.com/music/beats-underwater-cavern-482364/ 
-3) Videos
-* Boyan Minchev on pexels.com, https://www.pexels.com/video/fishes-and-plants-in-aquarium-13320467/
+* ????
 
 ## SCREENSHOTS
 
 #### Gameplay Screenshot:
-<img width="1135" height="626" alt="gameplay-fish" src="https://github.com/user-attachments/assets/e08700e1-548d-4da7-97d7-4c8537c4e698" />
+
 
 #### Cover on Itch Screenshot:
-<img width="976" height="456" alt="cover-fish" src="https://github.com/user-attachments/assets/88ef0e2f-6e0e-4df5-a3c3-2c38523c7006" />
 
-#### Example Dialogue Screenshot:
-<img width="1141" height="635" alt="dialog-fish" src="https://github.com/user-attachments/assets/e9abacc1-dedd-4e6a-984d-8780356444be" />
 
-#### Settings Menu Screenshot:
-<img width="1126" height="630" alt="settings-fish" src="https://github.com/user-attachments/assets/24356c3f-6b17-4e85-949b-2531797b0b5a" />
+#### Example End Screenshot:
 
-#### Main Menu Screenshot:
-<img width="1137" height="622" alt="main-menu-fish" src="https://github.com/user-attachments/assets/fe992019-ea19-422d-a324-f9c20781de72" />
+
+#### Menu Screenshot:
+
 
 *Made with 💖 by jyoshita!*

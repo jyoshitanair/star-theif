@@ -250,9 +250,9 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_sjgp2")
 text = "Host a game instead!"
 
 [node name="Label3" type="Label" parent="." unique_id=1522090339]
-offset_left = 18.0
+offset_left = -1.0
 offset_top = 144.0
-offset_right = 1189.0
+offset_right = 1152.0
 offset_bottom = 357.0
 theme_override_colors/font_color = Color(0.2499758, 0.06665848, 0.057912976, 1)
 theme_override_colors/font_outline_color = Color(0.9789471, 0.8802597, 0.8651793, 1)
@@ -260,6 +260,8 @@ theme_override_constants/outline_size = 50
 theme_override_fonts/font = ExtResource("3_dokxw")
 theme_override_font_sizes/font_size = 160
 text = "  Join a Game"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="." unique_id=236786444]
 offset_left = 27.0

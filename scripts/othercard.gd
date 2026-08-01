@@ -48,7 +48,6 @@ func _process(delta: float) -> void:
 	if Manager.changing_scenes:
 		return
 	if current and Manager.mayclick:
-		print("PERMISSION")
 		panel.show()
 		panel_2.hide()
 		visual.position.y = up
@@ -59,7 +58,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("clicked"):
 		if Manager.mayclick and current: 
 			Manager.mayclick = false
-			print("IVE BEEN CLICKED ",old_card )
 			var temp_index = 4 - index
 				##cards are stored 0,1,2,3,4. displayed 4,3,2,1,0.
 				# 0-4 ; 1-3; 2-2; 3-1; 4-0 -> end = 4-start

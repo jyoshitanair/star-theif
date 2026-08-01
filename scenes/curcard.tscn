@@ -62,13 +62,15 @@ scale = Vector2(0.09999999, 0.09999999)
 texture = ExtResource("2_sgo3p")
 
 [node name="Label" type="Label" parent="curcard" unique_id=1663975313]
-offset_left = -86.66665
-offset_top = 73.33332
-offset_right = 120.00001
-offset_bottom = 212.33331
+offset_left = -101.66665
+offset_top = 34.99999
+offset_right = 105.00001
+offset_bottom = 173.99998
 mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_janb2")
 theme_override_font_sizes/font_size = 43
 text = "LOADING..."
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3

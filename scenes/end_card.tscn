@@ -67,15 +67,17 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_jtf4w")
 
 [node name="Label" type="Label" parent="." unique_id=1852749904]
-offset_left = -86.66666
-offset_top = 73.33333
-offset_right = 120.0
-offset_bottom = 212.33333
+offset_left = -105.0
+offset_top = 41.666664
+offset_right = 103.33333
+offset_bottom = 160.0
 mouse_filter = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_d7y5u")
 theme_override_font_sizes/font_size = 43
 text = "LOADING..."
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Panel2" type="Panel" parent="." unique_id=1887844820]

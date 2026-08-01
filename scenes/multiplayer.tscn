@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://1bqvstp7imlq" path="res://scripts/multiplayer.gd" id="1_b0l6s"]
 [ext_resource type="Texture2D" uid="uid://cdrnbhu3albvk" path="res://assets/images/Illustration 20260731 2_1.PNG" id="2_pjkx2"]
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_4vwpp"]
+[ext_resource type="Texture2D" uid="uid://c10hn4egpmccx" path="res://assets/images/Illustration 20260731 3_2.PNG" id="4_36d77"]
+[ext_resource type="Texture2D" uid="uid://dmjl307w1w1wd" path="res://assets/images/Illustration 20260731 3_6.PNG" id="5_uvo4r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqrfi"]
 bg_color = Color(0.12941177, 0.2901961, 0.5372549, 0.9372549)
@@ -220,6 +222,18 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_ue6mp")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_n1wk1")
 theme_override_styles/focus = SubResource("StyleBoxFlat_lxhos")
 text = "How to play?"
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1723795135]
+position = Vector2(944.00006, 120.000015)
+rotation = -0.15009832
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("4_36d77")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1721103254]
+position = Vector2(411.00003, 540.00006)
+rotation = 0.39793506
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("5_uvo4r")
 
 [connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

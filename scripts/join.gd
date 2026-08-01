@@ -15,14 +15,12 @@ func _process(delta: float) -> void:
 	label.text = Network.msg
 
 func _room_full () -> void: 
-	print("IMPOSSIBLE")	
 	can_connect = true
 	button.disabled = false
 	button_2.disabled = false
 	button_3.disabled = false
 	label.visible = false
 func _on_button_pressed() -> void:
-	print("clicked2")
 	button.disabled = true
 	var text = text_edit.text.strip_edges()
 	if text == "":
@@ -37,7 +35,6 @@ func _on_button_pressed() -> void:
 		var possible = Network.join_room(text)
 		
 		if possible == false:
-			print("IMPOSSIBLE")	
 			can_connect = true
 			button.disabled = false
 			button_2.disabled = false

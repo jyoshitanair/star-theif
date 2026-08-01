@@ -33,7 +33,6 @@ func _ready() -> void:
 		card_node.index = i
 		card_node.texture = preload("res://icon.svg")
 		if card_node == null:
-			print(card_node)
 			return
 		var card_name ="loaded_card%d"%i
 		var card_name_end ="loaded_card_end%d"%i
@@ -50,7 +49,6 @@ func _process(delta: float) -> void:
 	if lerper: 
 		card_clicked.position.y = lerp(card_clicked.position.y,lerpTarg, delta*13)
 		if is_equal_approx(card_clicked.position.y, lerpTarg):
-			print("DONNEEEEEEEEE")
 			lerper = false
 			await get_tree().create_timer(0.8).timeout
 			lerp2Targ = card_clicked.position.y - 200
@@ -93,7 +91,6 @@ func _process(delta: float) -> void:
 	##Manager.clicked_before = false
 	#pass
 func _show_moving(index) -> void:
-	print("SHOW MOVED ", index) 
 	if Manager.changing_scenes:
 		return
 	card_clicked = cards[index]
@@ -102,7 +99,6 @@ func _show_moving(index) -> void:
 func show_card() -> void:
 	if Manager.changing_scenes:
 		return
-	print("HELLOOO????") 
 	var showncard
 	if Network.is_host: 
 		showncard = Manager.player2cards

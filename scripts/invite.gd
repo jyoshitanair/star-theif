@@ -6,6 +6,7 @@ var connected_once = false
 @onready var label_2: Label = $Label2
 @onready var button_2: Button = $Button2
 @onready var button_3: Button = $Button3
+@onready var panel: Panel = $Panel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +22,7 @@ func _on_button_pressed() -> void:
 	if connected:
 		return
 	var code = Network.create_room()
+	panel.show()
 	label.text = code
 	connected_once = true
 	button.disabled = true
