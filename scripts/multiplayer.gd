@@ -1,9 +1,9 @@
 extends Node2D
-@onready var target = [$Sprite2D2, $Sprite2D3]
+@onready var target = [$Sprite2D2, $Sprite2D3, $Sprite2D4]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var target_size = [0.07,0.06]
+	var target_size = [0.07,0.085]
 	for i in range(target.size()):
 		var element = target[i]
 		var tween = create_tween().set_loops()

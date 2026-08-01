@@ -3,6 +3,7 @@ extends Node2D
 @onready var button: Button = $Button
 @onready var rules: Node2D = $"page 5"
 @onready var fatty_but: Button = $"page 5/Button3"
+@onready var points: Label = $points
 var player = preload("res://scenes/fight.tscn")
 var player2 = preload("res://scenes/otherfight.tscn")
 var connected_players = []
@@ -39,8 +40,10 @@ func _process(delta: float) -> void:
 		panel.visible = true
 	if multiplayer.get_unique_id() == Manager.p1:
 		label_2.text = "Player 1" 
+		points.text = "Points %d"%[Manager.player1points]
 	else:
 		label_2.text = "Player 2"
+		points.text = "Points %d"%[Manager.player2points]
 	label_4.text = "Total Turns: %d/10"%[floori(Manager.total_turns/2)]
 	label_3.text = "Current Player Turn:  Player 1" if Manager.p1turn else "Current Player Turn:  Player 2"
 func spawn(id:int):
@@ -56,6 +59,7 @@ func spawn(id:int):
 		var player_instance = player.instantiate()
 		player_instance.name = str(id)
 		player_spawn.add_child(player_instance)
+		player_instance.z_index = 100
 		player_instance.position = Vector2(0,0)
 		#its me
 	else:

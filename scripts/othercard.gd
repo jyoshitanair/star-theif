@@ -41,12 +41,18 @@ func _ready() -> void:
 	up = position.y+ 50
 	var cards = get_tree().get_nodes_in_group('card')
 	for card in cards:
-		card.theif_clicked.connect(_ask_to_switch)
+		if not card.theif_clicked.is_connected(_ask_to_switch):
+			card.theif_clicked.connect(_ask_to_switch)
 	bar = get_parent()
 	update("star theif!",color,texture)
 func _process(delta: float) -> void:
 	if Manager.changing_scenes:
 		return
+	if Manager.theif_mode:
+		var card_nodes = get_tree().get_nodes_in_group('card')
+		for c in card_nodes:
+			if c.has_signal("theif_clicked") and not c.theif_clicked.is_connected(_ask_to_switch):
+				c.theif_clicked.connect(_ask_to_switch)
 	if current and Manager.mayclick:
 		panel.show()
 		panel_2.hide()

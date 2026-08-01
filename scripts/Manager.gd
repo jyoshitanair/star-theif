@@ -197,6 +197,13 @@ func reset() -> void:
 	clicked_before = false
 func is_possible(index, player) -> bool: 
 	var card_set = Manager.player1cards if player == 1 else Manager.player2cards
+	if index < 0 or index >= card_set.size():
+		var fightbar = get_tree().get_first_node_in_group("fightbar")
+		fightbar._set_cards(fightbar.all_cards)
+		print(fightbar.all_cards)
+		return false
+	if random_card == null or random_card.size() < 3:
+		return false
 	var card = card_set[index]
 	if changing_scenes:
 		return false
@@ -243,6 +250,11 @@ func clean_up(id) -> void:
 		Network.is_host = false
 		
 	##VARS
+	mayclick = false
+	theif_mode = false
+	local_click = false
+	theif = false
+	theifcard = null
 	done = false
 	p1turn = true
 	clicked_before = false
@@ -271,6 +283,7 @@ func reset_game() -> void:
 	finished_players.clear()
 	done = false
 	p1turn = true
+	mayclick = false
 	clicked_before = false
 	fight_loaded = false
 	otherfight_loaded = false
@@ -281,5 +294,10 @@ func reset_game() -> void:
 	random_card = []
 	player1points = 0
 	player2points = 0
+	theif_mode = false
+	local_click = false
+	theif = false
+	theifcard = null
+	first_time = false
 	
 	

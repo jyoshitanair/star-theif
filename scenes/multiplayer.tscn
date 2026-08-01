@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://1bqvstp7imlq" path="res://scripts/multiplayer.gd" id="1_b0l6s"]
 [ext_resource type="Texture2D" uid="uid://cdrnbhu3albvk" path="res://assets/images/Illustration 20260731 2_1.PNG" id="2_pjkx2"]
 [ext_resource type="FontFile" uid="uid://7871h0b56lck" path="res://assets/fonts/Handwriting-poxD.ttf" id="3_4vwpp"]
-[ext_resource type="Texture2D" uid="uid://c10hn4egpmccx" path="res://assets/images/Illustration 20260731 3_2.PNG" id="4_36d77"]
-[ext_resource type="Texture2D" uid="uid://dmjl307w1w1wd" path="res://assets/images/Illustration 20260731 3_6.PNG" id="5_uvo4r"]
+[ext_resource type="Texture2D" uid="uid://d2e8quuchfw4c" path="res://assets/images/Illustration 20260731 3_10.PNG" id="4_uvo4r"]
+[ext_resource type="Texture2D" uid="uid://sffewoww55yy" path="res://assets/images/Illustration 20260731 3_4.PNG" id="5_a6lh4"]
+[ext_resource type="Texture2D" uid="uid://buhmby18xqdvd" path="res://assets/images/Illustration 20260731 3_3.PNG" id="6_gpc4n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqrfi"]
 bg_color = Color(0.12941177, 0.2901961, 0.5372549, 0.9372549)
@@ -227,13 +228,19 @@ text = "How to play?"
 position = Vector2(944.00006, 120.000015)
 rotation = -0.15009832
 scale = Vector2(0.07, 0.07)
-texture = ExtResource("4_36d77")
+texture = ExtResource("4_uvo4r")
 
 [node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1721103254]
 position = Vector2(411.00003, 540.00006)
 rotation = 0.39793506
 scale = Vector2(0.07, 0.07)
-texture = ExtResource("5_uvo4r")
+texture = ExtResource("5_a6lh4")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=374288132]
+position = Vector2(128.00002, 191)
+rotation = -0.45029494
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("6_gpc4n")
 
 [connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

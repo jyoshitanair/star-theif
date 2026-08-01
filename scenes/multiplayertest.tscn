@@ -40,8 +40,8 @@ texture = ExtResource("3_rgsu4")
 [node name="player spawn" type="Node2D" parent="." unique_id=53855626]
 
 [node name="Panel2" type="Panel" parent="." unique_id=131432925]
-offset_right = 421.0
-offset_bottom = 194.0
+offset_right = 475.0
+offset_bottom = 193.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_rid7q")
 
@@ -98,6 +98,20 @@ theme_override_fonts/font = ExtResource("3_r2pta")
 theme_override_font_sizes/font_size = 20
 text = "noot noot"
 
+[node name="points" type="Label" parent="." unique_id=113451137]
+offset_left = 9.0
+offset_top = 150.0
+offset_right = 330.0
+offset_bottom = 223.0
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_r2pta")
+theme_override_font_sizes/font_size = 20
+text = "Points:
+"
+
 [node name="Button" type="Button" parent="." unique_id=1855480497]
 offset_left = 5.0
 offset_top = 44.0
@@ -124,9 +138,9 @@ alignment = 2
 text_direction = 2
 
 [node name="Button2" type="Button" parent="." unique_id=1746387916]
-offset_left = 3.0
+offset_left = 160.0
 offset_top = 147.0
-offset_right = 306.0
+offset_right = 463.0
 offset_bottom = 188.0
 theme_override_colors/font_color = Color(0.9301126, 0.3307262, 0.65033865, 1)
 theme_override_colors/font_outline_color = Color(0.92941177, 0.32941177, 0.6509804, 0)
@@ -155,7 +169,7 @@ texture = ExtResource("5_deqal")
 
 [node name="Panel" type="Panel" parent="." unique_id=392434104]
 visible = false
-z_index = 2
+z_index = 200
 offset_left = 27.0
 offset_top = 202.0
 offset_right = 1110.0
@@ -182,6 +196,7 @@ vertical_alignment = 1
 
 [node name="page 5" type="Node2D" parent="." unique_id=639507405]
 visible = false
+z_index = 800
 
 [node name="Sprite2D" type="Sprite2D" parent="page 5" unique_id=227110853]
 position = Vector2(566, 323.5)
@@ -208,7 +223,7 @@ STAR SANDWICH: anything,7,star,7,anything              +9
 LUCKY SEVENS: All sevens                                              +7
 FLUSH: 4 of the same color                                            +5
 4 OF A KIND: 4 of the same number                             +5
-3 OF A KIND: 2 of the same number                             +4
+3 OF A KIND: 3 of the same number                             +4
 PAIR: 2 of the same number                                          +2
 HIGH CARD: a STAR/THEIF card                                     +1
 "

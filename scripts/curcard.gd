@@ -2,9 +2,8 @@ extends Node2D
 var color:Color = Color("5f1e72ff")
 var text:String = "googesjhljhkjlhjhjhjhljkhjhkjlhjhjkhlhjhlkhjhkjhlhjhl"
 var texture: Texture2D = preload("res://icon.svg")
-
-
 @onready var sprite_2d: Sprite2D = $Sprite2D
+
 @onready var label: Label = $Label
 @onready var color_rect_2: Panel = $ColorRect2
 @onready var color_rect: Panel = $ColorRect
@@ -26,6 +25,7 @@ var cardType = ["1","res://assets/images/Illustration 20260731 3_8.PNG", "3840b9
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	sprite_2d.scale = Vector2(0.1,0.1)
 	add_to_group("main_card")
 	get_new_card.call_deferred()
 

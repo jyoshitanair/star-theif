@@ -50,6 +50,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Manager.changing_scenes:
+		var player = 1 if Network.is_host else 2
+		print("UPDATE MADE IT")
+		Manager.updatepoints.rpc(player)
 		return
 	if busy: 
 		return 
@@ -86,6 +89,9 @@ func _process(delta: float) -> void:
 					other.button.disabled = true 
 				bar.show_theif_card()
 				Manager.clicked_before = false
+				var player = 1 if Network.is_host else 2
+				print("UPDATE MADE IT")
+				Manager.updatepoints.rpc(player)
 	if lerper2:
 		position.y = lerp(position.y,lerp2Targ, delta*13)
 		if is_equal_approx(position.y, lerp2Targ):
@@ -102,8 +108,6 @@ func _process(delta: float) -> void:
 			lerper2 = false
 			Manager.local_click = false
 			locked = false
-			var player = 1 if Network.is_host else 2
-			Manager.updatepoints.rpc(player)
 	good = false
 	if Manager.p1 != null && Manager.p2 != null:
 		if multiplayer.get_unique_id() == Manager.p1:
@@ -119,7 +123,6 @@ func _process(delta: float) -> void:
 			panel.show()
 			panel_2.hide()
 			if Input.is_action_just_pressed("clicked"):
-				print("CLICKED")
 				locked = true
 				Manager.local_click = true
 				bar.button.disabled = true
@@ -130,6 +133,7 @@ func _process(delta: float) -> void:
 					Manager.clicked_before = true
 					Manager.local_click = false
 					Manager.theif_mode = false
+					locked = false
 					current = false
 					old_current = false
 					visual.position = down
@@ -249,6 +253,10 @@ func update_ui(card) -> void:
 	if Manager.changing_scenes:
 		return
 	print("CHANGING, ", self.name, "TO ", card)
+	cardType = card
+	text = card[0]
+	texture = load(card[1])
+	color = Color(card[2])
 	sprite_2d.texture = load(card[1])
 	label.text = card[0]
 	color = Color(card[2])

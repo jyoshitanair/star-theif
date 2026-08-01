@@ -360,7 +360,7 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("1_66h5d")
 theme_override_font_sizes/font_size = 25
-text = "After 20 turns ( both people played = 1 turn) the game ends.
+text = "After 10 turns ( both people played = 1 turn) the game ends.
 
 Additional points are given based on the deck you have at the end.
 You will ONLY get the points for the highest point combination you can get.
@@ -392,7 +392,7 @@ STAR SANDWICH: anything,7,star,7,anything              +9
 LUCKY SEVENS: All sevens                                              +7
 FLUSH: 4 of the same color                                            +5
 4 OF A KIND: 4 of the same number                             +5
-3 OF A KIND: 2 of the same number                             +4
+3 OF A KIND: 3 of the same number                             +4
 PAIR: 2 of the same number                                          +2
 HIGH CARD: a STAR/THEIF card                                     +1
 "
@@ -436,6 +436,7 @@ text = "Thats all!
 Have fun playing!"
 
 [node name="Button" type="Button" parent="." unique_id=1456775515]
+visible = false
 offset_left = -29.0
 offset_top = -25.0
 offset_right = 1172.0
