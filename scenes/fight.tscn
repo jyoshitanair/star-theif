@@ -119,6 +119,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="curcard" type="Node2D" parent="." unique_id=847612341 groups=["main_card"]]
+visible = false
 z_index = -10
 position = Vector2(576, 316)
 scale = Vector2(0.6, 0.6)

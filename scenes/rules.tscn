@@ -147,9 +147,9 @@ scale = Vector2(1.0140351, 1.028125)
 texture = ExtResource("4_gro0m")
 
 [node name="Label2" type="Label" parent="page 2" unique_id=113381251]
-offset_left = 448.0
+offset_left = 480.0
 offset_top = 15.0
-offset_right = 1530.0
+offset_right = 1562.0
 offset_bottom = 72.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
@@ -175,7 +175,7 @@ which will be explained later."
 
 [node name="Panel2" type="Panel" parent="page 2/SHOW_2" unique_id=24655769]
 offset_left = -4.0
-offset_right = 425.0
+offset_right = 473.0
 offset_bottom = 186.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 
@@ -241,7 +241,7 @@ text = "If it's possible you may click one of these cards to place on your turn.
 This gives you +1 base point!"
 
 [node name="Panel2" type="Panel" parent="page 3/SHOW_2" unique_id=1146485242]
-offset_left = 10.0
+offset_left = 5.0
 offset_top = 442.0
 offset_right = 1148.0
 offset_bottom = 659.0
@@ -251,17 +251,17 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 visible = false
 
 [node name="Panel" type="Panel" parent="page 3/SHOW_3" unique_id=59672546]
-offset_left = 876.0
-offset_top = 368.0
-offset_right = 1085.0
-offset_bottom = 437.0
+offset_left = 912.0
+offset_top = 347.0
+offset_right = 1121.0
+offset_bottom = 416.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cqrfi")
 
 [node name="Label4" type="Label" parent="page 3/SHOW_3" unique_id=721183215]
-offset_left = 645.0
-offset_top = 253.0
-offset_right = 1132.0
-offset_bottom = 361.0
+offset_left = 648.0
+offset_top = 234.0
+offset_right = 1135.0
+offset_bottom = 342.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 12

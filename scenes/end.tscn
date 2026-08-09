@@ -213,7 +213,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_nl5ow")
 theme_override_font_sizes/font_size = 25
-text = "Points:"
+text = "???"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -234,7 +234,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_nl5ow")
 theme_override_font_sizes/font_size = 25
-text = "Points:"
+text = "???"
 horizontal_alignment = 1
 vertical_alignment = 1
 

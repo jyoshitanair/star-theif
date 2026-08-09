@@ -3,6 +3,7 @@ extends Node
 var audio
 var music_path = preload("res://assets/music/purrplecat-cat-nap-lofi-hiphop-beats-199252.mp3")
 ###
+var final_players = []
 var mayclick = false
 var finished_players = []
 var changing_scenes = false
@@ -120,8 +121,6 @@ func give(id) -> void:
 		change_cur_card.rpc_id(id, random_card)
 @rpc("any_peer", "call_local")
 func updatepoints(p1o2p2)-> void:
-	if changing_scenes:
-		return 
 	if p1o2p2 == 1: 
 		player1points += 1
 	if p1o2p2 == 2: 
