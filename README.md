@@ -33,7 +33,7 @@
 ---
 * **Github Repo:** https://github.com/jyoshitanair/star-theif
 
-* **Itch.io:** RAHHH
+* **Itch.io:** https://jyoshitanair.itch.io/test
 (playable in browser! no downloads!)
 
 	#### Note:
@@ -78,6 +78,7 @@ boost that ranges from 1 - 14 points!
 * Once both players are in , the host, player 1, will be prompted to start with the first move
 * Keep taking turns playing until eventually 10 turns have passed!
 * From here you can play another game or stop :D
+* As of now you can click the button to play another game but if you leave and join again it most likely will not work! :D
 
 #### HOW TO WIN
 
